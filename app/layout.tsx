@@ -1,10 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Geist_Mono } from "next/font/google";
+import { Inter, Geist_Mono, Cairo } from "next/font/google";
 import "./globals.css";
+import { LocaleProvider } from "@/lib/i18n/locale-context";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const cairo = Cairo({
+  variable: "--font-cairo",
+  subsets: ["arabic", "latin"],
   display: "swap",
 });
 
@@ -66,10 +73,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
+      className={`${inter.variable} ${cairo.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-accent selection:text-white">
-        {children}
+      <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-accent selection:text-white font-[family-name:var(--font-inter)] [html[dir=rtl]_&]:font-[family-name:var(--font-cairo)]">
+        <LocaleProvider>{children}</LocaleProvider>
       </body>
     </html>
   );

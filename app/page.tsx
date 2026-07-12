@@ -40,9 +40,6 @@ const InteractiveDemo = dynamic(() =>
 const Statistics = dynamic(() =>
   import("@/components/sections/statistics").then((m) => m.Statistics),
 );
-const Testimonials = dynamic(() =>
-  import("@/components/sections/testimonials").then((m) => m.Testimonials),
-);
 const FAQSection = dynamic(() =>
   import("@/components/sections/faq-section").then((m) => m.FAQSection),
 );
@@ -67,7 +64,6 @@ export default function Home() {
         <SolutionsByIndustry />
         <InteractiveDemo />
         <Statistics />
-        <Testimonials />
         <FAQSection />
         <Contact />
       </main>

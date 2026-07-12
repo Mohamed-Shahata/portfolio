@@ -4,19 +4,14 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
+import { LocaleToggle } from "@/components/ui/locale-toggle";
 import { cn } from "@/lib/utils";
-
-const NAV_LINKS = [
-  { label: "Work", href: "#what-i-build" },
-  { label: "Process", href: "#process" },
-  { label: "Projects", href: "#projects" },
-  { label: "Stack", href: "#tech-stack" },
-  { label: "FAQ", href: "#faq" },
-];
+import { useLocale } from "@/lib/i18n/locale-context";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { t } = useLocale();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -37,11 +32,11 @@ export function Navbar() {
         className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6"
       >
         <a href="#" className="text-sm font-semibold tracking-tight">
-          Dev<span className="gradient-text">Core</span>
+          Mohamed <span className="gradient-text">Shehata</span>
         </a>
 
         <ul className="hidden items-center gap-8 md:flex">
-          {NAV_LINKS.map((link) => (
+          {t.nav.links.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
@@ -53,22 +48,26 @@ export function Navbar() {
           ))}
         </ul>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-3 md:flex">
+          <LocaleToggle />
           <a
             href="#contact"
             className={buttonVariants({ variant: "gradient", size: "sm" })}
           >
-            Contact Me
+            {t.nav.contact}
           </a>
         </div>
 
-        <button
-          className="md:hidden text-foreground"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
-        >
-          {open ? <X className="size-6" /> : <Menu className="size-6" />}
-        </button>
+        <div className="flex items-center gap-3 md:hidden">
+          <LocaleToggle />
+          <button
+            className="text-foreground"
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Toggle menu"
+          >
+            {open ? <X className="size-6" /> : <Menu className="size-6" />}
+          </button>
+        </div>
       </nav>
 
       <AnimatePresence>
@@ -81,7 +80,7 @@ export function Navbar() {
             className="overflow-hidden glass border-t border-border md:hidden"
           >
             <ul className="flex flex-col gap-1 px-6 py-4">
-              {NAV_LINKS.map((link) => (
+              {t.nav.links.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
@@ -98,7 +97,7 @@ export function Navbar() {
                   onClick={() => setOpen(false)}
                   className="inline-flex h-10 w-full items-center justify-center rounded-full bg-linear-to-r from-accent to-accent-2 text-sm font-medium text-white"
                 >
-                  Contact Me
+                  {t.nav.contact}
                 </a>
               </li>
             </ul>

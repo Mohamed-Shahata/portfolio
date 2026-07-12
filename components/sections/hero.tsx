@@ -4,8 +4,11 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { GradientText } from "@/components/ui/gradient-text";
+import { useLocale } from "@/lib/i18n/locale-context";
 
 export function Hero() {
+  const { t } = useLocale();
+
   return (
     <section className="relative flex min-h-screen items-center justify-center px-6 pt-16">
       <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 text-center">
@@ -16,7 +19,7 @@ export function Hero() {
           className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-medium text-muted"
         >
           <Sparkles className="size-3.5 text-accent" />
-          Available for new projects
+          {t.hero.badge}
         </motion.span>
 
         <motion.h1
@@ -25,8 +28,8 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
           className="text-4xl font-semibold leading-[1.1] tracking-tight sm:text-6xl md:text-7xl"
         >
-          I Build Fast, Secure &{" "}
-          <GradientText>Scalable Business Systems.</GradientText>
+          {t.hero.titleLine1}{" "}
+          <GradientText>{t.hero.titleGradient}</GradientText>
         </motion.h1>
 
         <motion.p
@@ -35,9 +38,7 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
           className="max-w-2xl text-base text-muted sm:text-lg leading-relaxed"
         >
-          I design and develop modern web applications, SaaS platforms,
-          business systems, APIs, and desktop solutions that help businesses
-          grow.
+          {t.hero.description}
         </motion.p>
 
         <motion.div
@@ -50,14 +51,14 @@ export function Hero() {
             href="#projects"
             className={buttonVariants({ variant: "gradient", size: "lg" })}
           >
-            Explore My Work
+            {t.hero.ctaPrimary}
             <ArrowRight className="size-4" />
           </a>
           <a
             href="#contact"
             className={buttonVariants({ variant: "outline", size: "lg" })}
           >
-            Contact Me
+            {t.hero.ctaSecondary}
           </a>
         </motion.div>
       </div>

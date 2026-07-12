@@ -1,26 +1,53 @@
 "use client";
 
-import { Mail, Code2, Briefcase, MessageCircle, MapPin, Circle } from "lucide-react";
+import {
+  Mail,
+  Code2,
+  Briefcase,
+  MessageCircle,
+  MapPin,
+  Circle,
+  Download,
+} from "lucide-react";
 import { motion } from "framer-motion";
 import { SectionTitle } from "@/components/ui/section-title";
 import { buttonVariants } from "@/components/ui/button";
-
-const CONTACT_ITEMS = [
-  { icon: Mail, label: "hello@devcore.dev", href: "mailto:hello@devcore.dev" },
-  { icon: Code2, label: "github.com/devcore", href: "https://github.com" },
-  { icon: Briefcase, label: "linkedin.com/in/devcore", href: "https://linkedin.com" },
-  { icon: MessageCircle, label: "WhatsApp Chat", href: "https://wa.me/000000000" },
-  { icon: MapPin, label: "Remote — Available Worldwide", href: undefined },
-];
+import { useLocale } from "@/lib/i18n/locale-context";
 
 export function Contact() {
+  const { t } = useLocale();
+
+  const CONTACT_ITEMS = [
+    {
+      icon: Mail,
+      label: "mohamedmrslan@gmail.com",
+      href: "mailto:mohamedmrslan@gmail.com",
+    },
+    {
+      icon: Code2,
+      label: "github.com/Mohamed-Shahata",
+      href: "https://github.com/Mohamed-Shahata",
+    },
+    {
+      icon: Briefcase,
+      label: "linkedin.com/in/mohamed-shahata-895708261",
+      href: "https://linkedin.com/in/mohamed-shahata-895708261",
+    },
+    {
+      icon: MessageCircle,
+      label: "WhatsApp Chat",
+      href: "https://wa.me/201152432513",
+    },
+    { icon: MapPin, label: t.contact.locationLabel, href: undefined },
+  ];
+
   return (
     <section id="contact" className="relative px-6 py-24 sm:py-32">
       <div className="mx-auto max-w-3xl text-center">
         <SectionTitle
-          eyebrow="Get In Touch"
-          title="Let's Build Something Great Together."
-          description="Have a project in mind? Tell me what you're building and I'll get back to you within 24 hours."
+          eyebrow={t.contact.eyebrow}
+          title={t.contact.title}
+          description={t.contact.description}
         />
 
         <motion.div
@@ -32,7 +59,7 @@ export function Contact() {
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-medium text-muted">
             <Circle className="size-2 fill-success text-success" />
-            Available for new projects
+            {t.contact.badge}
           </span>
         </motion.div>
 
@@ -41,14 +68,22 @@ export function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-10"
+          className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center"
         >
           <a
-            href="mailto:hello@devcore.dev"
+            href="mailto:mohamedmrslan@gmail.com"
             className={buttonVariants({ variant: "gradient", size: "lg" })}
           >
             <Mail className="size-4" />
-            Email Me
+            {t.contact.emailMe}
+          </a>
+          <a
+            href="/cv/Mohamed-Shehata-CV.pdf"
+            download
+            className={buttonVariants({ variant: "outline", size: "lg" })}
+          >
+            <Download className="size-4" />
+            {t.contact.downloadCv}
           </a>
         </motion.div>
 
