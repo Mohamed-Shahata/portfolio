@@ -10,6 +10,9 @@ import { TechStack } from "@/components/sections/tech-stack";
 import { ClientDeliverables } from "@/components/sections/client-deliverables";
 import { SolutionsByIndustry } from "@/components/sections/solutions-by-industry";
 import { InteractiveDemo } from "@/components/sections/interactive-demo";
+import { Statistics } from "@/components/sections/statistics";
+import { Testimonials } from "@/components/sections/testimonials";
+import { FAQSection } from "@/components/sections/faq-section";
 
 export default function Home() {
   return (
@@ -26,7 +29,10 @@ export default function Home() {
         <ClientDeliverables />
         <SolutionsByIndustry />
         <InteractiveDemo />
-        {/* Remaining sections (Projects, Stats, FAQ, Testimonials, Contact) are added in the following tasks */}
+        <Statistics />
+        <Testimonials />
+        <FAQSection />
+        {/* Remaining sections (Projects, Contact) are added in the following tasks */}
       </main>
       <Footer />
     </>
