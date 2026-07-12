@@ -14,6 +14,7 @@ import { Statistics } from "@/components/sections/statistics";
 import { Testimonials } from "@/components/sections/testimonials";
 import { FAQSection } from "@/components/sections/faq-section";
 import { Contact } from "@/components/sections/contact";
+import { FeaturedProjects } from "@/components/sections/featured-projects";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
         <WhyWorkWithMe />
         <Process />
         <Architecture />
+        <FeaturedProjects />
         <TechStack />
         <ClientDeliverables />
         <SolutionsByIndustry />
@@ -34,7 +36,6 @@ export default function Home() {
         <Testimonials />
         <FAQSection />
         <Contact />
-        {/* Featured Projects section is added in the next task */}
       </main>
       <Footer />
     </>
