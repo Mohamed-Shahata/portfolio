@@ -13,6 +13,7 @@ import { InteractiveDemo } from "@/components/sections/interactive-demo";
 import { Statistics } from "@/components/sections/statistics";
 import { Testimonials } from "@/components/sections/testimonials";
 import { FAQSection } from "@/components/sections/faq-section";
+import { Contact } from "@/components/sections/contact";
 
 export default function Home() {
   return (
@@ -32,7 +33,8 @@ export default function Home() {
         <Statistics />
         <Testimonials />
         <FAQSection />
-        {/* Remaining sections (Projects, Contact) are added in the following tasks */}
+        <Contact />
+        {/* Featured Projects section is added in the next task */}
       </main>
       <Footer />
     </>
