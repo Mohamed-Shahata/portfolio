@@ -226,6 +226,8 @@ export const translations = {
       videoComingSoon: "Video coming soon",
       relatedProjects: "Related Projects",
       github: "GitHub",
+      frontendRepo: "Frontend Repo",
+      backendRepo: "Backend Repo",
       liveDemo: "Live Demo",
     },
     techStack: {
@@ -667,6 +669,8 @@ export const translations = {
       videoComingSoon: "الفيديو قريبًا",
       relatedProjects: "مشاريع ذات صلة",
       github: "جيت هب",
+      frontendRepo: "كود الفرونت إند",
+      backendRepo: "كود الباكند",
       liveDemo: "معاينة حية",
     },
     techStack: {

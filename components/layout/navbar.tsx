@@ -51,16 +51,6 @@ export function Navbar() {
               </Link>
             </li>
           ))}
-          {t.nav.pages.map((page) => (
-            <li key={page.href}>
-              <Link
-                href={page.href}
-                className="text-sm text-muted transition-colors hover:text-foreground"
-              >
-                {page.label}
-              </Link>
-            </li>
-          ))}
         </ul>
 
         <div className="hidden items-center gap-3 md:flex">
@@ -103,17 +93,6 @@ export function Navbar() {
                     className="block py-2 text-sm text-muted transition-colors hover:text-foreground"
                   >
                     {link.label}
-                  </Link>
-                </li>
-              ))}
-              {t.nav.pages.map((page) => (
-                <li key={page.href}>
-                  <Link
-                    href={page.href}
-                    onClick={() => setOpen(false)}
-                    className="block py-2 text-sm text-muted transition-colors hover:text-foreground"
-                  >
-                    {page.label}
                   </Link>
                 </li>
               ))}

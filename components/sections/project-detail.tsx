@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowLeft,
   ExternalLink,
@@ -56,8 +57,19 @@ export function ProjectDetail({
           className={buttonVariants({ variant: "outline", size: "md" })}
         >
           <Code2 className="size-4" />
-          {tp.github}
+          {project.backendGithubUrl ? tp.frontendRepo : tp.github}
         </a>
+        {project.backendGithubUrl && (
+          <a
+            href={project.backendGithubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={buttonVariants({ variant: "outline", size: "md" })}
+          >
+            <Code2 className="size-4" />
+            {tp.backendRepo}
+          </a>
+        )}
         {p.liveUrl && (
           <a
             href={p.liveUrl}
@@ -71,8 +83,19 @@ export function ProjectDetail({
         )}
       </div>
 
-      <div className="mt-10 flex aspect-video items-center justify-center rounded-2xl border border-border bg-surface">
-        <span className="text-sm text-muted-foreground">{tp.heroImage}</span>
+      <div className="relative mt-10 flex aspect-video items-center justify-center overflow-hidden rounded-2xl border border-border bg-surface">
+        {project.images[0] ? (
+          <Image
+            src={project.images[0]}
+            alt={p.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 800px"
+            className="object-cover object-top"
+            priority
+          />
+        ) : (
+          <span className="text-sm text-muted-foreground">{tp.heroImage}</span>
+        )}
       </div>
 
       {project.metrics.length > 0 && (
@@ -172,16 +195,31 @@ export function ProjectDetail({
       <section className="mt-12">
         <h2 className="text-xl font-semibold text-foreground">{tp.gallery}</h2>
         <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {[1, 2, 3].map((n) => (
-            <div
-              key={n}
-              className="flex aspect-video items-center justify-center rounded-xl border border-border bg-surface"
-            >
-              <span className="text-xs text-muted-foreground">
-                {tp.screenshot} {n}
-              </span>
-            </div>
-          ))}
+          {project.images.length > 1
+            ? project.images.slice(1).map((src, i) => (
+                <div
+                  key={src}
+                  className="relative flex aspect-video items-center justify-center overflow-hidden rounded-xl border border-border bg-surface"
+                >
+                  <Image
+                    src={src}
+                    alt={`${p.title} ${tp.screenshot} ${i + 1}`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                    className="object-cover object-top"
+                  />
+                </div>
+              ))
+            : [1, 2, 3].map((n) => (
+                <div
+                  key={n}
+                  className="flex aspect-video items-center justify-center rounded-xl border border-border bg-surface"
+                >
+                  <span className="text-xs text-muted-foreground">
+                    {tp.screenshot} {n}
+                  </span>
+                </div>
+              ))}
         </div>
       </section>
 

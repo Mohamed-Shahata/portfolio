@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { TechBadge } from "@/components/ui/tech-badge";
@@ -19,8 +20,20 @@ export function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
         delay={delay}
         className="p-0 overflow-hidden h-full flex flex-col"
       >
-        <div className="flex aspect-video items-center justify-center bg-background-elevated">
-          <span className="text-xs text-muted-foreground">Project Preview</span>
+        <div className="relative flex aspect-video items-center justify-center overflow-hidden bg-background-elevated">
+          {project.images[0] ? (
+            <Image
+              src={project.images[0]}
+              alt={p.title}
+              fill
+              sizes="(max-width: 640px) 100vw, 50vw"
+              className="object-cover object-top"
+            />
+          ) : (
+            <span className="text-xs text-muted-foreground">
+              Project Preview
+            </span>
+          )}
         </div>
         <div className="flex flex-1 flex-col p-6">
           <div className="flex items-center justify-between">

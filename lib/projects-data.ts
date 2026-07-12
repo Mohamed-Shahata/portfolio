@@ -22,9 +22,11 @@ export interface Project extends ProjectLocalizedFields {
   type: "Full Stack" | "Backend";
   techStack: string[];
   githubUrl: string;
+  backendGithubUrl?: string;
   liveUrl: string;
   relatedSlugs: string[];
   metrics: ProjectMetric[];
+  images: string[];
   ar: ProjectLocalizedFields;
 }
 
@@ -58,7 +60,7 @@ export const PROJECTS: Project[] = [
       "Designing cache keys and TTLs centrally from day one made it possible to plan a one-file swap to Redis later, instead of refactoring scattered caching logic across modules.",
     githubUrl: "https://github.com/Mohamed-Shahata/ERP-Lite",
     liveUrl: "",
-    relatedSlugs: ["courses-platform", "aqdam"],
+    relatedSlugs: ["courses-platform", "clinic-cms"],
     metrics: [
       {
         value: 14,
@@ -72,6 +74,12 @@ export const PROJECTS: Project[] = [
         label: "Languages (EN/AR, RTL-ready)",
         labelAr: "لغة (عربي/إنجليزي RTL)",
       },
+    ],
+    images: [
+      "/erp/erp-01-dashboard.png",
+      "/erp/erp-02.png",
+      "/erp/erp-03.png",
+      "/erp/erp-04.png",
     ],
     ar: {
       title: "ERP لايت",
@@ -143,6 +151,7 @@ export const PROJECTS: Project[] = [
         labelAr: "أسرع في زمن الاستجابة",
       },
     ],
+    images: [],
     ar: {
       title: "منصة الكورسات",
       tagline:
@@ -195,7 +204,7 @@ export const PROJECTS: Project[] = [
       "Modeling the booking flow as a shared state machine across service types kept the codebase consistent instead of forking logic per type.",
     githubUrl: "https://github.com/Mohamed-Shahata/booking-platform",
     liveUrl: "",
-    relatedSlugs: ["erp-lite", "aqdam"],
+    relatedSlugs: ["clinic-cms", "aqdam"],
     metrics: [
       {
         value: 3,
@@ -204,6 +213,7 @@ export const PROJECTS: Project[] = [
         labelAr: "أنواع خدمات مدعومة",
       },
     ],
+    images: [],
     ar: {
       title: "منصة الحجوزات",
       tagline: "باكند لمنصة حجز استشارات باكتشاف خبراء ومدفوعات.",
@@ -264,6 +274,7 @@ export const PROJECTS: Project[] = [
         labelAr: "فريق عند الإطلاق",
       },
     ],
+    images: [],
     ar: {
       title: "بيتكس ماراثون",
       tagline: "باكند لمنصة ماراثون برمجي بيدعم أكتر من 50 فريق عند الإطلاق.",
@@ -330,6 +341,7 @@ export const PROJECTS: Project[] = [
         labelAr: "قائمة متزامنة",
       },
     ],
+    images: [],
     ar: {
       title: "أقدام — منصة وظائف اجتماعية",
       tagline:
@@ -352,6 +364,103 @@ export const PROJECTS: Project[] = [
         "الموازنة بين حداثة الكاش والأداء — بيانات الفييد لازم تحس إنها محدثة مع الاستفادة من الكاش في نفس الوقت.",
       lessonsLearned:
         "عمل كاش للاستعلام الصح (تجميع الفييد) بدل ما أعمل كاش في كل حتة أدى أكبر تحسن أداء بأقل تعقيد.",
+    },
+  },
+  {
+    slug: "clinic-cms",
+    title: "Clinic CMS",
+    type: "Full Stack",
+    tagline:
+      "A multi-tenant SaaS platform for managing medical clinics — appointments, prescriptions, billing, and subscriptions.",
+    overview:
+      "A production-style multi-tenant SaaS platform (NestJS 10 / PostgreSQL / Prisma backend, Next.js 15 App Router / TypeScript / Tailwind bilingual frontend) that lets clinics fully digitize operations — scheduling, prescriptions, invoicing, staff roles, and subscription billing — with strict per-clinic data isolation.",
+    problem:
+      "Clinics running on paper or spreadsheets need one system for scheduling, prescriptions, and billing across three different staff roles, without any risk of one clinic ever seeing another clinic's data as more clinics join the platform.",
+    solution:
+      "Built a multi-tenant NestJS API where every clinic-scoped query is guard-enforced against leaking across tenants, with RBAC for three roles and a strict 7-state appointment machine, paired with a bilingual Next.js 15 dashboard that fetches data server-side for instant loads and hands off to client components for live interactions like the appointment queue.",
+    features: [
+      "Multi-tenancy with clinic-scoped queries enforced at the guard and query level",
+      "Role-based dashboards for Doctor Admin, Receptionist, and Super Admin",
+      "Live appointment queue with a 7-state status machine (BOOKED → COMPLETED)",
+      "Prescription engine with per-doctor medication and imaging catalogs",
+      "Dual doctor compensation models: fixed monthly rent or revenue percentage",
+      "Payment-proof subscription workflow with super-admin review and referral bonuses",
+      "Bilingual (AR/EN) dashboard with automatic RTL via next-intl",
+      "Audit logging on every write operation for full traceability",
+    ],
+    techStack: [
+      "NestJS",
+      "Next.js 15",
+      "TypeScript",
+      "PostgreSQL",
+      "Prisma",
+      "Tailwind CSS",
+      "next-intl",
+      "JWT",
+      "Cloudinary",
+    ],
+    architecture:
+      "The NestJS backend layers guards (JWT → clinic context → roles) in front of controllers and services, with every service method receiving clinicId from the guard-hydrated request user, and $transaction wrapping multi-table writes like clinic creation. The Next.js frontend uses server components to fetch initial data with the JWT cookie for instant page loads, then hands interactivity to client components, with Route Handlers proxying mutations back to the backend so the API URL stays private.",
+    challenges:
+      "Guaranteeing that no clinic could ever access another clinic's data required threading clinicId through every guard and service method rather than relying on a single check, and the appointment state machine needed to reject invalid transitions strictly server-side to reflect the real clinic workflow.",
+    lessonsLearned:
+      "Splitting each dashboard page into a server component for initial fetch and a client component for interactivity kept the app fast without sacrificing rich, real-time features like the live queue — a pattern worth reusing on future multi-tenant products.",
+    githubUrl: "https://github.com/Mohamed-Shahata/clinic-system-frontend",
+    backendGithubUrl: "https://github.com/Mohamed-Shahata/clinic-backend",
+    liveUrl: "",
+    relatedSlugs: ["erp-lite", "booking-platform"],
+    metrics: [
+      {
+        value: 3,
+        suffix: "",
+        label: "Role-based Dashboards",
+        labelAr: "داشبورد لكل دور",
+      },
+      {
+        value: 7,
+        suffix: "",
+        label: "Appointment States",
+        labelAr: "حالة للموعد",
+      },
+      {
+        value: 2,
+        suffix: "",
+        label: "Languages (EN/AR, RTL-ready)",
+        labelAr: "لغة (عربي/إنجليزي RTL)",
+      },
+    ],
+    images: [
+      "/clinic/clinic-01-dashboard.png",
+      "/clinic/clinic-02.png",
+      "/clinic/clinic-03.png",
+      "/clinic/clinic-04.png",
+    ],
+    ar: {
+      title: "نظام إدارة العيادات",
+      tagline:
+        "منصة SaaS متعددة العيادات لإدارة العيادات الطبية — مواعيد، وصفات طبية، فوترة، واشتراكات.",
+      overview:
+        "منصة SaaS بمستوى إنتاجي متعددة المستأجرين (باكند NestJS 10 وPostgreSQL وPrisma، فرونت إند Next.js 15 App Router ثنائي اللغة بـ TypeScript وTailwind) بتخلي العيادات تحوّل شغلها لديجيتال بالكامل — حجز، وصفات، فواتير، صلاحيات موظفين، واشتراكات — مع عزل صارم لبيانات كل عيادة.",
+      problem:
+        "العيادات الشغالة بالورق أو الإكسل محتاجة نظام واحد للحجز والوصفات والفوترة عبر 3 أدوار موظفين مختلفة، من غير أي احتمال إن عيادة تشوف بيانات عيادة تانية مع زيادة عدد العملاء على المنصة.",
+      solution:
+        "بنيت API متعدد المستأجرين بـ NestJS بحيث كل استعلام بيانات مؤمّن ضد أي تسريب بين العيادات، مع RBAC لثلاث أدوار وماكينة حالات صارمة للمواعيد بـ 7 حالات، مع داشبورد Next.js 15 ثنائي اللغة بيجيب البيانات من السيرفر لتحميل فوري وبيسلّم التفاعل اللحظي (زي قائمة الانتظار) لـ Client Components.",
+      features: [
+        "عزل بيانات كامل بين العيادات على مستوى الـ guards والاستعلامات",
+        "داشبوردات مختلفة حسب الدور: مدير عيادة، موظف استقبال، سوبر أدمن",
+        "قائمة انتظار مواعيد لحظية بماكينة حالات من 7 مراحل",
+        "محرك وصفات طبية بكتالوج أدوية وأشعة خاص بكل دكتور",
+        "نموذجين لأجر الدكتور: إيجار شهري ثابت أو نسبة من الإيرادات",
+        "تدفق اشتراك بإثبات دفع ومراجعة سوبر أدمن ومكافآت إحالة",
+        "داشبورد ثنائي اللغة (عربي/إنجليزي) مع RTL تلقائي عبر next-intl",
+        "Audit log على كل عملية كتابة لتتبع كامل",
+      ],
+      architecture:
+        "الباكند بـ NestJS بيرتب الـ guards (JWT ثم سياق العيادة ثم الأدوار) قبل الـ controllers والـ services، وكل service بياخد clinicId من الـ request المُجهّز بالـ guard، مع $transaction لأي كتابة متعددة الجداول زي إنشاء عيادة جديدة. الفرونت إند بـ Next.js بيجيب البيانات الأولية من السيرفر بكوكي الـ JWT لتحميل فوري، وبعدين يسلّم التفاعل لـ Client Components، مع Route Handlers بتعدّي التعديلات للباكند عشان رابط الـ API يفضل خاص.",
+      challenges:
+        "ضمان إن أي عيادة معرفش توصل لبيانات عيادة تانية احتاج تمرير clinicId في كل guard وservice بدل الاعتماد على تحقق واحد بس، وماكينة حالات المواعيد لازم ترفض أي انتقال غلط من السيرفر عشان تعكس شغل العيادة الحقيقي.",
+      lessonsLearned:
+        "تقسيم كل صفحة لـ Server Component للجلب الأولي وClient Component للتفاعل خلّى الداشبورد سريع من غير ما أضحي بميزات لحظية زي قائمة الانتظار — نمط هستخدمه تاني في أي منتج متعدد المستأجرين.",
     },
   },
 ];

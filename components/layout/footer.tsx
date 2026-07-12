@@ -53,16 +53,6 @@ export function Footer() {
                     </Link>
                   </li>
                 ))}
-                {t.nav.pages.map((page) => (
-                  <li key={page.href}>
-                    <Link
-                      href={page.href}
-                      className="text-sm text-muted transition-colors hover:text-foreground"
-                    >
-                      {page.label}
-                    </Link>
-                  </li>
-                ))}
               </ul>
             </div>
 
