@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, type FormEvent } from "react";
 import {
   Mail,
   Code2,
@@ -8,14 +9,48 @@ import {
   MapPin,
   Circle,
   Download,
+  Send,
+  Loader2,
+  CheckCircle2,
+  AlertCircle,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { SectionTitle } from "@/components/ui/section-title";
 import { buttonVariants } from "@/components/ui/button";
 import { useLocale } from "@/lib/i18n/locale-context";
 
+const FORMSPREE_ENDPOINT = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT ?? "";
+
 export function Contact() {
   const { t } = useLocale();
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!FORMSPREE_ENDPOINT) {
+      setStatus("error");
+      return;
+    }
+    setStatus("sending");
+    const form = e.currentTarget;
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
+      });
+      if (res.ok) {
+        setStatus("success");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
 
   const CONTACT_ITEMS = [
     {
@@ -78,7 +113,7 @@ export function Contact() {
             {t.contact.emailMe}
           </a>
           <a
-            href="/cv/Mohamed-Shehata-CV.pdf"
+            href="/Mohamed-Shehata-CV.pdf"
             download
             className={buttonVariants({ variant: "outline", size: "lg" })}
           >
@@ -123,6 +158,73 @@ export function Contact() {
             );
           })}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mt-14 rounded-2xl border border-border bg-surface p-6 text-left sm:p-8"
+        >
+          <h3 className="text-base font-medium text-foreground">
+            {t.contact.form.title}
+          </h3>
+          <form onSubmit={handleSubmit} className="mt-5 flex flex-col gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <input
+                type="text"
+                name="name"
+                required
+                placeholder={t.contact.form.name}
+                className="h-11 rounded-xl border border-border bg-background-elevated px-4 text-sm text-foreground outline-none transition-colors focus:border-accent"
+              />
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder={t.contact.form.email}
+                className="h-11 rounded-xl border border-border bg-background-elevated px-4 text-sm text-foreground outline-none transition-colors focus:border-accent"
+              />
+            </div>
+            <textarea
+              name="message"
+              required
+              rows={4}
+              placeholder={t.contact.form.message}
+              className="rounded-xl border border-border bg-background-elevated px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-accent"
+            />
+            <button
+              type="submit"
+              disabled={status === "sending"}
+              className={buttonVariants({
+                variant: "gradient",
+                size: "lg",
+                className: "self-start",
+              })}
+            >
+              {status === "sending" ? (
+                <Loader2 className="size-4 animate-spin" />
+              ) : (
+                <Send className="size-4" />
+              )}
+              {status === "sending"
+                ? t.contact.form.sending
+                : t.contact.form.send}
+            </button>
+            {status === "success" && (
+              <p className="flex items-center gap-2 text-sm text-success">
+                <CheckCircle2 className="size-4" />
+                {t.contact.form.success}
+              </p>
+            )}
+            {status === "error" && (
+              <p className="flex items-center gap-2 text-sm text-destructive">
+                <AlertCircle className="size-4" />
+                {t.contact.form.error}
+              </p>
+            )}
+          </form>
+        </motion.div>
       </div>
     </section>
   );

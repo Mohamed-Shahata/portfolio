@@ -10,6 +10,10 @@ export const translations = {
         { label: "Stack", href: "#tech-stack" },
         { label: "FAQ", href: "#faq" },
       ],
+      pages: [
+        { label: "About", href: "/about" },
+        { label: "Blog", href: "/blog" },
+      ],
       contact: "Contact Me",
     },
     hero: {
@@ -406,6 +410,17 @@ export const translations = {
       emailMe: "Email Me",
       downloadCv: "Download CV",
       locationLabel: "El Beheira, Egypt — Available Remotely",
+      form: {
+        title: "Or send a message directly",
+        name: "Your Name",
+        email: "Your Email",
+        message: "Tell me about your project",
+        send: "Send Message",
+        sending: "Sending...",
+        success:
+          "Thanks! Your message has been sent — I'll reply within 24 hours.",
+        error: "Something went wrong. Please try again or email me directly.",
+      },
     },
     footer: {
       tagline:
@@ -414,6 +429,47 @@ export const translations = {
       connect: "Connect",
       rights: "All rights reserved.",
       backToTop: "Back to top",
+    },
+    about: {
+      eyebrow: "About Me",
+      title: "The developer behind Dev Core",
+      intro:
+        "I'm Mohamed Shehata, a full-stack developer focused on building production-grade business systems — ERPs, clinic platforms, and e-commerce stores — with clean architecture and bilingual, RTL-ready interfaces.",
+      journeyTitle: "My Journey",
+      journey: [
+        {
+          title: "Backend Foundations",
+          description:
+            "Started building REST APIs with Node.js and NestJS, focusing on clean, modular architecture and database design with PostgreSQL and MongoDB.",
+        },
+        {
+          title: "Full-Stack Systems",
+          description:
+            "Expanded into full-stack delivery with Next.js and React, shipping bilingual ERP and e-commerce platforms end-to-end for real businesses.",
+        },
+        {
+          title: "Production-Grade Practices",
+          description:
+            "Adopted defense-in-depth security, caching strategies, and transaction-safe operations as standard practice across every project.",
+        },
+      ],
+      approachTitle: "How I Work",
+      approach:
+        "I favor strict layered architecture, typed contracts end-to-end, and building only what's actually required — no over-engineering, no wasted effort.",
+      ctaTitle: "Let's work together",
+      ctaDescription:
+        "Have a system you need built or fixed? I'd love to hear about it.",
+    },
+    blog: {
+      eyebrow: "Writing",
+      title: "Notes on building software",
+      description:
+        "Thoughts on architecture, performance, and shipping bilingual products — new posts coming soon.",
+      emptyTitle: "No posts yet",
+      emptyDescription:
+        "I'm working on the first articles. Check back soon or follow along on LinkedIn.",
+      readMore: "Read more",
+      backToBlog: "Back to Blog",
     },
   },
   ar: {
@@ -424,6 +480,10 @@ export const translations = {
         { label: "المشاريع", href: "#projects" },
         { label: "التقنيات", href: "#tech-stack" },
         { label: "الأسئلة الشائعة", href: "#faq" },
+      ],
+      pages: [
+        { label: "نبذة عني", href: "/about" },
+        { label: "المدونة", href: "/blog" },
       ],
       contact: "تواصل معايا",
     },
@@ -774,6 +834,16 @@ export const translations = {
       emailMe: "ابعتلي إيميل",
       downloadCv: "حمّل السيرة الذاتية",
       locationLabel: "البحيرة، مصر — متاح للعمل عن بعد",
+      form: {
+        title: "أو ابعتلي رسالة مباشرة",
+        name: "اسمك",
+        email: "إيميلك",
+        message: "احكيلي عن مشروعك",
+        send: "ابعت الرسالة",
+        sending: "جاري الإرسال...",
+        success: "تمام! الرسالة اتبعتت — هرد عليك خلال 24 ساعة.",
+        error: "حصلت مشكلة. جرب تاني أو ابعتلي إيميل مباشرة.",
+      },
     },
     footer: {
       tagline:
@@ -782,6 +852,45 @@ export const translations = {
       connect: "تواصل",
       rights: "جميع الحقوق محفوظة.",
       backToTop: "ارجع لفوق",
+    },
+    about: {
+      eyebrow: "نبذة عني",
+      title: "المطور اللي وراء Dev Core",
+      intro:
+        "أنا محمد شحاتة، مطور فُل ستاك بركز على بناء أنظمة أعمال بمستوى إنتاجي — ERPs، منصات عيادات، ومتاجر إلكترونية — بمعمارية نظيفة وواجهات ثنائية اللغة جاهزة لـ RTL.",
+      journeyTitle: "رحلتي",
+      journey: [
+        {
+          title: "أساسيات الباكند",
+          description:
+            "بدأت ببناء REST APIs بـ Node.js وNestJS، مع تركيز على معمارية نظيفة ومعيارية وتصميم قواعد بيانات بـ PostgreSQL وMongoDB.",
+        },
+        {
+          title: "أنظمة فُل ستاك",
+          description:
+            "توسعت لتسليم فُل ستاك كامل بـ Next.js وReact، وبنيت منصات ERP ومتاجر إلكترونية ثنائية اللغة من الألف للياء لشركات حقيقية.",
+        },
+        {
+          title: "ممارسات إنتاجية",
+          description:
+            "تبنيت أمان متعدد الطبقات واستراتيجيات كاش وعمليات آمنة بالـ transactions كممارسة أساسية في كل مشروع.",
+        },
+      ],
+      approachTitle: "طريقة شغلي",
+      approach:
+        "بفضّل معمارية طبقات صارمة، عقود typed من الألف للياء، وبني اللي مطلوب بالظبط بس — من غير هندسة زايدة أو وقت ضايع.",
+      ctaTitle: "يلا نشتغل مع بعض",
+      ctaDescription: "عندك نظام محتاج بناء أو إصلاح؟ يشرفني أسمع عنه.",
+    },
+    blog: {
+      eyebrow: "كتابة",
+      title: "ملاحظات عن بناء السوفتوير",
+      description:
+        "أفكار عن المعمارية والأداء وتسليم منتجات ثنائية اللغة — مقالات جديدة قريبًا.",
+      emptyTitle: "لسه مفيش مقالات",
+      emptyDescription: "بشتغل على أول المقالات. تابعني قريب أو على لينكدإن.",
+      readMore: "اقرأ المزيد",
+      backToBlog: "العودة للمدونة",
     },
   },
 } as const;

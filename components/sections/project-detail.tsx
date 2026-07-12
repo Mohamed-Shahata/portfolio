@@ -1,9 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, Code2, Lightbulb, Layers } from "lucide-react";
+import {
+  ArrowLeft,
+  ExternalLink,
+  Code2,
+  Lightbulb,
+  Layers,
+} from "lucide-react";
 import { TechBadge } from "@/components/ui/tech-badge";
 import { ProjectCard } from "@/components/ui/project-card";
+import { StatsCounter } from "@/components/ui/stats-counter";
 import { buttonVariants } from "@/components/ui/button";
 import { getLocalizedProject, type Project } from "@/lib/projects-data";
 import { useLocale } from "@/lib/i18n/locale-context";
@@ -68,6 +75,19 @@ export function ProjectDetail({
         <span className="text-sm text-muted-foreground">{tp.heroImage}</span>
       </div>
 
+      {project.metrics.length > 0 && (
+        <div className="mt-10 grid grid-cols-2 gap-6 rounded-2xl border border-border bg-surface px-6 py-8 sm:grid-cols-3">
+          {project.metrics.map((m) => (
+            <StatsCounter
+              key={m.label}
+              value={m.value}
+              suffix={m.suffix}
+              label={locale === "ar" ? m.labelAr : m.label}
+            />
+          ))}
+        </div>
+      )}
+
       <section className="mt-14">
         <h2 className="text-xl font-semibold text-foreground">{tp.overview}</h2>
         <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
@@ -77,12 +97,20 @@ export function ProjectDetail({
 
       <section className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
         <div className="rounded-2xl border border-border bg-surface p-6">
-          <h3 className="text-sm font-medium text-muted-foreground">{tp.problem}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-foreground">{p.problem}</p>
+          <h3 className="text-sm font-medium text-muted-foreground">
+            {tp.problem}
+          </h3>
+          <p className="mt-2 text-sm leading-relaxed text-foreground">
+            {p.problem}
+          </p>
         </div>
         <div className="rounded-2xl border border-border bg-surface p-6">
-          <h3 className="text-sm font-medium text-muted-foreground">{tp.solution}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-foreground">{p.solution}</p>
+          <h3 className="text-sm font-medium text-muted-foreground">
+            {tp.solution}
+          </h3>
+          <p className="mt-2 text-sm leading-relaxed text-foreground">
+            {p.solution}
+          </p>
         </div>
       </section>
 
@@ -102,7 +130,9 @@ export function ProjectDetail({
       </section>
 
       <section className="mt-12">
-        <h2 className="text-xl font-semibold text-foreground">{tp.techStack}</h2>
+        <h2 className="text-xl font-semibold text-foreground">
+          {tp.techStack}
+        </h2>
         <div className="mt-4 flex flex-wrap gap-2">
           {p.techStack.map((t2) => (
             <TechBadge key={t2} label={t2} />
@@ -111,7 +141,9 @@ export function ProjectDetail({
       </section>
 
       <section className="mt-12">
-        <h2 className="text-xl font-semibold text-foreground">{tp.architecture}</h2>
+        <h2 className="text-xl font-semibold text-foreground">
+          {tp.architecture}
+        </h2>
         <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
           {p.architecture}
         </p>
@@ -123,7 +155,9 @@ export function ProjectDetail({
             <Lightbulb className="size-4 text-accent" />
             {tp.challenges}
           </h3>
-          <p className="mt-2 text-sm leading-relaxed text-foreground">{p.challenges}</p>
+          <p className="mt-2 text-sm leading-relaxed text-foreground">
+            {p.challenges}
+          </p>
         </div>
         <div className="rounded-2xl border border-border bg-surface p-6">
           <h3 className="text-sm font-medium text-muted-foreground">
@@ -152,15 +186,21 @@ export function ProjectDetail({
       </section>
 
       <section className="mt-12">
-        <h2 className="text-xl font-semibold text-foreground">{tp.videoWalkthrough}</h2>
+        <h2 className="text-xl font-semibold text-foreground">
+          {tp.videoWalkthrough}
+        </h2>
         <div className="mt-4 flex aspect-video items-center justify-center rounded-2xl border border-border bg-surface">
-          <span className="text-sm text-muted-foreground">{tp.videoComingSoon}</span>
+          <span className="text-sm text-muted-foreground">
+            {tp.videoComingSoon}
+          </span>
         </div>
       </section>
 
       {related.length > 0 && (
         <section className="mt-16 border-t border-border pt-12">
-          <h2 className="text-xl font-semibold text-foreground">{tp.relatedProjects}</h2>
+          <h2 className="text-xl font-semibold text-foreground">
+            {tp.relatedProjects}
+          </h2>
           <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
             {related.map((rp) => (
               <ProjectCard key={rp.slug} project={rp} />

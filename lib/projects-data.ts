@@ -10,6 +10,13 @@ export interface ProjectLocalizedFields {
   lessonsLearned: string;
 }
 
+export interface ProjectMetric {
+  value: number;
+  suffix: string;
+  label: string;
+  labelAr: string;
+}
+
 export interface Project extends ProjectLocalizedFields {
   slug: string;
   type: "Full Stack" | "Backend";
@@ -17,6 +24,7 @@ export interface Project extends ProjectLocalizedFields {
   githubUrl: string;
   liveUrl: string;
   relatedSlugs: string[];
+  metrics: ProjectMetric[];
   ar: ProjectLocalizedFields;
 }
 
@@ -51,6 +59,20 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/Mohamed-Shahata/ERP-Lite",
     liveUrl: "",
     relatedSlugs: ["courses-platform", "aqdam"],
+    metrics: [
+      {
+        value: 14,
+        suffix: "+",
+        label: "Business Modules",
+        labelAr: "موديول عمل",
+      },
+      {
+        value: 2,
+        suffix: "",
+        label: "Languages (EN/AR, RTL-ready)",
+        labelAr: "لغة (عربي/إنجليزي RTL)",
+      },
+    ],
     ar: {
       title: "ERP لايت",
       tagline:
@@ -113,6 +135,14 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/Mohamed-Shahata/Courses_platform",
     liveUrl: "",
     relatedSlugs: ["erp-lite", "aqdam"],
+    metrics: [
+      {
+        value: 35,
+        suffix: "%",
+        label: "Faster Response Time",
+        labelAr: "أسرع في زمن الاستجابة",
+      },
+    ],
     ar: {
       title: "منصة الكورسات",
       tagline:
@@ -166,6 +196,14 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/Mohamed-Shahata/booking-platform",
     liveUrl: "",
     relatedSlugs: ["erp-lite", "aqdam"],
+    metrics: [
+      {
+        value: 3,
+        suffix: "",
+        label: "Service Types Supported",
+        labelAr: "أنواع خدمات مدعومة",
+      },
+    ],
     ar: {
       title: "منصة الحجوزات",
       tagline: "باكند لمنصة حجز استشارات باكتشاف خبراء ومدفوعات.",
@@ -218,6 +256,14 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/Mohamed-Shahata/btix-Backend",
     liveUrl: "",
     relatedSlugs: ["booking-platform", "aqdam"],
+    metrics: [
+      {
+        value: 50,
+        suffix: "+",
+        label: "Teams at Launch",
+        labelAr: "فريق عند الإطلاق",
+      },
+    ],
     ar: {
       title: "بيتكس ماراثون",
       tagline: "باكند لمنصة ماراثون برمجي بيدعم أكتر من 50 فريق عند الإطلاق.",
@@ -270,6 +316,20 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/Mohamed-Shahata/aqdam_backend",
     liveUrl: "",
     relatedSlugs: ["courses-platform", "bitx-marathon"],
+    metrics: [
+      {
+        value: 60,
+        suffix: "%",
+        label: "Faster Feed Queries",
+        labelAr: "أسرع في استعلامات الفييد",
+      },
+      {
+        value: 100,
+        suffix: "+",
+        label: "Concurrent Listings",
+        labelAr: "قائمة متزامنة",
+      },
+    ],
     ar: {
       title: "أقدام — منصة وظائف اجتماعية",
       tagline:

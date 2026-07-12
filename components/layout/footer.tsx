@@ -30,7 +30,7 @@ export function Footer() {
         <div className="flex flex-col gap-10 md:flex-row md:justify-between">
           <div className="max-w-xs">
             <span className="text-sm font-semibold tracking-tight">
-              Mohamed <span className="gradient-text">Shehata</span>
+              Dev<span className="gradient-text">Core</span>
             </span>
             <p className="mt-3 text-sm text-muted leading-relaxed">
               {t.footer.tagline}
@@ -50,6 +50,16 @@ export function Footer() {
                       className="text-sm text-muted transition-colors hover:text-foreground"
                     >
                       {l.label}
+                    </Link>
+                  </li>
+                ))}
+                {t.nav.pages.map((page) => (
+                  <li key={page.href}>
+                    <Link
+                      href={page.href}
+                      className="text-sm text-muted transition-colors hover:text-foreground"
+                    >
+                      {page.label}
                     </Link>
                   </li>
                 ))}

@@ -1,0 +1,82 @@
+"use client";
+
+import { Server, Layers, ShieldCheck, Mail, Download } from "lucide-react";
+import Link from "next/link";
+import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
+import { SectionTitle } from "@/components/ui/section-title";
+import { Timeline } from "@/components/ui/timeline";
+import { buttonVariants } from "@/components/ui/button";
+import { useLocale } from "@/lib/i18n/locale-context";
+
+const JOURNEY_ICONS = [Server, Layers, ShieldCheck];
+
+export default function AboutPage() {
+  const { t } = useLocale();
+  const a = t.about;
+
+  return (
+    <>
+      <Navbar />
+      <main className="relative flex-1 px-6 pb-24 pt-32">
+        <div className="mx-auto max-w-3xl">
+          <SectionTitle eyebrow={a.eyebrow} title={a.title} align="left" />
+          <p className="mt-6 text-base leading-relaxed text-muted sm:text-lg">
+            {a.intro}
+          </p>
+
+          <section className="mt-16">
+            <h2 className="text-xl font-semibold text-foreground">
+              {a.journeyTitle}
+            </h2>
+            <div className="mt-8">
+              <Timeline
+                steps={a.journey.map((step, i) => ({
+                  icon: JOURNEY_ICONS[i] ?? Server,
+                  title: step.title,
+                  description: step.description,
+                }))}
+              />
+            </div>
+          </section>
+
+          <section className="mt-16 rounded-2xl border border-border bg-surface p-6 sm:p-8">
+            <h2 className="text-xl font-semibold text-foreground">
+              {a.approachTitle}
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
+              {a.approach}
+            </p>
+          </section>
+
+          <section className="mt-16 text-center">
+            <h2 className="text-xl font-semibold text-foreground">
+              {a.ctaTitle}
+            </h2>
+            <p className="mt-2 text-sm text-muted sm:text-base">
+              {a.ctaDescription}
+            </p>
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
+              <Link
+                href="/#contact"
+                className={buttonVariants({ variant: "gradient", size: "lg" })}
+              >
+                <Mail className="size-4" />
+                {t.contact.emailMe}
+              </Link>
+              <a
+                href="/Mohamed-Shehata-CV.pdf"
+                download
+                className={buttonVariants({ variant: "outline", size: "lg" })}
+              >
+                <Download className="size-4" />
+                {t.contact.downloadCv}
+              </a>
+            </div>
+          </section>
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
+}
