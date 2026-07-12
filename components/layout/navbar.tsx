@@ -29,10 +29,13 @@ export function Navbar() {
     <header
       className={cn(
         "fixed top-0 z-50 w-full transition-all duration-300",
-        scrolled ? "glass border-b border-border" : "bg-transparent"
+        scrolled ? "glass border-b border-border" : "bg-transparent",
       )}
     >
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+      <nav
+        aria-label="Main navigation"
+        className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6"
+      >
         <a href="#" className="text-sm font-semibold tracking-tight">
           Dev<span className="gradient-text">Core</span>
         </a>
@@ -51,7 +54,10 @@ export function Navbar() {
         </ul>
 
         <div className="hidden md:block">
-          <a href="#contact" className={buttonVariants({ variant: "gradient", size: "sm" })}>
+          <a
+            href="#contact"
+            className={buttonVariants({ variant: "gradient", size: "sm" })}
+          >
             Contact Me
           </a>
         </div>
@@ -90,7 +96,7 @@ export function Navbar() {
                 <a
                   href="#contact"
                   onClick={() => setOpen(false)}
-                  className="inline-flex h-10 w-full items-center justify-center rounded-full bg-gradient-to-r from-accent to-accent-2 text-sm font-medium text-white"
+                  className="inline-flex h-10 w-full items-center justify-center rounded-full bg-linear-to-r from-accent to-accent-2 text-sm font-medium text-white"
                 >
                   Contact Me
                 </a>

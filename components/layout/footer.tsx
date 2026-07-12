@@ -17,7 +17,10 @@ const SOCIALS = [
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-border bg-background-elevated">
+    <footer
+      aria-label="Site footer"
+      className="relative border-t border-border bg-background-elevated"
+    >
       <div className="mx-auto max-w-6xl px-6 py-14">
         <div className="flex flex-col gap-10 md:flex-row md:justify-between">
           <div className="max-w-xs">
