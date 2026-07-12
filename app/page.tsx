@@ -4,6 +4,8 @@ import { AnimatedBackground } from "@/components/ui/animated-background";
 import { Hero } from "@/components/sections/hero";
 import { WhatIBuild } from "@/components/sections/what-i-build";
 import { WhyWorkWithMe } from "@/components/sections/why-work-with-me";
+import { Process } from "@/components/sections/process";
+import { Architecture } from "@/components/sections/architecture";
 
 export default function Home() {
   return (
@@ -14,7 +16,9 @@ export default function Home() {
         <Hero />
         <WhatIBuild />
         <WhyWorkWithMe />
-        {/* Remaining sections (Process, Projects, Tech Stack, etc.) are added in the following tasks */}
+        <Process />
+        <Architecture />
+        {/* Remaining sections (Projects, Tech Stack, Deliverables, etc.) are added in the following tasks */}
       </main>
       <Footer />
     </>
