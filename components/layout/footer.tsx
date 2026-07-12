@@ -1,5 +1,7 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { ArrowUp, Code2, Briefcase, Mail } from "lucide-react";
 import { useLocale } from "@/lib/i18n/locale-context";
 
@@ -15,6 +17,9 @@ const SOCIALS = [
 
 export function Footer() {
   const { t } = useLocale();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const toHash = (hash: string) => (isHome ? hash : `/${hash}`);
 
   return (
     <footer
@@ -40,12 +45,12 @@ export function Footer() {
               <ul className="mt-4 flex flex-col gap-2.5">
                 {t.nav.links.map((l) => (
                   <li key={l.href}>
-                    <a
-                      href={l.href}
+                    <Link
+                      href={toHash(l.href)}
                       className="text-sm text-muted transition-colors hover:text-foreground"
                     >
                       {l.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -78,13 +83,13 @@ export function Footer() {
           <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} Dev Core. {t.footer.rights}
           </p>
-          <a
-            href="#"
+          <Link
+            href={isHome ? "#" : "/"}
             className="inline-flex items-center gap-1.5 text-xs text-muted transition-colors hover:text-foreground"
           >
             {t.footer.backToTop}
             <ArrowUp className="size-3.5" />
-          </a>
+          </Link>
         </div>
       </div>
     </footer>

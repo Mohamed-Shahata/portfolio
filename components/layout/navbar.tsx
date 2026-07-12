@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
@@ -12,6 +14,9 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { t } = useLocale();
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const toHash = (hash: string) => (isHome ? hash : `/${hash}`);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -31,31 +36,31 @@ export function Navbar() {
         aria-label="Main navigation"
         className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6"
       >
-        <a href="#" className="text-sm font-semibold tracking-tight">
+        <Link href="/" className="text-sm font-semibold tracking-tight">
           Mohamed <span className="gradient-text">Shehata</span>
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-8 md:flex">
           {t.nav.links.map((link) => (
             <li key={link.href}>
-              <a
-                href={link.href}
+              <Link
+                href={toHash(link.href)}
                 className="text-sm text-muted transition-colors hover:text-foreground"
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
 
         <div className="hidden items-center gap-3 md:flex">
           <LocaleToggle />
-          <a
-            href="#contact"
+          <Link
+            href={toHash("#contact")}
             className={buttonVariants({ variant: "gradient", size: "sm" })}
           >
             {t.nav.contact}
-          </a>
+          </Link>
         </div>
 
         <div className="flex items-center gap-3 md:hidden">
@@ -82,23 +87,23 @@ export function Navbar() {
             <ul className="flex flex-col gap-1 px-6 py-4">
               {t.nav.links.map((link) => (
                 <li key={link.href}>
-                  <a
-                    href={link.href}
+                  <Link
+                    href={toHash(link.href)}
                     onClick={() => setOpen(false)}
                     className="block py-2 text-sm text-muted transition-colors hover:text-foreground"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
               <li className="pt-2">
-                <a
-                  href="#contact"
+                <Link
+                  href={toHash("#contact")}
                   onClick={() => setOpen(false)}
                   className="inline-flex h-10 w-full items-center justify-center rounded-full bg-linear-to-r from-accent to-accent-2 text-sm font-medium text-white"
                 >
                   {t.nav.contact}
-                </a>
+                </Link>
               </li>
             </ul>
           </motion.div>
