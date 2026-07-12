@@ -8,6 +8,8 @@ import { Process } from "@/components/sections/process";
 import { Architecture } from "@/components/sections/architecture";
 import { TechStack } from "@/components/sections/tech-stack";
 import { ClientDeliverables } from "@/components/sections/client-deliverables";
+import { SolutionsByIndustry } from "@/components/sections/solutions-by-industry";
+import { InteractiveDemo } from "@/components/sections/interactive-demo";
 
 export default function Home() {
   return (
@@ -22,7 +24,9 @@ export default function Home() {
         <Architecture />
         <TechStack />
         <ClientDeliverables />
-        {/* Remaining sections (Solutions By Industry, Demos, Projects, etc.) are added in the following tasks */}
+        <SolutionsByIndustry />
+        <InteractiveDemo />
+        {/* Remaining sections (Projects, Stats, FAQ, Testimonials, Contact) are added in the following tasks */}
       </main>
       <Footer />
     </>

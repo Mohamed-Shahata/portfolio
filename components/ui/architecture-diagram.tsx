@@ -26,7 +26,7 @@ export function ArchitectureDiagram({
     <div
       className={cn(
         "rounded-2xl border border-border bg-surface p-6 sm:p-8",
-        className
+        className,
       )}
     >
       <h3 className="text-sm font-medium text-muted-foreground">{title}</h3>
@@ -38,7 +38,7 @@ export function ArchitectureDiagram({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.4, delay: i * 0.1, ease: "easeOut" }}
-              className="flex w-full min-w-[220px] items-center gap-3 rounded-xl border border-border-hover bg-background-elevated px-4 py-3"
+              className="flex w-full min-w-55 items-center gap-3 rounded-xl border border-border-hover bg-background-elevated px-4 py-3"
             >
               <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-accent">
                 <node.icon className="size-4.5" />
