@@ -1,0 +1,66 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { ArrowRight, Sparkles } from "lucide-react";
+import { buttonVariants } from "@/components/ui/button";
+import { GradientText } from "@/components/ui/gradient-text";
+
+export function Hero() {
+  return (
+    <section className="relative flex min-h-screen items-center justify-center px-6 pt-16">
+      <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 text-center">
+        <motion.span
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-medium text-muted"
+        >
+          <Sparkles className="size-3.5 text-accent" />
+          Available for new projects
+        </motion.span>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+          className="text-4xl font-semibold leading-[1.1] tracking-tight sm:text-6xl md:text-7xl"
+        >
+          I Build Fast, Secure &{" "}
+          <GradientText>Scalable Business Systems.</GradientText>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+          className="max-w-2xl text-base text-muted sm:text-lg leading-relaxed"
+        >
+          I design and develop modern web applications, SaaS platforms,
+          business systems, APIs, and desktop solutions that help businesses
+          grow.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+          className="flex flex-col gap-3 sm:flex-row"
+        >
+          <a
+            href="#projects"
+            className={buttonVariants({ variant: "gradient", size: "lg" })}
+          >
+            Explore My Work
+            <ArrowRight className="size-4" />
+          </a>
+          <a
+            href="#contact"
+            className={buttonVariants({ variant: "outline", size: "lg" })}
+          >
+            Contact Me
+          </a>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
