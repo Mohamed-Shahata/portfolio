@@ -6,6 +6,8 @@ import { WhatIBuild } from "@/components/sections/what-i-build";
 import { WhyWorkWithMe } from "@/components/sections/why-work-with-me";
 import { Process } from "@/components/sections/process";
 import { Architecture } from "@/components/sections/architecture";
+import { TechStack } from "@/components/sections/tech-stack";
+import { ClientDeliverables } from "@/components/sections/client-deliverables";
 
 export default function Home() {
   return (
@@ -18,7 +20,9 @@ export default function Home() {
         <WhyWorkWithMe />
         <Process />
         <Architecture />
-        {/* Remaining sections (Projects, Tech Stack, Deliverables, etc.) are added in the following tasks */}
+        <TechStack />
+        <ClientDeliverables />
+        {/* Remaining sections (Solutions By Industry, Demos, Projects, etc.) are added in the following tasks */}
       </main>
       <Footer />
     </>
