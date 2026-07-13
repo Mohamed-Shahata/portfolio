@@ -7,6 +7,7 @@ import {
   Newspaper,
   UserCircle,
   Mail,
+  Quote,
   LogOut,
   ExternalLink,
   BarChart3,
@@ -17,6 +18,7 @@ const NAV_ITEMS = [
   { href: "/admin/projects", label: "Projects", icon: LayoutGrid },
   { href: "/admin/blog", label: "Blog", icon: Newspaper },
   { href: "/admin/about", label: "About Page", icon: UserCircle },
+  { href: "/admin/testimonials", label: "Testimonials", icon: Quote },
   { href: "/admin/messages", label: "Messages", icon: Mail },
   { href: "/admin/analytics", label: "Analytics", icon: BarChart3 },
 ];

@@ -59,6 +59,13 @@ export async function getBlogPostBySlugDb(
   };
 }
 
+export async function getPublishedTestimonials() {
+  return prisma.testimonial.findMany({
+    where: { published: true },
+    orderBy: { order: "asc" },
+  });
+}
+
 export async function getAboutContentDb() {
   return prisma.aboutContent.findUnique({ where: { id: "singleton" } });
 }

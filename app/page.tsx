@@ -5,7 +5,8 @@ import { AnimatedBackground } from "@/components/ui/animated-background";
 import { Hero } from "@/components/sections/hero";
 import { WhatIBuild } from "@/components/sections/what-i-build";
 import { WhyWorkWithMe } from "@/components/sections/why-work-with-me";
-import { getPublishedProjects } from "@/lib/data";
+import { getPublishedProjects, getPublishedTestimonials } from "@/lib/data";
+import { Testimonials } from "@/components/sections/testimonials";
 
 // Below-the-fold sections are code-split via next/dynamic to keep the
 // initial JS bundle small and speed up first load.
@@ -45,6 +46,7 @@ const Contact = dynamic(() =>
 
 export default async function Home() {
   const projects = await getPublishedProjects();
+  const testimonials = await getPublishedTestimonials();
   return (
     <>
       <Navbar />
@@ -60,6 +62,7 @@ export default async function Home() {
         <ClientDeliverables />
         <SolutionsByIndustry />
         <Statistics />
+        <Testimonials testimonials={testimonials} />
         <FAQSection />
         <Contact />
       </main>
