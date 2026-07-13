@@ -1,0 +1,115 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}
+
+/// Projects shown on the homepage and /projects/[slug].
+/// Localized fields are stored flat with an "Ar" suffix instead of a
+/// nested object — simpler to store/query, and mapped back into the
+/// existing `{ ...fields, ar: {...} }` shape the frontend already expects.
+model Project {
+  id        String  @id @default(cuid())
+  slug      String  @unique
+  order     Int     @default(0)
+  type      String // "Full Stack" | "Backend"
+  published Boolean @default(true)
+
+  // English (default) fields
+  title          String
+  tagline        String
+  overview       String @db.Text
+  problem        String @db.Text
+  solution       String @db.Text
+  features       Json // string[]
+  architecture   String @db.Text
+  challenges     String @db.Text
+  lessonsLearned String @db.Text
+
+  // Arabic fields
+  titleAr          String
+  taglineAr        String
+  overviewAr       String @db.Text
+  problemAr        String @db.Text
+  solutionAr       String @db.Text
+  featuresAr       Json // string[]
+  architectureAr   String @db.Text
+  challengesAr     String @db.Text
+  lessonsLearnedAr String @db.Text
+
+  // Shared (locale-independent) fields
+  techStack        Json // string[]
+  githubUrl        String
+  backendGithubUrl String?
+  liveUrl          String?
+  relatedSlugs     Json // string[]
+  metrics          Json // { value, suffix, label, labelAr }[]
+  images           Json // string[] (Cloudinary URLs)
+  videoUrl         String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PageView {
+  id        String   @id @default(cuid())
+  path      String
+  visitorId String
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([visitorId])
+}
+
+model BlogPost {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  title       String
+  titleAr     String
+  excerpt     String
+  excerptAr   String
+  content     String    @db.Text
+  contentAr   String    @db.Text
+  readingTime String
+  published   Boolean   @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  message   String   @db.Text
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+/// Single-row table holding the editable content of the /about page.
+model AboutContent {
+  id         String   @id @default("singleton")
+  intro      String   @db.Text
+  introAr    String   @db.Text
+  approach   String   @db.Text
+  approachAr String   @db.Text
+  journey    Json // { title, description }[]
+  journeyAr  Json // { title, description }[]
+  resumeUrl  String?
+  updatedAt  DateTime @updatedAt
+}
