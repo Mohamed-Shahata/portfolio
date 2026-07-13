@@ -12,9 +12,11 @@ import {
 import { TechBadge } from "@/components/ui/tech-badge";
 import { ProjectCard } from "@/components/ui/project-card";
 import { StatsCounter } from "@/components/ui/stats-counter";
+import { Lightbox } from "@/components/ui/lightbox";
 import { buttonVariants } from "@/components/ui/button";
 import { getLocalizedProject, type Project } from "@/lib/projects-data";
 import { useLocale } from "@/lib/i18n/locale-context";
+import { useState } from "react";
 
 export function ProjectDetail({
   project,
@@ -26,6 +28,7 @@ export function ProjectDetail({
   const { locale, t } = useLocale();
   const p = getLocalizedProject(project, locale);
   const tp = t.projectDetail;
+  const [lightboxSrc, setLightboxSrc] = useState<string | null>(null);
 
   return (
     <div className="mx-auto max-w-4xl">
@@ -83,7 +86,10 @@ export function ProjectDetail({
         )}
       </div>
 
-      <div className="relative mt-10 flex aspect-video items-center justify-center overflow-hidden rounded-2xl border border-border bg-surface">
+      <div
+        className={`relative mt-10 flex aspect-video items-center justify-center overflow-hidden rounded-2xl border border-border bg-surface ${project.images[0] ? "cursor-zoom-in" : ""}`}
+        onClick={() => project.images[0] && setLightboxSrc(project.images[0])}
+      >
         {project.images[0] ? (
           <Image
             src={project.images[0]}
@@ -192,47 +198,54 @@ export function ProjectDetail({
         </div>
       </section>
 
-      <section className="mt-12">
-        <h2 className="text-xl font-semibold text-foreground">{tp.gallery}</h2>
-        <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {project.images.length > 1
-            ? project.images.slice(1).map((src, i) => (
-                <div
-                  key={src}
-                  className="relative flex aspect-video items-center justify-center overflow-hidden rounded-xl border border-border bg-surface"
-                >
-                  <Image
-                    src={src}
-                    alt={`${p.title} ${tp.screenshot} ${i + 1}`}
-                    fill
-                    sizes="(max-width: 640px) 100vw, 33vw"
-                    className="object-cover object-top"
-                  />
-                </div>
-              ))
-            : [1, 2, 3].map((n) => (
-                <div
-                  key={n}
-                  className="flex aspect-video items-center justify-center rounded-xl border border-border bg-surface"
-                >
-                  <span className="text-xs text-muted-foreground">
-                    {tp.screenshot} {n}
-                  </span>
-                </div>
-              ))}
-        </div>
-      </section>
+      {project.images.length > 1 && (
+        <section className="mt-12">
+          <h2 className="text-xl font-semibold text-foreground">
+            {tp.gallery}
+          </h2>
+          <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+            {project.images.slice(1).map((src, i) => (
+              <button
+                type="button"
+                key={src}
+                onClick={() => setLightboxSrc(src)}
+                className="relative flex aspect-video cursor-zoom-in items-center justify-center overflow-hidden rounded-xl border border-border bg-surface transition-opacity hover:opacity-90"
+              >
+                <Image
+                  src={src}
+                  alt={`${p.title} ${tp.screenshot} ${i + 1}`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, 33vw"
+                  className="object-cover object-top"
+                />
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
 
-      <section className="mt-12">
-        <h2 className="text-xl font-semibold text-foreground">
-          {tp.videoWalkthrough}
-        </h2>
-        <div className="mt-4 flex aspect-video items-center justify-center rounded-2xl border border-border bg-surface">
-          <span className="text-sm text-muted-foreground">
-            {tp.videoComingSoon}
-          </span>
-        </div>
-      </section>
+      {project.videoUrl && (
+        <section className="mt-12">
+          <h2 className="text-xl font-semibold text-foreground">
+            {tp.videoWalkthrough}
+          </h2>
+          <div className="mt-4 overflow-hidden rounded-2xl border border-border bg-surface">
+            <video
+              src={project.videoUrl}
+              controls
+              className="aspect-video w-full"
+            />
+          </div>
+        </section>
+      )}
+
+      {lightboxSrc && (
+        <Lightbox
+          src={lightboxSrc}
+          alt={p.title}
+          onClose={() => setLightboxSrc(null)}
+        />
+      )}
 
       {related.length > 0 && (
         <section className="mt-16 border-t border-border pt-12">

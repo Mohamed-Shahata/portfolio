@@ -33,11 +33,6 @@ const SolutionsByIndustry = dynamic(() =>
     (m) => m.SolutionsByIndustry,
   ),
 );
-const InteractiveDemo = dynamic(() =>
-  import("@/components/sections/interactive-demo").then(
-    (m) => m.InteractiveDemo,
-  ),
-);
 const Statistics = dynamic(() =>
   import("@/components/sections/statistics").then((m) => m.Statistics),
 );
@@ -64,7 +59,6 @@ export default async function Home() {
         <TechStack />
         <ClientDeliverables />
         <SolutionsByIndustry />
-        <InteractiveDemo />
         <Statistics />
         <FAQSection />
         <Contact />

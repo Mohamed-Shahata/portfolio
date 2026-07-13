@@ -27,6 +27,7 @@ export interface Project extends ProjectLocalizedFields {
   relatedSlugs: string[];
   metrics: ProjectMetric[];
   images: string[];
+  videoUrl?: string;
   ar: ProjectLocalizedFields;
 }
 

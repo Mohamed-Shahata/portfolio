@@ -32,9 +32,7 @@ function JourneyEditor({
 
   return (
     <div>
-      <label className="text-xs font-medium text-muted-foreground">
-        {label}
-      </label>
+      <label className="text-xs font-medium text-muted-foreground">{label}</label>
       <div className="mt-1.5 flex flex-col gap-3">
         {steps.map((step, i) => (
           <div key={i} className="rounded-lg border border-border p-3">
@@ -84,10 +82,8 @@ export function AboutForm({ initial }: { initial: AboutContentInput }) {
   const [error, setError] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
 
-  const set = <K extends keyof AboutContentInput>(
-    key: K,
-    value: AboutContentInput[K],
-  ) => setData((prev) => ({ ...prev, [key]: value }));
+  const set = <K extends keyof AboutContentInput>(key: K, value: AboutContentInput[K]) =>
+    setData((prev) => ({ ...prev, [key]: value }));
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -131,9 +127,7 @@ export function AboutForm({ initial }: { initial: AboutContentInput }) {
         <div className="flex flex-col gap-4">
           <h3 className="text-sm font-semibold text-foreground">English</h3>
           <div>
-            <label className="text-xs font-medium text-muted-foreground">
-              Intro
-            </label>
+            <label className="text-xs font-medium text-muted-foreground">Intro</label>
             <textarea
               rows={4}
               value={data.intro}
@@ -142,9 +136,7 @@ export function AboutForm({ initial }: { initial: AboutContentInput }) {
             />
           </div>
           <div>
-            <label className="text-xs font-medium text-muted-foreground">
-              Approach
-            </label>
+            <label className="text-xs font-medium text-muted-foreground">Approach</label>
             <textarea
               rows={4}
               value={data.approach}
@@ -162,9 +154,7 @@ export function AboutForm({ initial }: { initial: AboutContentInput }) {
         <div className="flex flex-col gap-4" dir="rtl">
           <h3 className="text-sm font-semibold text-foreground">العربية</h3>
           <div>
-            <label className="text-xs font-medium text-muted-foreground">
-              المقدمة
-            </label>
+            <label className="text-xs font-medium text-muted-foreground">المقدمة</label>
             <textarea
               dir="rtl"
               rows={4}
@@ -174,9 +164,7 @@ export function AboutForm({ initial }: { initial: AboutContentInput }) {
             />
           </div>
           <div>
-            <label className="text-xs font-medium text-muted-foreground">
-              أسلوب العمل
-            </label>
+            <label className="text-xs font-medium text-muted-foreground">أسلوب العمل</label>
             <textarea
               dir="rtl"
               rows={4}

@@ -3,7 +3,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Pencil, Trash2, ExternalLink, Loader2 } from "lucide-react";
+import {
+  Pencil,
+  Trash2,
+  ExternalLink,
+  Loader2,
+  GripVertical,
+} from "lucide-react";
 
 interface ProjectRow {
   id: string;
@@ -14,9 +20,37 @@ interface ProjectRow {
   images: string[];
 }
 
-export function ProjectsTable({ initialProjects }: { initialProjects: ProjectRow[] }) {
+export function ProjectsTable({
+  initialProjects,
+}: {
+  initialProjects: ProjectRow[];
+}) {
   const [projects, setProjects] = useState(initialProjects);
   const [busyId, setBusyId] = useState<string | null>(null);
+  const [dragId, setDragId] = useState<string | null>(null);
+
+  const handleDrop = async (targetId: string) => {
+    if (!dragId || dragId === targetId) return;
+    const from = projects.findIndex((p) => p.id === dragId);
+    const to = projects.findIndex((p) => p.id === targetId);
+    if (from === -1 || to === -1) return;
+
+    const reordered = [...projects];
+    const [moved] = reordered.splice(from, 1);
+    reordered.splice(to, 0, moved);
+    setProjects(reordered);
+    setDragId(null);
+
+    await Promise.all(
+      reordered.map((p, i) =>
+        fetch(`/api/admin/projects/${p.id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ order: i }),
+        }),
+      ),
+    );
+  };
 
   const togglePublished = async (id: string, published: boolean) => {
     setBusyId(id);
@@ -56,6 +90,7 @@ export function ProjectsTable({ initialProjects }: { initialProjects: ProjectRow
       <table className="w-full text-sm">
         <thead className="bg-surface text-left text-xs uppercase tracking-wider text-muted-foreground">
           <tr>
+            <th className="w-8 px-2 py-3"></th>
             <th className="px-4 py-3 font-medium">Project</th>
             <th className="px-4 py-3 font-medium">Type</th>
             <th className="px-4 py-3 font-medium">Status</th>
@@ -64,7 +99,17 @@ export function ProjectsTable({ initialProjects }: { initialProjects: ProjectRow
         </thead>
         <tbody className="divide-y divide-border bg-background-elevated">
           {projects.map((p) => (
-            <tr key={p.id}>
+            <tr
+              key={p.id}
+              draggable
+              onDragStart={() => setDragId(p.id)}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={() => handleDrop(p.id)}
+              className={dragId === p.id ? "opacity-40" : ""}
+            >
+              <td className="cursor-grab px-2 py-3 text-muted-foreground active:cursor-grabbing">
+                <GripVertical className="size-4" />
+              </td>
               <td className="px-4 py-3">
                 <div className="flex items-center gap-3">
                   <div className="relative size-10 shrink-0 overflow-hidden rounded-lg border border-border bg-surface">

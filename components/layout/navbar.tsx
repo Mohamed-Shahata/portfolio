@@ -37,7 +37,7 @@ export function Navbar() {
         className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6"
       >
         <Link href="/" className="text-sm font-semibold tracking-tight">
-          Dev<span className="gradient-text">Core</span>
+          Mohamed<span className="gradient-text"> Shehata</span>
         </Link>
 
         <ul className="hidden items-center gap-8 md:flex">
@@ -45,6 +45,16 @@ export function Navbar() {
             <li key={link.href}>
               <Link
                 href={toHash(link.href)}
+                className="text-sm text-muted transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+          {t.nav.pages.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
                 className="text-sm text-muted transition-colors hover:text-foreground"
               >
                 {link.label}
@@ -89,6 +99,17 @@ export function Navbar() {
                 <li key={link.href}>
                   <Link
                     href={toHash(link.href)}
+                    onClick={() => setOpen(false)}
+                    className="block py-2 text-sm text-muted transition-colors hover:text-foreground"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+              {t.nav.pages.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
                     onClick={() => setOpen(false)}
                     className="block py-2 text-sm text-muted transition-colors hover:text-foreground"
                   >

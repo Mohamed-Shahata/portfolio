@@ -9,6 +9,7 @@ import {
   Mail,
   LogOut,
   ExternalLink,
+  BarChart3,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -17,6 +18,7 @@ const NAV_ITEMS = [
   { href: "/admin/blog", label: "Blog", icon: Newspaper },
   { href: "/admin/about", label: "About Page", icon: UserCircle },
   { href: "/admin/messages", label: "Messages", icon: Mail },
+  { href: "/admin/analytics", label: "Analytics", icon: BarChart3 },
 ];
 
 export function AdminSidebar({ email }: { email: string }) {
@@ -33,7 +35,7 @@ export function AdminSidebar({ email }: { email: string }) {
     <aside className="sticky top-0 flex h-screen w-60 shrink-0 flex-col border-r border-border bg-background-elevated">
       <div className="px-5 py-6">
         <span className="text-sm font-semibold tracking-tight">
-          Dev<span className="gradient-text">Core</span>
+          Mohamed <span className="gradient-text">Shehata</span>
         </span>
         <p className="mt-0.5 text-xs text-muted-foreground">Admin Dashboard</p>
       </div>

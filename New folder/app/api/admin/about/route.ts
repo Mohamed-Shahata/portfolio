@@ -12,9 +12,7 @@ export interface AboutContentInput {
 }
 
 export async function GET() {
-  const about = await prisma.aboutContent.findUnique({
-    where: { id: "singleton" },
-  });
+  const about = await prisma.aboutContent.findUnique({ where: { id: "singleton" } });
   return NextResponse.json(about);
 }
 

@@ -17,7 +17,9 @@ export async function GET(_request: Request, { params }: RouteParams) {
 
 export async function PATCH(request: Request, { params }: RouteParams) {
   const { id } = await params;
-  const body = (await request.json()) as Partial<ProjectInput> & { order?: number };
+  const body = (await request.json()) as Partial<ProjectInput> & {
+    order?: number;
+  };
 
   const existing = await prisma.project.findUnique({ where: { id } });
   if (!existing) {
@@ -25,7 +27,9 @@ export async function PATCH(request: Request, { params }: RouteParams) {
   }
 
   if (body.slug && body.slug !== existing.slug) {
-    const slugTaken = await prisma.project.findUnique({ where: { slug: body.slug } });
+    const slugTaken = await prisma.project.findUnique({
+      where: { slug: body.slug },
+    });
     if (slugTaken) {
       return NextResponse.json(
         { error: `A project with slug "${body.slug}" already exists` },
@@ -47,7 +51,9 @@ export async function PATCH(request: Request, { params }: RouteParams) {
       ...(body.problem !== undefined && { problem: body.problem }),
       ...(body.solution !== undefined && { solution: body.solution }),
       ...(body.features !== undefined && { features: body.features }),
-      ...(body.architecture !== undefined && { architecture: body.architecture }),
+      ...(body.architecture !== undefined && {
+        architecture: body.architecture,
+      }),
       ...(body.challenges !== undefined && { challenges: body.challenges }),
       ...(body.lessonsLearned !== undefined && {
         lessonsLearned: body.lessonsLearned,
@@ -61,7 +67,9 @@ export async function PATCH(request: Request, { params }: RouteParams) {
       ...(body.architectureAr !== undefined && {
         architectureAr: body.architectureAr,
       }),
-      ...(body.challengesAr !== undefined && { challengesAr: body.challengesAr }),
+      ...(body.challengesAr !== undefined && {
+        challengesAr: body.challengesAr,
+      }),
       ...(body.lessonsLearnedAr !== undefined && {
         lessonsLearnedAr: body.lessonsLearnedAr,
       }),
@@ -71,9 +79,12 @@ export async function PATCH(request: Request, { params }: RouteParams) {
         backendGithubUrl: body.backendGithubUrl,
       }),
       ...(body.liveUrl !== undefined && { liveUrl: body.liveUrl }),
-      ...(body.relatedSlugs !== undefined && { relatedSlugs: body.relatedSlugs }),
+      ...(body.relatedSlugs !== undefined && {
+        relatedSlugs: body.relatedSlugs,
+      }),
       ...(body.metrics !== undefined && { metrics: body.metrics }),
       ...(body.images !== undefined && { images: body.images }),
+      ...(body.videoUrl !== undefined && { videoUrl: body.videoUrl }),
     },
   });
 

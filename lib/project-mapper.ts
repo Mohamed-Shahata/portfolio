@@ -22,6 +22,7 @@ export function dbProjectToProject(row: DbProject): Project {
     relatedSlugs: row.relatedSlugs as string[],
     metrics: row.metrics as unknown as ProjectMetric[],
     images: row.images as string[],
+    videoUrl: row.videoUrl ?? undefined,
     ar: {
       title: row.titleAr,
       tagline: row.taglineAr,
@@ -66,4 +67,5 @@ export interface ProjectInput {
   relatedSlugs: string[];
   metrics: ProjectMetric[];
   images: string[];
+  videoUrl: string | null;
 }

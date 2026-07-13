@@ -7,6 +7,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { TagInput } from "@/components/admin/tag-input";
 import { ListEditor } from "@/components/admin/list-editor";
 import { ImageUploader } from "@/components/admin/image-uploader";
+import { VideoUploader } from "@/components/admin/video-uploader";
 import type { ProjectInput } from "@/lib/project-mapper";
 
 const EMPTY_PROJECT: ProjectInput = {
@@ -38,6 +39,7 @@ const EMPTY_PROJECT: ProjectInput = {
   relatedSlugs: [],
   metrics: [],
   images: [],
+  videoUrl: null,
 };
 
 function Field({
@@ -49,7 +51,9 @@ function Field({
 }) {
   return (
     <div>
-      <label className="text-xs font-medium text-muted-foreground">{label}</label>
+      <label className="text-xs font-medium text-muted-foreground">
+        {label}
+      </label>
       <div className="mt-1.5">{children}</div>
     </div>
   );
@@ -82,7 +86,9 @@ export function ProjectForm({
     setSaving(true);
     setError(null);
     const url =
-      mode === "create" ? "/api/admin/projects" : `/api/admin/projects/${projectId}`;
+      mode === "create"
+        ? "/api/admin/projects"
+        : `/api/admin/projects/${projectId}`;
     const method = mode === "create" ? "POST" : "PATCH";
     try {
       const res = await fetch(url, {
@@ -130,7 +136,9 @@ export function ProjectForm({
             <select
               className={inputClass}
               value={data.type}
-              onChange={(e) => set("type", e.target.value as ProjectInput["type"])}
+              onChange={(e) =>
+                set("type", e.target.value as ProjectInput["type"])
+              }
             >
               <option value="Full Stack">Full Stack</option>
               <option value="Backend">Backend</option>
@@ -150,7 +158,9 @@ export function ProjectForm({
 
       {/* English content */}
       <section className="flex flex-col gap-4">
-        <h2 className="text-sm font-semibold text-foreground">English Content</h2>
+        <h2 className="text-sm font-semibold text-foreground">
+          English Content
+        </h2>
         <Field label="Title">
           <input
             required
@@ -228,7 +238,9 @@ export function ProjectForm({
 
       {/* Arabic content */}
       <section className="flex flex-col gap-4" dir="rtl">
-        <h2 className="text-sm font-semibold text-foreground">المحتوى العربي</h2>
+        <h2 className="text-sm font-semibold text-foreground">
+          المحتوى العربي
+        </h2>
         <Field label="العنوان">
           <input
             dir="rtl"
@@ -315,7 +327,9 @@ export function ProjectForm({
 
       {/* Tech & links */}
       <section className="flex flex-col gap-4">
-        <h2 className="text-sm font-semibold text-foreground">Tech &amp; Links</h2>
+        <h2 className="text-sm font-semibold text-foreground">
+          Tech &amp; Links
+        </h2>
         <TagInput
           label="Tech Stack"
           values={data.techStack}
@@ -356,7 +370,9 @@ export function ProjectForm({
 
       {/* Metrics */}
       <section className="flex flex-col gap-4">
-        <h2 className="text-sm font-semibold text-foreground">Stats / Metrics</h2>
+        <h2 className="text-sm font-semibold text-foreground">
+          Stats / Metrics
+        </h2>
         <div className="flex flex-col gap-3">
           {data.metrics.map((m, i) => (
             <div
@@ -407,7 +423,12 @@ export function ProjectForm({
               />
               <button
                 type="button"
-                onClick={() => set("metrics", data.metrics.filter((_, idx) => idx !== i))}
+                onClick={() =>
+                  set(
+                    "metrics",
+                    data.metrics.filter((_, idx) => idx !== i),
+                  )
+                }
                 className="text-xs text-destructive"
               >
                 Remove
@@ -437,6 +458,11 @@ export function ProjectForm({
           images={data.images}
           onChange={(v) => set("images", v)}
         />
+        <VideoUploader
+          label="Project walkthrough video (optional)"
+          video={data.videoUrl}
+          onChange={(v) => set("videoUrl", v)}
+        />
       </section>
 
       <div className="flex items-center gap-3 border-t border-border pt-6">
@@ -446,7 +472,11 @@ export function ProjectForm({
           className={buttonVariants({ variant: "gradient", size: "lg" })}
         >
           {saving && <Loader2 className="size-4 animate-spin" />}
-          {saving ? "Saving..." : mode === "create" ? "Create Project" : "Save Changes"}
+          {saving
+            ? "Saving..."
+            : mode === "create"
+              ? "Create Project"
+              : "Save Changes"}
         </button>
       </div>
     </form>

@@ -81,7 +81,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col-reverse items-center justify-between gap-4 border-t border-border pt-6 sm:flex-row">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Dev Core. {t.footer.rights}
+            © {new Date().getFullYear()} Mohamed Shehata. {t.footer.rights}
           </p>
           <Link
             href={isHome ? "#" : "/"}

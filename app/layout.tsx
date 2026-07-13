@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Geist_Mono, Cairo } from "next/font/google";
 import "./globals.css";
 import { LocaleProvider } from "@/lib/i18n/locale-context";
+import { PageViewTracker } from "@/components/analytics/page-view-tracker";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -22,7 +23,8 @@ const geistMono = Geist_Mono({
 });
 
 const SITE_URL = "https://devcore.dev";
-const SITE_TITLE = "Dev Core | Full Stack Software Agency-Grade Development";
+const SITE_TITLE =
+  "Mohamed Shehata | Full Stack Software Agency-Grade Development";
 const SITE_DESCRIPTION =
   "I design and develop modern web applications, SaaS platforms, business systems, APIs, and desktop solutions that help businesses grow.";
 
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: SITE_TITLE,
-    template: "%s | Dev Core",
+    template: "%s | Mohamed Shehata",
   },
   description: SITE_DESCRIPTION,
   keywords: [
@@ -50,7 +52,7 @@ export const metadata: Metadata = {
     url: SITE_URL,
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    siteName: "Dev Core",
+    siteName: "Mohamed Shehata",
   },
   twitter: {
     card: "summary_large_image",
@@ -78,6 +80,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-accent selection:text-white font-[family-name:var(--font-inter)] [html[dir=rtl]_&]:font-[family-name:var(--font-cairo)]">
         <LocaleProvider>{children}</LocaleProvider>
+        <PageViewTracker />
       </body>
     </html>
   );

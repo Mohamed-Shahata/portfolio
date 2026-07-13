@@ -261,14 +261,7 @@ export const translations = {
         },
         {
           title: "Languages & Frameworks",
-          items: [
-            "TypeScript",
-            "Next.js",
-            "React",
-            "Node.js",
-            "Express",
-            "Laravel",
-          ],
+          items: ["TypeScript", "Next.js", "React", "Node.js", "Express", "Laravel"],
         },
         {
           title: "Database & ORM",
@@ -732,8 +725,7 @@ export const translations = {
     uses: {
       eyebrow: "أدواتي",
       title: "اللي بستخدمه فعليًا يوم بيوم",
-      description:
-        "المحرر والأدوات وطريقة الشغل اللي وراء كل مشروع في الموقع ده.",
+      description: "المحرر والأدوات وطريقة الشغل اللي وراء كل مشروع في الموقع ده.",
       backToHome: "العودة للرئيسية",
       groups: [
         {
@@ -742,14 +734,7 @@ export const translations = {
         },
         {
           title: "اللغات والفريموركس",
-          items: [
-            "TypeScript",
-            "Next.js",
-            "React",
-            "Node.js",
-            "Express",
-            "Laravel",
-          ],
+          items: ["TypeScript", "Next.js", "React", "Node.js", "Express", "Laravel"],
         },
         {
           title: "قواعد البيانات والـ ORM",

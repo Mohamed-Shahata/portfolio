@@ -23,21 +23,11 @@ export async function POST(request: Request) {
   const formData = await request.formData();
   const file = formData.get("file");
   const rawType = formData.get("type");
-  const kind =
-    rawType === "video"
-      ? "video"
-      : rawType === "document"
-        ? "document"
-        : "image";
+  const kind = rawType === "video" ? "video" : rawType === "document" ? "document" : "image";
   if (!(file instanceof File)) {
     return NextResponse.json({ error: "No file provided" }, { status: 400 });
   }
-  const maxSize =
-    kind === "video"
-      ? MAX_VIDEO_SIZE
-      : kind === "document"
-        ? MAX_DOC_SIZE
-        : MAX_IMAGE_SIZE;
+  const maxSize = kind === "video" ? MAX_VIDEO_SIZE : kind === "document" ? MAX_DOC_SIZE : MAX_IMAGE_SIZE;
   if (file.size > maxSize) {
     return NextResponse.json(
       { error: `File too large (max ${maxSize / 1024 / 1024}MB)` },
@@ -46,10 +36,7 @@ export async function POST(request: Request) {
   }
   if (kind === "document") {
     if (file.type !== "application/pdf") {
-      return NextResponse.json(
-        { error: "Only PDF files are allowed" },
-        { status: 400 },
-      );
+      return NextResponse.json({ error: "Only PDF files are allowed" }, { status: 400 });
     }
   } else if (!file.type.startsWith(`${kind}/`)) {
     return NextResponse.json(
