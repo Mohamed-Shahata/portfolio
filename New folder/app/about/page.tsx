@@ -33,20 +33,14 @@ export default function AboutPage() {
       .catch(() => setContent(null));
   }, []);
 
-  const intro = content
-    ? locale === "ar"
-      ? content.introAr
-      : content.intro
-    : a.intro;
+  const intro = content ? (locale === "ar" ? content.introAr : content.intro) : a.intro;
   const approach = content
     ? locale === "ar"
       ? content.approachAr
       : content.approach
     : a.approach;
   const journey = content
-    ? locale === "ar"
-      ? content.journeyAr
-      : content.journey
+    ? (locale === "ar" ? content.journeyAr : content.journey)
     : a.journey;
 
   return (

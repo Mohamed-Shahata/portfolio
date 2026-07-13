@@ -72,9 +72,7 @@ export function AdminSidebar({ email }: { email: string }) {
           View Site
         </Link>
         <div className="mt-2 flex items-center justify-between rounded-lg px-3 py-2">
-          <span className="truncate text-xs text-muted-foreground">
-            {email}
-          </span>
+          <span className="truncate text-xs text-muted-foreground">{email}</span>
           <button
             onClick={handleLogout}
             aria-label="Log out"

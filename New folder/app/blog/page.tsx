@@ -26,11 +26,7 @@ export default function BlogPage() {
       <Navbar />
       <main className="relative flex-1 px-6 pb-24 pt-32">
         <div className="mx-auto max-w-3xl">
-          <SectionTitle
-            eyebrow={b.eyebrow}
-            title={b.title}
-            description={b.description}
-          />
+          <SectionTitle eyebrow={b.eyebrow} title={b.title} description={b.description} />
 
           {BLOG_POSTS.length === 0 ? (
             <div className="mt-16 flex flex-col items-center gap-4 rounded-2xl border border-border bg-surface px-6 py-16 text-center">
@@ -38,9 +34,7 @@ export default function BlogPage() {
               <h2 className="text-base font-medium text-foreground">
                 {b.emptyTitle}
               </h2>
-              <p className="max-w-sm text-sm text-muted">
-                {b.emptyDescription}
-              </p>
+              <p className="max-w-sm text-sm text-muted">{b.emptyDescription}</p>
             </div>
           ) : (
             <div className="mt-14 flex flex-col gap-6">
