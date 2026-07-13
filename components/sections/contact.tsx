@@ -19,8 +19,6 @@ import { SectionTitle } from "@/components/ui/section-title";
 import { buttonVariants } from "@/components/ui/button";
 import { useLocale } from "@/lib/i18n/locale-context";
 
-const FORMSPREE_ENDPOINT = process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT ?? "";
-
 export function Contact() {
   const { t } = useLocale();
   const [status, setStatus] = useState<
@@ -29,17 +27,18 @@ export function Contact() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!FORMSPREE_ENDPOINT) {
-      setStatus("error");
-      return;
-    }
     setStatus("sending");
     const form = e.currentTarget;
+    const formData = new FormData(form);
     try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { Accept: "application/json" },
-        body: new FormData(form),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          message: formData.get("message"),
+        }),
       });
       if (res.ok) {
         setStatus("success");
