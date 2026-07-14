@@ -7,7 +7,7 @@
  *
  */
 import "dotenv/config";
-import { PrismaClient } from "@/lib/generated/prisma";
+import { PrismaClient, type Prisma } from "@/lib/generated/prisma";
 import { PrismaPg } from "@prisma/adapter-pg";
 import bcrypt from "bcryptjs";
 import { PROJECTS } from "../lib/projects-data";
@@ -69,7 +69,7 @@ async function main() {
         backendGithubUrl: p.backendGithubUrl ?? null,
         liveUrl: p.liveUrl || null,
         relatedSlugs: p.relatedSlugs,
-        metrics: p.metrics,
+        metrics: p.metrics as unknown as Prisma.InputJsonValue,
         images: p.images,
       },
     });
