@@ -10,7 +10,7 @@ export default async function Image({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = await getProjectBySlug(slug);
   const title = project?.title ?? "Project";
   const tagline = project?.tagline ?? "";
   const type = project?.type ?? "";
