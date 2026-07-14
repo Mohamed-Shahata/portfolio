@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/db";
 import type { Prisma } from "@/lib/generated/prisma";
 import type { ProjectInput } from "@/lib/project-mapper";
@@ -93,6 +94,13 @@ export async function PATCH(request: Request, { params }: RouteParams) {
     },
   });
 
+  revalidatePath("/");
+  revalidatePath("/projects");
+  revalidatePath(`/projects/${project.slug}`);
+  if (body.slug && body.slug !== existing.slug) {
+    revalidatePath(`/projects/${existing.slug}`);
+  }
+
   return NextResponse.json(project);
 }
 
@@ -103,5 +111,10 @@ export async function DELETE(_request: Request, { params }: RouteParams) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
   await prisma.project.delete({ where: { id } });
+
+  revalidatePath("/");
+  revalidatePath("/projects");
+  revalidatePath(`/projects/${existing.slug}`);
+
   return NextResponse.json({ ok: true });
 }

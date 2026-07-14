@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/db";
 import type { Prisma } from "@/lib/generated/prisma";
 import type { ProjectInput } from "@/lib/project-mapper";
@@ -66,6 +67,10 @@ export async function POST(request: Request) {
       videoUrl: body.videoUrl,
     },
   });
+
+  revalidatePath("/");
+  revalidatePath("/projects");
+  revalidatePath(`/projects/${project.slug}`);
 
   return NextResponse.json(project, { status: 201 });
 }
