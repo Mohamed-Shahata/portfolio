@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { getAdminSession } from "@/lib/auth";
-import { AdminSidebar } from "@/components/admin/sidebar";
+import { AdminShell } from "@/components/admin/admin-shell";
 
 export default async function AdminDashboardLayout({
   children,
@@ -14,10 +14,5 @@ export default async function AdminDashboardLayout({
     redirect("/admin/login");
   }
 
-  return (
-    <div className="flex min-h-screen bg-background">
-      <AdminSidebar email={session.email} />
-      <main className="flex-1 overflow-y-auto px-8 py-8">{children}</main>
-    </div>
-  );
+  return <AdminShell email={session.email}>{children}</AdminShell>;
 }

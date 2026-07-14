@@ -517,6 +517,14 @@ export const translations = {
         "I'm working on the first articles. Check back soon or follow along on LinkedIn.",
       readMore: "Read more",
       backToBlog: "Back to Blog",
+      newsletter: {
+        title: "Get new posts by email",
+        description: "No spam — just a note when a new article goes up.",
+        placeholder: "you@example.com",
+        subscribe: "Subscribe",
+        success: "You're subscribed — thanks!",
+        error: "Something went wrong. Try again.",
+      },
     },
   },
   ar: {
@@ -985,6 +993,14 @@ export const translations = {
       emptyDescription: "بشتغل على أول المقالات. تابعني قريب أو على لينكدإن.",
       readMore: "اقرأ المزيد",
       backToBlog: "العودة للمدونة",
+      newsletter: {
+        title: "استلم المقالات الجديدة بالإيميل",
+        description: "من غير سبام — بس إشعار لما مقال جديد ينزل.",
+        placeholder: "you@example.com",
+        subscribe: "اشترك",
+        success: "تم الاشتراك — شكرًا!",
+        error: "حصل خطأ، حاول تاني.",
+      },
     },
   },
 } as const;

@@ -104,6 +104,13 @@ model ContactMessage {
 }
 
 /// Client testimonials shown in the homepage Testimonials section.
+/// Email signups collected from the blog page.
+model NewsletterSubscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
 model Testimonial {
   id        String   @id @default(cuid())
   name      String

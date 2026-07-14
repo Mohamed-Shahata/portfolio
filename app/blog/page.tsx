@@ -6,6 +6,7 @@ import { Newspaper } from "lucide-react";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { SectionTitle } from "@/components/ui/section-title";
+import { NewsletterSignup } from "@/components/sections/newsletter-signup";
 import type { BlogPost } from "@/lib/blog-data";
 import { useLocale } from "@/lib/i18n/locale-context";
 
@@ -63,6 +64,8 @@ export default function BlogPage() {
               ))}
             </div>
           )}
+
+          <NewsletterSignup />
         </div>
       </main>
       <Footer />

@@ -13,6 +13,10 @@ import { useLocale } from "@/lib/i18n/locale-context";
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [availability, setAvailability] = useState<{
+    status: "available" | "busy" | "available_after";
+    availableFrom?: string;
+  } | null>(null);
   const { t } = useLocale();
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -23,6 +27,13 @@ export function Navbar() {
     onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/availability")
+      .then((res) => (res.ok ? res.json() : null))
+      .then(setAvailability)
+      .catch(() => setAvailability(null));
   }, []);
 
   return (
@@ -39,6 +50,45 @@ export function Navbar() {
         <Link href="/" className="text-sm font-semibold tracking-tight">
           Mohamed<span className="gradient-text"> Shehata</span>
         </Link>
+
+        {availability && (
+          <span
+            className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-2 py-1 text-xs text-muted sm:px-3"
+            title={
+              availability.status === "busy"
+                ? t.availability.busy
+                : availability.status === "available_after" &&
+                    availability.availableFrom
+                  ? t.availability.availableFrom.replace(
+                      "{date}",
+                      new Date(availability.availableFrom).toLocaleDateString(),
+                    )
+                  : t.availability.available
+            }
+          >
+            <span
+              className={cn(
+                "size-1.5 shrink-0 rounded-full",
+                availability.status === "busy"
+                  ? "bg-destructive"
+                  : availability.status === "available_after"
+                    ? "bg-accent"
+                    : "bg-success",
+              )}
+            />
+            <span className="hidden sm:inline">
+              {availability.status === "busy"
+                ? t.availability.busy
+                : availability.status === "available_after" &&
+                    availability.availableFrom
+                  ? t.availability.availableFrom.replace(
+                      "{date}",
+                      new Date(availability.availableFrom).toLocaleDateString(),
+                    )
+                  : t.availability.available}
+            </span>
+          </span>
+        )}
 
         <ul className="hidden items-center gap-8 md:flex">
           {t.nav.links.map((link) => (
