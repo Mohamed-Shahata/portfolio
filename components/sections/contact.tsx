@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, useEffect, type FormEvent } from "react";
 import {
   Mail,
   Code2,
@@ -13,17 +13,55 @@ import {
   Loader2,
   CheckCircle2,
   AlertCircle,
+  CalendarClock,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { SectionTitle } from "@/components/ui/section-title";
 import { buttonVariants } from "@/components/ui/button";
 import { useLocale } from "@/lib/i18n/locale-context";
 
+declare global {
+  interface Window {
+    Calendly?: { initPopupWidget: (opts: { url: string }) => void };
+  }
+}
+
 export function Contact() {
   const { t } = useLocale();
   const [status, setStatus] = useState<
     "idle" | "sending" | "success" | "error"
   >("idle");
+  const [calendlyUrl, setCalendlyUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch("/api/calendly")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => setCalendlyUrl(data?.url ?? null))
+      .catch(() => setCalendlyUrl(null));
+  }, []);
+
+  const openCalendly = () => {
+    if (!calendlyUrl) return;
+
+    const openPopup = () =>
+      window.Calendly?.initPopupWidget({ url: calendlyUrl });
+
+    if (window.Calendly) {
+      openPopup();
+      return;
+    }
+
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "https://assets.calendly.com/assets/external/widget.css";
+    document.head.appendChild(link);
+
+    const script = document.createElement("script");
+    script.src = "https://assets.calendly.com/assets/external/widget.js";
+    script.async = true;
+    script.onload = openPopup;
+    document.body.appendChild(script);
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -119,6 +157,16 @@ export function Contact() {
             <Download className="size-4" />
             {t.contact.downloadCv}
           </a>
+          {calendlyUrl && (
+            <button
+              type="button"
+              onClick={openCalendly}
+              className={buttonVariants({ variant: "outline", size: "lg" })}
+            >
+              <CalendarClock className="size-4" />
+              {t.contact.bookCall}
+            </button>
+          )}
         </motion.div>
 
         <div className="mt-14 grid grid-cols-1 gap-3 sm:grid-cols-2">

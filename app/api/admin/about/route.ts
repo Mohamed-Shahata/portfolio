@@ -9,6 +9,7 @@ export interface AboutContentInput {
   journey: { title: string; description: string }[];
   journeyAr: { title: string; description: string }[];
   resumeUrl: string | null;
+  calendlyUrl: string | null;
 }
 
 export async function GET() {
@@ -32,6 +33,7 @@ export async function PATCH(request: Request) {
       journey: body.journey ?? [],
       journeyAr: body.journeyAr ?? [],
       resumeUrl: body.resumeUrl ?? null,
+      calendlyUrl: body.calendlyUrl ?? null,
     },
     update: {
       ...(body.intro !== undefined && { intro: body.intro }),
@@ -41,6 +43,7 @@ export async function PATCH(request: Request) {
       ...(body.journey !== undefined && { journey: body.journey }),
       ...(body.journeyAr !== undefined && { journeyAr: body.journeyAr }),
       ...(body.resumeUrl !== undefined && { resumeUrl: body.resumeUrl }),
+      ...(body.calendlyUrl !== undefined && { calendlyUrl: body.calendlyUrl }),
     },
   });
 

@@ -1,4 +1,4 @@
-import type { Project as DbProject } from "@prisma/client";
+import type { Project as DbProject } from "@/lib/generated/prisma";
 import type { Project, ProjectMetric } from "@/lib/projects-data";
 
 /** Converts a flat DB row (Ar-suffixed fields) into the nested shape the frontend uses. */
@@ -15,6 +15,7 @@ export function dbProjectToProject(row: DbProject): Project {
     architecture: row.architecture,
     challenges: row.challenges,
     lessonsLearned: row.lessonsLearned,
+    results: row.results ?? undefined,
     techStack: row.techStack as string[],
     githubUrl: row.githubUrl,
     backendGithubUrl: row.backendGithubUrl ?? undefined,
@@ -33,6 +34,7 @@ export function dbProjectToProject(row: DbProject): Project {
       architecture: row.architectureAr,
       challenges: row.challengesAr,
       lessonsLearned: row.lessonsLearnedAr,
+      results: row.resultsAr ?? undefined,
     },
   };
 }
@@ -51,6 +53,7 @@ export interface ProjectInput {
   architecture: string;
   challenges: string;
   lessonsLearned: string;
+  results: string | null;
   titleAr: string;
   taglineAr: string;
   overviewAr: string;
@@ -60,6 +63,7 @@ export interface ProjectInput {
   architectureAr: string;
   challengesAr: string;
   lessonsLearnedAr: string;
+  resultsAr: string | null;
   techStack: string[];
   githubUrl: string;
   backendGithubUrl: string | null;

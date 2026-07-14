@@ -25,6 +25,7 @@ export default async function EditProjectPage({
     architecture: project.architecture,
     challenges: project.challenges,
     lessonsLearned: project.lessonsLearned,
+    results: project.results,
     titleAr: project.titleAr,
     taglineAr: project.taglineAr,
     overviewAr: project.overviewAr,
@@ -34,13 +35,15 @@ export default async function EditProjectPage({
     architectureAr: project.architectureAr,
     challengesAr: project.challengesAr,
     lessonsLearnedAr: project.lessonsLearnedAr,
+    resultsAr: project.resultsAr,
     techStack: project.techStack as string[],
     githubUrl: project.githubUrl,
     backendGithubUrl: project.backendGithubUrl,
     liveUrl: project.liveUrl,
     relatedSlugs: project.relatedSlugs as string[],
-    metrics: project.metrics as ProjectInput["metrics"],
+    metrics: project.metrics as unknown as ProjectInput["metrics"],
     images: project.images as string[],
+    videoUrl: project.videoUrl,
   };
 
   return (

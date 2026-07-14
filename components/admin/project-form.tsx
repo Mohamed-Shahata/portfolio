@@ -23,6 +23,7 @@ const EMPTY_PROJECT: ProjectInput = {
   architecture: "",
   challenges: "",
   lessonsLearned: "",
+  results: null,
   titleAr: "",
   taglineAr: "",
   overviewAr: "",
@@ -32,6 +33,7 @@ const EMPTY_PROJECT: ProjectInput = {
   architectureAr: "",
   challengesAr: "",
   lessonsLearnedAr: "",
+  resultsAr: null,
   techStack: [],
   githubUrl: "",
   backendGithubUrl: null,
@@ -234,6 +236,15 @@ export function ProjectForm({
             />
           </Field>
         </div>
+        <Field label="Results & Impact (real, client-facing outcomes — optional)">
+          <textarea
+            rows={3}
+            className={textareaClass}
+            value={data.results ?? ""}
+            onChange={(e) => set("results", e.target.value || null)}
+            placeholder="e.g. Cut manual order processing time by 60%, replaced 3 spreadsheets, client renewed for phase 2..."
+          />
+        </Field>
       </section>
 
       {/* Arabic content */}
@@ -323,6 +334,15 @@ export function ProjectForm({
             />
           </Field>
         </div>
+        <Field label="النتائج والتأثير (نتائج حقيقية للعميل — اختياري)">
+          <textarea
+            dir="rtl"
+            rows={3}
+            className={textareaClass}
+            value={data.resultsAr ?? ""}
+            onChange={(e) => set("resultsAr", e.target.value || null)}
+          />
+        </Field>
       </section>
 
       {/* Tech & links */}

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import type { Prisma } from "@/lib/generated/prisma";
 import type { ProjectInput } from "@/lib/project-mapper";
 
 export async function GET() {
@@ -44,6 +45,7 @@ export async function POST(request: Request) {
       architecture: body.architecture,
       challenges: body.challenges,
       lessonsLearned: body.lessonsLearned,
+      results: body.results,
       titleAr: body.titleAr,
       taglineAr: body.taglineAr,
       overviewAr: body.overviewAr,
@@ -53,12 +55,13 @@ export async function POST(request: Request) {
       architectureAr: body.architectureAr,
       challengesAr: body.challengesAr,
       lessonsLearnedAr: body.lessonsLearnedAr,
+      resultsAr: body.resultsAr,
       techStack: body.techStack,
       githubUrl: body.githubUrl,
       backendGithubUrl: body.backendGithubUrl,
       liveUrl: body.liveUrl,
       relatedSlugs: body.relatedSlugs,
-      metrics: body.metrics,
+      metrics: body.metrics as unknown as Prisma.InputJsonValue,
       images: body.images,
       videoUrl: body.videoUrl,
     },

@@ -17,6 +17,11 @@ export const translations = {
       ],
       contact: "Contact Me",
     },
+    availability: {
+      available: "Available for work",
+      busy: "Currently booked",
+      availableFrom: "Available from {date}",
+    },
     hero: {
       badge: "Available for new projects",
       titleLine1: "I Build Fast, Secure &",
@@ -221,6 +226,7 @@ export const translations = {
       architecture: "Architecture",
       challenges: "Challenges",
       lessonsLearned: "Lessons Learned",
+      results: "Results & Impact",
       gallery: "Gallery",
       screenshot: "Screenshot",
       videoWalkthrough: "Video Walkthrough",
@@ -448,6 +454,7 @@ export const translations = {
       badge: "Available for new projects",
       emailMe: "Email Me",
       downloadCv: "Download CV",
+      bookCall: "Book a Call",
       locationLabel: "El Beheira, Egypt — Available Remotely",
       form: {
         title: "Or send a message directly",
@@ -527,6 +534,11 @@ export const translations = {
         { label: "المدونة", href: "/blog" },
       ],
       contact: "تواصل معايا",
+    },
+    availability: {
+      available: "متاح للعمل",
+      busy: "محجوز حاليًا",
+      availableFrom: "متاح ابتداءً من {date}",
     },
     hero: {
       badge: "متاح لمشاريع جديدة",
@@ -702,6 +714,7 @@ export const translations = {
       architecture: "المعمارية",
       challenges: "التحديات",
       lessonsLearned: "الدروس المستفادة",
+      results: "النتائج والتأثير",
       gallery: "معرض الصور",
       screenshot: "لقطة شاشة",
       videoWalkthrough: "فيديو شرح",
@@ -912,6 +925,7 @@ export const translations = {
       badge: "متاح لمشاريع جديدة",
       emailMe: "ابعتلي إيميل",
       downloadCv: "حمّل السيرة الذاتية",
+      bookCall: "احجز مكالمة",
       locationLabel: "البحيرة، مصر — متاح للعمل عن بعد",
       form: {
         title: "أو ابعتلي رسالة مباشرة",

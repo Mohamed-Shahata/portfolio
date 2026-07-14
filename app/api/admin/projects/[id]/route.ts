@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
+import type { Prisma } from "@/lib/generated/prisma";
 import type { ProjectInput } from "@/lib/project-mapper";
 
 interface RouteParams {
@@ -58,6 +59,7 @@ export async function PATCH(request: Request, { params }: RouteParams) {
       ...(body.lessonsLearned !== undefined && {
         lessonsLearned: body.lessonsLearned,
       }),
+      ...(body.results !== undefined && { results: body.results }),
       ...(body.titleAr !== undefined && { titleAr: body.titleAr }),
       ...(body.taglineAr !== undefined && { taglineAr: body.taglineAr }),
       ...(body.overviewAr !== undefined && { overviewAr: body.overviewAr }),
@@ -73,6 +75,7 @@ export async function PATCH(request: Request, { params }: RouteParams) {
       ...(body.lessonsLearnedAr !== undefined && {
         lessonsLearnedAr: body.lessonsLearnedAr,
       }),
+      ...(body.resultsAr !== undefined && { resultsAr: body.resultsAr }),
       ...(body.techStack !== undefined && { techStack: body.techStack }),
       ...(body.githubUrl !== undefined && { githubUrl: body.githubUrl }),
       ...(body.backendGithubUrl !== undefined && {
@@ -82,7 +85,9 @@ export async function PATCH(request: Request, { params }: RouteParams) {
       ...(body.relatedSlugs !== undefined && {
         relatedSlugs: body.relatedSlugs,
       }),
-      ...(body.metrics !== undefined && { metrics: body.metrics }),
+      ...(body.metrics !== undefined && {
+        metrics: body.metrics as unknown as Prisma.InputJsonValue,
+      }),
       ...(body.images !== undefined && { images: body.images }),
       ...(body.videoUrl !== undefined && { videoUrl: body.videoUrl }),
     },

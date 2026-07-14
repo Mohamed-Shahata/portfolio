@@ -8,6 +8,7 @@ import {
   Code2,
   Lightbulb,
   Layers,
+  Sparkles,
 } from "lucide-react";
 import { TechBadge } from "@/components/ui/tech-badge";
 import { ProjectCard } from "@/components/ui/project-card";
@@ -115,6 +116,18 @@ export function ProjectDetail({
             />
           ))}
         </div>
+      )}
+
+      {p.results && (
+        <section className="mt-10 rounded-2xl border border-accent/30 bg-accent-soft/30 p-6">
+          <h2 className="flex items-center gap-2 text-sm font-medium text-accent">
+            <Sparkles className="size-4" />
+            {tp.results}
+          </h2>
+          <p className="mt-2 text-sm leading-relaxed text-foreground sm:text-base">
+            {p.results}
+          </p>
+        </section>
       )}
 
       <section className="mt-14">

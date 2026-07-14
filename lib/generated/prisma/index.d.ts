@@ -47,6 +47,11 @@ export type ContactMessage = $Result.DefaultSelection<Prisma.$ContactMessagePayl
  */
 export type Testimonial = $Result.DefaultSelection<Prisma.$TestimonialPayload>
 /**
+ * Model AvailabilityStatus
+ * Single-row table controlling the availability badge shown in the navbar.
+ */
+export type AvailabilityStatus = $Result.DefaultSelection<Prisma.$AvailabilityStatusPayload>
+/**
  * Model AboutContent
  * Single-row table holding the editable content of the /about page.
  */
@@ -232,6 +237,16 @@ export class PrismaClient<
     * ```
     */
   get testimonial(): Prisma.TestimonialDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.availabilityStatus`: Exposes CRUD operations for the **AvailabilityStatus** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AvailabilityStatuses
+    * const availabilityStatuses = await prisma.availabilityStatus.findMany()
+    * ```
+    */
+  get availabilityStatus(): Prisma.AvailabilityStatusDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.aboutContent`: Exposes CRUD operations for the **AboutContent** model.
@@ -682,6 +697,7 @@ export namespace Prisma {
     BlogPost: 'BlogPost',
     ContactMessage: 'ContactMessage',
     Testimonial: 'Testimonial',
+    AvailabilityStatus: 'AvailabilityStatus',
     AboutContent: 'AboutContent'
   };
 
@@ -698,7 +714,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "adminUser" | "project" | "pageView" | "blogPost" | "contactMessage" | "testimonial" | "aboutContent"
+      modelProps: "adminUser" | "project" | "pageView" | "blogPost" | "contactMessage" | "testimonial" | "availabilityStatus" | "aboutContent"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1146,6 +1162,80 @@ export namespace Prisma {
           }
         }
       }
+      AvailabilityStatus: {
+        payload: Prisma.$AvailabilityStatusPayload<ExtArgs>
+        fields: Prisma.AvailabilityStatusFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AvailabilityStatusFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AvailabilityStatusPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AvailabilityStatusFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AvailabilityStatusPayload>
+          }
+          findFirst: {
+            args: Prisma.AvailabilityStatusFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AvailabilityStatusPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AvailabilityStatusFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AvailabilityStatusPayload>
+          }
+          findMany: {
+            args: Prisma.AvailabilityStatusFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AvailabilityStatusPayload>[]
+          }
+          create: {
+            args: Prisma.AvailabilityStatusCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AvailabilityStatusPayload>
+          }
+          createMany: {
+            args: Prisma.AvailabilityStatusCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AvailabilityStatusCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AvailabilityStatusPayload>[]
+          }
+          delete: {
+            args: Prisma.AvailabilityStatusDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AvailabilityStatusPayload>
+          }
+          update: {
+            args: Prisma.AvailabilityStatusUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AvailabilityStatusPayload>
+          }
+          deleteMany: {
+            args: Prisma.AvailabilityStatusDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AvailabilityStatusUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AvailabilityStatusUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AvailabilityStatusPayload>[]
+          }
+          upsert: {
+            args: Prisma.AvailabilityStatusUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AvailabilityStatusPayload>
+          }
+          aggregate: {
+            args: Prisma.AvailabilityStatusAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAvailabilityStatus>
+          }
+          groupBy: {
+            args: Prisma.AvailabilityStatusGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AvailabilityStatusGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AvailabilityStatusCountArgs<ExtArgs>
+            result: $Utils.Optional<AvailabilityStatusCountAggregateOutputType> | number
+          }
+        }
+      }
       AboutContent: {
         payload: Prisma.$AboutContentPayload<ExtArgs>
         fields: Prisma.AboutContentFieldRefs
@@ -1334,6 +1424,7 @@ export namespace Prisma {
     blogPost?: BlogPostOmit
     contactMessage?: ContactMessageOmit
     testimonial?: TestimonialOmit
+    availabilityStatus?: AvailabilityStatusOmit
     aboutContent?: AboutContentOmit
   }
 
@@ -2436,6 +2527,7 @@ export namespace Prisma {
     architecture: string | null
     challenges: string | null
     lessonsLearned: string | null
+    results: string | null
     titleAr: string | null
     taglineAr: string | null
     overviewAr: string | null
@@ -2444,6 +2536,7 @@ export namespace Prisma {
     architectureAr: string | null
     challengesAr: string | null
     lessonsLearnedAr: string | null
+    resultsAr: string | null
     githubUrl: string | null
     backendGithubUrl: string | null
     liveUrl: string | null
@@ -2466,6 +2559,7 @@ export namespace Prisma {
     architecture: string | null
     challenges: string | null
     lessonsLearned: string | null
+    results: string | null
     titleAr: string | null
     taglineAr: string | null
     overviewAr: string | null
@@ -2474,6 +2568,7 @@ export namespace Prisma {
     architectureAr: string | null
     challengesAr: string | null
     lessonsLearnedAr: string | null
+    resultsAr: string | null
     githubUrl: string | null
     backendGithubUrl: string | null
     liveUrl: string | null
@@ -2497,6 +2592,7 @@ export namespace Prisma {
     architecture: number
     challenges: number
     lessonsLearned: number
+    results: number
     titleAr: number
     taglineAr: number
     overviewAr: number
@@ -2506,6 +2602,7 @@ export namespace Prisma {
     architectureAr: number
     challengesAr: number
     lessonsLearnedAr: number
+    resultsAr: number
     techStack: number
     githubUrl: number
     backendGithubUrl: number
@@ -2542,6 +2639,7 @@ export namespace Prisma {
     architecture?: true
     challenges?: true
     lessonsLearned?: true
+    results?: true
     titleAr?: true
     taglineAr?: true
     overviewAr?: true
@@ -2550,6 +2648,7 @@ export namespace Prisma {
     architectureAr?: true
     challengesAr?: true
     lessonsLearnedAr?: true
+    resultsAr?: true
     githubUrl?: true
     backendGithubUrl?: true
     liveUrl?: true
@@ -2572,6 +2671,7 @@ export namespace Prisma {
     architecture?: true
     challenges?: true
     lessonsLearned?: true
+    results?: true
     titleAr?: true
     taglineAr?: true
     overviewAr?: true
@@ -2580,6 +2680,7 @@ export namespace Prisma {
     architectureAr?: true
     challengesAr?: true
     lessonsLearnedAr?: true
+    resultsAr?: true
     githubUrl?: true
     backendGithubUrl?: true
     liveUrl?: true
@@ -2603,6 +2704,7 @@ export namespace Prisma {
     architecture?: true
     challenges?: true
     lessonsLearned?: true
+    results?: true
     titleAr?: true
     taglineAr?: true
     overviewAr?: true
@@ -2612,6 +2714,7 @@ export namespace Prisma {
     architectureAr?: true
     challengesAr?: true
     lessonsLearnedAr?: true
+    resultsAr?: true
     techStack?: true
     githubUrl?: true
     backendGithubUrl?: true
@@ -2726,6 +2829,7 @@ export namespace Prisma {
     architecture: string
     challenges: string
     lessonsLearned: string
+    results: string | null
     titleAr: string
     taglineAr: string
     overviewAr: string
@@ -2735,6 +2839,7 @@ export namespace Prisma {
     architectureAr: string
     challengesAr: string
     lessonsLearnedAr: string
+    resultsAr: string | null
     techStack: JsonValue
     githubUrl: string
     backendGithubUrl: string | null
@@ -2781,6 +2886,7 @@ export namespace Prisma {
     architecture?: boolean
     challenges?: boolean
     lessonsLearned?: boolean
+    results?: boolean
     titleAr?: boolean
     taglineAr?: boolean
     overviewAr?: boolean
@@ -2790,6 +2896,7 @@ export namespace Prisma {
     architectureAr?: boolean
     challengesAr?: boolean
     lessonsLearnedAr?: boolean
+    resultsAr?: boolean
     techStack?: boolean
     githubUrl?: boolean
     backendGithubUrl?: boolean
@@ -2817,6 +2924,7 @@ export namespace Prisma {
     architecture?: boolean
     challenges?: boolean
     lessonsLearned?: boolean
+    results?: boolean
     titleAr?: boolean
     taglineAr?: boolean
     overviewAr?: boolean
@@ -2826,6 +2934,7 @@ export namespace Prisma {
     architectureAr?: boolean
     challengesAr?: boolean
     lessonsLearnedAr?: boolean
+    resultsAr?: boolean
     techStack?: boolean
     githubUrl?: boolean
     backendGithubUrl?: boolean
@@ -2853,6 +2962,7 @@ export namespace Prisma {
     architecture?: boolean
     challenges?: boolean
     lessonsLearned?: boolean
+    results?: boolean
     titleAr?: boolean
     taglineAr?: boolean
     overviewAr?: boolean
@@ -2862,6 +2972,7 @@ export namespace Prisma {
     architectureAr?: boolean
     challengesAr?: boolean
     lessonsLearnedAr?: boolean
+    resultsAr?: boolean
     techStack?: boolean
     githubUrl?: boolean
     backendGithubUrl?: boolean
@@ -2889,6 +3000,7 @@ export namespace Prisma {
     architecture?: boolean
     challenges?: boolean
     lessonsLearned?: boolean
+    results?: boolean
     titleAr?: boolean
     taglineAr?: boolean
     overviewAr?: boolean
@@ -2898,6 +3010,7 @@ export namespace Prisma {
     architectureAr?: boolean
     challengesAr?: boolean
     lessonsLearnedAr?: boolean
+    resultsAr?: boolean
     techStack?: boolean
     githubUrl?: boolean
     backendGithubUrl?: boolean
@@ -2910,7 +3023,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "order" | "type" | "published" | "title" | "tagline" | "overview" | "problem" | "solution" | "features" | "architecture" | "challenges" | "lessonsLearned" | "titleAr" | "taglineAr" | "overviewAr" | "problemAr" | "solutionAr" | "featuresAr" | "architectureAr" | "challengesAr" | "lessonsLearnedAr" | "techStack" | "githubUrl" | "backendGithubUrl" | "liveUrl" | "relatedSlugs" | "metrics" | "images" | "videoUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "order" | "type" | "published" | "title" | "tagline" | "overview" | "problem" | "solution" | "features" | "architecture" | "challenges" | "lessonsLearned" | "results" | "titleAr" | "taglineAr" | "overviewAr" | "problemAr" | "solutionAr" | "featuresAr" | "architectureAr" | "challengesAr" | "lessonsLearnedAr" | "resultsAr" | "techStack" | "githubUrl" | "backendGithubUrl" | "liveUrl" | "relatedSlugs" | "metrics" | "images" | "videoUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
 
   export type $ProjectPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Project"
@@ -2930,6 +3043,7 @@ export namespace Prisma {
       architecture: string
       challenges: string
       lessonsLearned: string
+      results: string | null
       titleAr: string
       taglineAr: string
       overviewAr: string
@@ -2939,6 +3053,7 @@ export namespace Prisma {
       architectureAr: string
       challengesAr: string
       lessonsLearnedAr: string
+      resultsAr: string | null
       techStack: Prisma.JsonValue
       githubUrl: string
       backendGithubUrl: string | null
@@ -3386,6 +3501,7 @@ export namespace Prisma {
     readonly architecture: FieldRef<"Project", 'String'>
     readonly challenges: FieldRef<"Project", 'String'>
     readonly lessonsLearned: FieldRef<"Project", 'String'>
+    readonly results: FieldRef<"Project", 'String'>
     readonly titleAr: FieldRef<"Project", 'String'>
     readonly taglineAr: FieldRef<"Project", 'String'>
     readonly overviewAr: FieldRef<"Project", 'String'>
@@ -3395,6 +3511,7 @@ export namespace Prisma {
     readonly architectureAr: FieldRef<"Project", 'String'>
     readonly challengesAr: FieldRef<"Project", 'String'>
     readonly lessonsLearnedAr: FieldRef<"Project", 'String'>
+    readonly resultsAr: FieldRef<"Project", 'String'>
     readonly techStack: FieldRef<"Project", 'Json'>
     readonly githubUrl: FieldRef<"Project", 'String'>
     readonly backendGithubUrl: FieldRef<"Project", 'String'>
@@ -7971,6 +8088,993 @@ export namespace Prisma {
 
 
   /**
+   * Model AvailabilityStatus
+   */
+
+  export type AggregateAvailabilityStatus = {
+    _count: AvailabilityStatusCountAggregateOutputType | null
+    _min: AvailabilityStatusMinAggregateOutputType | null
+    _max: AvailabilityStatusMaxAggregateOutputType | null
+  }
+
+  export type AvailabilityStatusMinAggregateOutputType = {
+    id: string | null
+    status: string | null
+    availableFrom: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AvailabilityStatusMaxAggregateOutputType = {
+    id: string | null
+    status: string | null
+    availableFrom: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AvailabilityStatusCountAggregateOutputType = {
+    id: number
+    status: number
+    availableFrom: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AvailabilityStatusMinAggregateInputType = {
+    id?: true
+    status?: true
+    availableFrom?: true
+    updatedAt?: true
+  }
+
+  export type AvailabilityStatusMaxAggregateInputType = {
+    id?: true
+    status?: true
+    availableFrom?: true
+    updatedAt?: true
+  }
+
+  export type AvailabilityStatusCountAggregateInputType = {
+    id?: true
+    status?: true
+    availableFrom?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AvailabilityStatusAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AvailabilityStatus to aggregate.
+     */
+    where?: AvailabilityStatusWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AvailabilityStatuses to fetch.
+     */
+    orderBy?: AvailabilityStatusOrderByWithRelationInput | AvailabilityStatusOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AvailabilityStatusWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AvailabilityStatuses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AvailabilityStatuses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AvailabilityStatuses
+    **/
+    _count?: true | AvailabilityStatusCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AvailabilityStatusMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AvailabilityStatusMaxAggregateInputType
+  }
+
+  export type GetAvailabilityStatusAggregateType<T extends AvailabilityStatusAggregateArgs> = {
+        [P in keyof T & keyof AggregateAvailabilityStatus]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAvailabilityStatus[P]>
+      : GetScalarType<T[P], AggregateAvailabilityStatus[P]>
+  }
+
+
+
+
+  export type AvailabilityStatusGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AvailabilityStatusWhereInput
+    orderBy?: AvailabilityStatusOrderByWithAggregationInput | AvailabilityStatusOrderByWithAggregationInput[]
+    by: AvailabilityStatusScalarFieldEnum[] | AvailabilityStatusScalarFieldEnum
+    having?: AvailabilityStatusScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AvailabilityStatusCountAggregateInputType | true
+    _min?: AvailabilityStatusMinAggregateInputType
+    _max?: AvailabilityStatusMaxAggregateInputType
+  }
+
+  export type AvailabilityStatusGroupByOutputType = {
+    id: string
+    status: string
+    availableFrom: Date | null
+    updatedAt: Date
+    _count: AvailabilityStatusCountAggregateOutputType | null
+    _min: AvailabilityStatusMinAggregateOutputType | null
+    _max: AvailabilityStatusMaxAggregateOutputType | null
+  }
+
+  type GetAvailabilityStatusGroupByPayload<T extends AvailabilityStatusGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AvailabilityStatusGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AvailabilityStatusGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AvailabilityStatusGroupByOutputType[P]>
+            : GetScalarType<T[P], AvailabilityStatusGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AvailabilityStatusSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    status?: boolean
+    availableFrom?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["availabilityStatus"]>
+
+  export type AvailabilityStatusSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    status?: boolean
+    availableFrom?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["availabilityStatus"]>
+
+  export type AvailabilityStatusSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    status?: boolean
+    availableFrom?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["availabilityStatus"]>
+
+  export type AvailabilityStatusSelectScalar = {
+    id?: boolean
+    status?: boolean
+    availableFrom?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AvailabilityStatusOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "status" | "availableFrom" | "updatedAt", ExtArgs["result"]["availabilityStatus"]>
+
+  export type $AvailabilityStatusPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AvailabilityStatus"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      status: string
+      availableFrom: Date | null
+      updatedAt: Date
+    }, ExtArgs["result"]["availabilityStatus"]>
+    composites: {}
+  }
+
+  type AvailabilityStatusGetPayload<S extends boolean | null | undefined | AvailabilityStatusDefaultArgs> = $Result.GetResult<Prisma.$AvailabilityStatusPayload, S>
+
+  type AvailabilityStatusCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AvailabilityStatusFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AvailabilityStatusCountAggregateInputType | true
+    }
+
+  export interface AvailabilityStatusDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AvailabilityStatus'], meta: { name: 'AvailabilityStatus' } }
+    /**
+     * Find zero or one AvailabilityStatus that matches the filter.
+     * @param {AvailabilityStatusFindUniqueArgs} args - Arguments to find a AvailabilityStatus
+     * @example
+     * // Get one AvailabilityStatus
+     * const availabilityStatus = await prisma.availabilityStatus.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AvailabilityStatusFindUniqueArgs>(args: SelectSubset<T, AvailabilityStatusFindUniqueArgs<ExtArgs>>): Prisma__AvailabilityStatusClient<$Result.GetResult<Prisma.$AvailabilityStatusPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AvailabilityStatus that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AvailabilityStatusFindUniqueOrThrowArgs} args - Arguments to find a AvailabilityStatus
+     * @example
+     * // Get one AvailabilityStatus
+     * const availabilityStatus = await prisma.availabilityStatus.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AvailabilityStatusFindUniqueOrThrowArgs>(args: SelectSubset<T, AvailabilityStatusFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AvailabilityStatusClient<$Result.GetResult<Prisma.$AvailabilityStatusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AvailabilityStatus that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AvailabilityStatusFindFirstArgs} args - Arguments to find a AvailabilityStatus
+     * @example
+     * // Get one AvailabilityStatus
+     * const availabilityStatus = await prisma.availabilityStatus.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AvailabilityStatusFindFirstArgs>(args?: SelectSubset<T, AvailabilityStatusFindFirstArgs<ExtArgs>>): Prisma__AvailabilityStatusClient<$Result.GetResult<Prisma.$AvailabilityStatusPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AvailabilityStatus that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AvailabilityStatusFindFirstOrThrowArgs} args - Arguments to find a AvailabilityStatus
+     * @example
+     * // Get one AvailabilityStatus
+     * const availabilityStatus = await prisma.availabilityStatus.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AvailabilityStatusFindFirstOrThrowArgs>(args?: SelectSubset<T, AvailabilityStatusFindFirstOrThrowArgs<ExtArgs>>): Prisma__AvailabilityStatusClient<$Result.GetResult<Prisma.$AvailabilityStatusPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AvailabilityStatuses that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AvailabilityStatusFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AvailabilityStatuses
+     * const availabilityStatuses = await prisma.availabilityStatus.findMany()
+     * 
+     * // Get first 10 AvailabilityStatuses
+     * const availabilityStatuses = await prisma.availabilityStatus.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const availabilityStatusWithIdOnly = await prisma.availabilityStatus.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AvailabilityStatusFindManyArgs>(args?: SelectSubset<T, AvailabilityStatusFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AvailabilityStatusPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AvailabilityStatus.
+     * @param {AvailabilityStatusCreateArgs} args - Arguments to create a AvailabilityStatus.
+     * @example
+     * // Create one AvailabilityStatus
+     * const AvailabilityStatus = await prisma.availabilityStatus.create({
+     *   data: {
+     *     // ... data to create a AvailabilityStatus
+     *   }
+     * })
+     * 
+     */
+    create<T extends AvailabilityStatusCreateArgs>(args: SelectSubset<T, AvailabilityStatusCreateArgs<ExtArgs>>): Prisma__AvailabilityStatusClient<$Result.GetResult<Prisma.$AvailabilityStatusPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AvailabilityStatuses.
+     * @param {AvailabilityStatusCreateManyArgs} args - Arguments to create many AvailabilityStatuses.
+     * @example
+     * // Create many AvailabilityStatuses
+     * const availabilityStatus = await prisma.availabilityStatus.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AvailabilityStatusCreateManyArgs>(args?: SelectSubset<T, AvailabilityStatusCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AvailabilityStatuses and returns the data saved in the database.
+     * @param {AvailabilityStatusCreateManyAndReturnArgs} args - Arguments to create many AvailabilityStatuses.
+     * @example
+     * // Create many AvailabilityStatuses
+     * const availabilityStatus = await prisma.availabilityStatus.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AvailabilityStatuses and only return the `id`
+     * const availabilityStatusWithIdOnly = await prisma.availabilityStatus.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AvailabilityStatusCreateManyAndReturnArgs>(args?: SelectSubset<T, AvailabilityStatusCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AvailabilityStatusPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AvailabilityStatus.
+     * @param {AvailabilityStatusDeleteArgs} args - Arguments to delete one AvailabilityStatus.
+     * @example
+     * // Delete one AvailabilityStatus
+     * const AvailabilityStatus = await prisma.availabilityStatus.delete({
+     *   where: {
+     *     // ... filter to delete one AvailabilityStatus
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AvailabilityStatusDeleteArgs>(args: SelectSubset<T, AvailabilityStatusDeleteArgs<ExtArgs>>): Prisma__AvailabilityStatusClient<$Result.GetResult<Prisma.$AvailabilityStatusPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AvailabilityStatus.
+     * @param {AvailabilityStatusUpdateArgs} args - Arguments to update one AvailabilityStatus.
+     * @example
+     * // Update one AvailabilityStatus
+     * const availabilityStatus = await prisma.availabilityStatus.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AvailabilityStatusUpdateArgs>(args: SelectSubset<T, AvailabilityStatusUpdateArgs<ExtArgs>>): Prisma__AvailabilityStatusClient<$Result.GetResult<Prisma.$AvailabilityStatusPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AvailabilityStatuses.
+     * @param {AvailabilityStatusDeleteManyArgs} args - Arguments to filter AvailabilityStatuses to delete.
+     * @example
+     * // Delete a few AvailabilityStatuses
+     * const { count } = await prisma.availabilityStatus.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AvailabilityStatusDeleteManyArgs>(args?: SelectSubset<T, AvailabilityStatusDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AvailabilityStatuses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AvailabilityStatusUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AvailabilityStatuses
+     * const availabilityStatus = await prisma.availabilityStatus.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AvailabilityStatusUpdateManyArgs>(args: SelectSubset<T, AvailabilityStatusUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AvailabilityStatuses and returns the data updated in the database.
+     * @param {AvailabilityStatusUpdateManyAndReturnArgs} args - Arguments to update many AvailabilityStatuses.
+     * @example
+     * // Update many AvailabilityStatuses
+     * const availabilityStatus = await prisma.availabilityStatus.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AvailabilityStatuses and only return the `id`
+     * const availabilityStatusWithIdOnly = await prisma.availabilityStatus.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AvailabilityStatusUpdateManyAndReturnArgs>(args: SelectSubset<T, AvailabilityStatusUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AvailabilityStatusPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AvailabilityStatus.
+     * @param {AvailabilityStatusUpsertArgs} args - Arguments to update or create a AvailabilityStatus.
+     * @example
+     * // Update or create a AvailabilityStatus
+     * const availabilityStatus = await prisma.availabilityStatus.upsert({
+     *   create: {
+     *     // ... data to create a AvailabilityStatus
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AvailabilityStatus we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AvailabilityStatusUpsertArgs>(args: SelectSubset<T, AvailabilityStatusUpsertArgs<ExtArgs>>): Prisma__AvailabilityStatusClient<$Result.GetResult<Prisma.$AvailabilityStatusPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AvailabilityStatuses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AvailabilityStatusCountArgs} args - Arguments to filter AvailabilityStatuses to count.
+     * @example
+     * // Count the number of AvailabilityStatuses
+     * const count = await prisma.availabilityStatus.count({
+     *   where: {
+     *     // ... the filter for the AvailabilityStatuses we want to count
+     *   }
+     * })
+    **/
+    count<T extends AvailabilityStatusCountArgs>(
+      args?: Subset<T, AvailabilityStatusCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AvailabilityStatusCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AvailabilityStatus.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AvailabilityStatusAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AvailabilityStatusAggregateArgs>(args: Subset<T, AvailabilityStatusAggregateArgs>): Prisma.PrismaPromise<GetAvailabilityStatusAggregateType<T>>
+
+    /**
+     * Group by AvailabilityStatus.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AvailabilityStatusGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AvailabilityStatusGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AvailabilityStatusGroupByArgs['orderBy'] }
+        : { orderBy?: AvailabilityStatusGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AvailabilityStatusGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAvailabilityStatusGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AvailabilityStatus model
+   */
+  readonly fields: AvailabilityStatusFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AvailabilityStatus.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AvailabilityStatusClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AvailabilityStatus model
+   */
+  interface AvailabilityStatusFieldRefs {
+    readonly id: FieldRef<"AvailabilityStatus", 'String'>
+    readonly status: FieldRef<"AvailabilityStatus", 'String'>
+    readonly availableFrom: FieldRef<"AvailabilityStatus", 'DateTime'>
+    readonly updatedAt: FieldRef<"AvailabilityStatus", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AvailabilityStatus findUnique
+   */
+  export type AvailabilityStatusFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityStatus
+     */
+    select?: AvailabilityStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityStatus
+     */
+    omit?: AvailabilityStatusOmit<ExtArgs> | null
+    /**
+     * Filter, which AvailabilityStatus to fetch.
+     */
+    where: AvailabilityStatusWhereUniqueInput
+  }
+
+  /**
+   * AvailabilityStatus findUniqueOrThrow
+   */
+  export type AvailabilityStatusFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityStatus
+     */
+    select?: AvailabilityStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityStatus
+     */
+    omit?: AvailabilityStatusOmit<ExtArgs> | null
+    /**
+     * Filter, which AvailabilityStatus to fetch.
+     */
+    where: AvailabilityStatusWhereUniqueInput
+  }
+
+  /**
+   * AvailabilityStatus findFirst
+   */
+  export type AvailabilityStatusFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityStatus
+     */
+    select?: AvailabilityStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityStatus
+     */
+    omit?: AvailabilityStatusOmit<ExtArgs> | null
+    /**
+     * Filter, which AvailabilityStatus to fetch.
+     */
+    where?: AvailabilityStatusWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AvailabilityStatuses to fetch.
+     */
+    orderBy?: AvailabilityStatusOrderByWithRelationInput | AvailabilityStatusOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AvailabilityStatuses.
+     */
+    cursor?: AvailabilityStatusWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AvailabilityStatuses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AvailabilityStatuses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AvailabilityStatuses.
+     */
+    distinct?: AvailabilityStatusScalarFieldEnum | AvailabilityStatusScalarFieldEnum[]
+  }
+
+  /**
+   * AvailabilityStatus findFirstOrThrow
+   */
+  export type AvailabilityStatusFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityStatus
+     */
+    select?: AvailabilityStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityStatus
+     */
+    omit?: AvailabilityStatusOmit<ExtArgs> | null
+    /**
+     * Filter, which AvailabilityStatus to fetch.
+     */
+    where?: AvailabilityStatusWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AvailabilityStatuses to fetch.
+     */
+    orderBy?: AvailabilityStatusOrderByWithRelationInput | AvailabilityStatusOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AvailabilityStatuses.
+     */
+    cursor?: AvailabilityStatusWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AvailabilityStatuses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AvailabilityStatuses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AvailabilityStatuses.
+     */
+    distinct?: AvailabilityStatusScalarFieldEnum | AvailabilityStatusScalarFieldEnum[]
+  }
+
+  /**
+   * AvailabilityStatus findMany
+   */
+  export type AvailabilityStatusFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityStatus
+     */
+    select?: AvailabilityStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityStatus
+     */
+    omit?: AvailabilityStatusOmit<ExtArgs> | null
+    /**
+     * Filter, which AvailabilityStatuses to fetch.
+     */
+    where?: AvailabilityStatusWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AvailabilityStatuses to fetch.
+     */
+    orderBy?: AvailabilityStatusOrderByWithRelationInput | AvailabilityStatusOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AvailabilityStatuses.
+     */
+    cursor?: AvailabilityStatusWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AvailabilityStatuses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AvailabilityStatuses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AvailabilityStatuses.
+     */
+    distinct?: AvailabilityStatusScalarFieldEnum | AvailabilityStatusScalarFieldEnum[]
+  }
+
+  /**
+   * AvailabilityStatus create
+   */
+  export type AvailabilityStatusCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityStatus
+     */
+    select?: AvailabilityStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityStatus
+     */
+    omit?: AvailabilityStatusOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AvailabilityStatus.
+     */
+    data: XOR<AvailabilityStatusCreateInput, AvailabilityStatusUncheckedCreateInput>
+  }
+
+  /**
+   * AvailabilityStatus createMany
+   */
+  export type AvailabilityStatusCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AvailabilityStatuses.
+     */
+    data: AvailabilityStatusCreateManyInput | AvailabilityStatusCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AvailabilityStatus createManyAndReturn
+   */
+  export type AvailabilityStatusCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityStatus
+     */
+    select?: AvailabilityStatusSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityStatus
+     */
+    omit?: AvailabilityStatusOmit<ExtArgs> | null
+    /**
+     * The data used to create many AvailabilityStatuses.
+     */
+    data: AvailabilityStatusCreateManyInput | AvailabilityStatusCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AvailabilityStatus update
+   */
+  export type AvailabilityStatusUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityStatus
+     */
+    select?: AvailabilityStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityStatus
+     */
+    omit?: AvailabilityStatusOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AvailabilityStatus.
+     */
+    data: XOR<AvailabilityStatusUpdateInput, AvailabilityStatusUncheckedUpdateInput>
+    /**
+     * Choose, which AvailabilityStatus to update.
+     */
+    where: AvailabilityStatusWhereUniqueInput
+  }
+
+  /**
+   * AvailabilityStatus updateMany
+   */
+  export type AvailabilityStatusUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AvailabilityStatuses.
+     */
+    data: XOR<AvailabilityStatusUpdateManyMutationInput, AvailabilityStatusUncheckedUpdateManyInput>
+    /**
+     * Filter which AvailabilityStatuses to update
+     */
+    where?: AvailabilityStatusWhereInput
+    /**
+     * Limit how many AvailabilityStatuses to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AvailabilityStatus updateManyAndReturn
+   */
+  export type AvailabilityStatusUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityStatus
+     */
+    select?: AvailabilityStatusSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityStatus
+     */
+    omit?: AvailabilityStatusOmit<ExtArgs> | null
+    /**
+     * The data used to update AvailabilityStatuses.
+     */
+    data: XOR<AvailabilityStatusUpdateManyMutationInput, AvailabilityStatusUncheckedUpdateManyInput>
+    /**
+     * Filter which AvailabilityStatuses to update
+     */
+    where?: AvailabilityStatusWhereInput
+    /**
+     * Limit how many AvailabilityStatuses to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AvailabilityStatus upsert
+   */
+  export type AvailabilityStatusUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityStatus
+     */
+    select?: AvailabilityStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityStatus
+     */
+    omit?: AvailabilityStatusOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AvailabilityStatus to update in case it exists.
+     */
+    where: AvailabilityStatusWhereUniqueInput
+    /**
+     * In case the AvailabilityStatus found by the `where` argument doesn't exist, create a new AvailabilityStatus with this data.
+     */
+    create: XOR<AvailabilityStatusCreateInput, AvailabilityStatusUncheckedCreateInput>
+    /**
+     * In case the AvailabilityStatus was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AvailabilityStatusUpdateInput, AvailabilityStatusUncheckedUpdateInput>
+  }
+
+  /**
+   * AvailabilityStatus delete
+   */
+  export type AvailabilityStatusDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityStatus
+     */
+    select?: AvailabilityStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityStatus
+     */
+    omit?: AvailabilityStatusOmit<ExtArgs> | null
+    /**
+     * Filter which AvailabilityStatus to delete.
+     */
+    where: AvailabilityStatusWhereUniqueInput
+  }
+
+  /**
+   * AvailabilityStatus deleteMany
+   */
+  export type AvailabilityStatusDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AvailabilityStatuses to delete
+     */
+    where?: AvailabilityStatusWhereInput
+    /**
+     * Limit how many AvailabilityStatuses to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AvailabilityStatus without action
+   */
+  export type AvailabilityStatusDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AvailabilityStatus
+     */
+    select?: AvailabilityStatusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AvailabilityStatus
+     */
+    omit?: AvailabilityStatusOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Model AboutContent
    */
 
@@ -7987,6 +9091,7 @@ export namespace Prisma {
     approach: string | null
     approachAr: string | null
     resumeUrl: string | null
+    calendlyUrl: string | null
     updatedAt: Date | null
   }
 
@@ -7997,6 +9102,7 @@ export namespace Prisma {
     approach: string | null
     approachAr: string | null
     resumeUrl: string | null
+    calendlyUrl: string | null
     updatedAt: Date | null
   }
 
@@ -8009,6 +9115,7 @@ export namespace Prisma {
     journey: number
     journeyAr: number
     resumeUrl: number
+    calendlyUrl: number
     updatedAt: number
     _all: number
   }
@@ -8021,6 +9128,7 @@ export namespace Prisma {
     approach?: true
     approachAr?: true
     resumeUrl?: true
+    calendlyUrl?: true
     updatedAt?: true
   }
 
@@ -8031,6 +9139,7 @@ export namespace Prisma {
     approach?: true
     approachAr?: true
     resumeUrl?: true
+    calendlyUrl?: true
     updatedAt?: true
   }
 
@@ -8043,6 +9152,7 @@ export namespace Prisma {
     journey?: true
     journeyAr?: true
     resumeUrl?: true
+    calendlyUrl?: true
     updatedAt?: true
     _all?: true
   }
@@ -8128,6 +9238,7 @@ export namespace Prisma {
     journey: JsonValue
     journeyAr: JsonValue
     resumeUrl: string | null
+    calendlyUrl: string | null
     updatedAt: Date
     _count: AboutContentCountAggregateOutputType | null
     _min: AboutContentMinAggregateOutputType | null
@@ -8157,6 +9268,7 @@ export namespace Prisma {
     journey?: boolean
     journeyAr?: boolean
     resumeUrl?: boolean
+    calendlyUrl?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["aboutContent"]>
 
@@ -8169,6 +9281,7 @@ export namespace Prisma {
     journey?: boolean
     journeyAr?: boolean
     resumeUrl?: boolean
+    calendlyUrl?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["aboutContent"]>
 
@@ -8181,6 +9294,7 @@ export namespace Prisma {
     journey?: boolean
     journeyAr?: boolean
     resumeUrl?: boolean
+    calendlyUrl?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["aboutContent"]>
 
@@ -8193,10 +9307,11 @@ export namespace Prisma {
     journey?: boolean
     journeyAr?: boolean
     resumeUrl?: boolean
+    calendlyUrl?: boolean
     updatedAt?: boolean
   }
 
-  export type AboutContentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "intro" | "introAr" | "approach" | "approachAr" | "journey" | "journeyAr" | "resumeUrl" | "updatedAt", ExtArgs["result"]["aboutContent"]>
+  export type AboutContentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "intro" | "introAr" | "approach" | "approachAr" | "journey" | "journeyAr" | "resumeUrl" | "calendlyUrl" | "updatedAt", ExtArgs["result"]["aboutContent"]>
 
   export type $AboutContentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AboutContent"
@@ -8210,6 +9325,7 @@ export namespace Prisma {
       journey: Prisma.JsonValue
       journeyAr: Prisma.JsonValue
       resumeUrl: string | null
+      calendlyUrl: string | null
       updatedAt: Date
     }, ExtArgs["result"]["aboutContent"]>
     composites: {}
@@ -8642,6 +9758,7 @@ export namespace Prisma {
     readonly journey: FieldRef<"AboutContent", 'Json'>
     readonly journeyAr: FieldRef<"AboutContent", 'Json'>
     readonly resumeUrl: FieldRef<"AboutContent", 'String'>
+    readonly calendlyUrl: FieldRef<"AboutContent", 'String'>
     readonly updatedAt: FieldRef<"AboutContent", 'DateTime'>
   }
     
@@ -9053,6 +10170,7 @@ export namespace Prisma {
     architecture: 'architecture',
     challenges: 'challenges',
     lessonsLearned: 'lessonsLearned',
+    results: 'results',
     titleAr: 'titleAr',
     taglineAr: 'taglineAr',
     overviewAr: 'overviewAr',
@@ -9062,6 +10180,7 @@ export namespace Prisma {
     architectureAr: 'architectureAr',
     challengesAr: 'challengesAr',
     lessonsLearnedAr: 'lessonsLearnedAr',
+    resultsAr: 'resultsAr',
     techStack: 'techStack',
     githubUrl: 'githubUrl',
     backendGithubUrl: 'backendGithubUrl',
@@ -9133,6 +10252,16 @@ export namespace Prisma {
   export type TestimonialScalarFieldEnum = (typeof TestimonialScalarFieldEnum)[keyof typeof TestimonialScalarFieldEnum]
 
 
+  export const AvailabilityStatusScalarFieldEnum: {
+    id: 'id',
+    status: 'status',
+    availableFrom: 'availableFrom',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AvailabilityStatusScalarFieldEnum = (typeof AvailabilityStatusScalarFieldEnum)[keyof typeof AvailabilityStatusScalarFieldEnum]
+
+
   export const AboutContentScalarFieldEnum: {
     id: 'id',
     intro: 'intro',
@@ -9142,6 +10271,7 @@ export namespace Prisma {
     journey: 'journey',
     journeyAr: 'journeyAr',
     resumeUrl: 'resumeUrl',
+    calendlyUrl: 'calendlyUrl',
     updatedAt: 'updatedAt'
   };
 
@@ -9338,6 +10468,7 @@ export namespace Prisma {
     architecture?: StringFilter<"Project"> | string
     challenges?: StringFilter<"Project"> | string
     lessonsLearned?: StringFilter<"Project"> | string
+    results?: StringNullableFilter<"Project"> | string | null
     titleAr?: StringFilter<"Project"> | string
     taglineAr?: StringFilter<"Project"> | string
     overviewAr?: StringFilter<"Project"> | string
@@ -9347,6 +10478,7 @@ export namespace Prisma {
     architectureAr?: StringFilter<"Project"> | string
     challengesAr?: StringFilter<"Project"> | string
     lessonsLearnedAr?: StringFilter<"Project"> | string
+    resultsAr?: StringNullableFilter<"Project"> | string | null
     techStack?: JsonFilter<"Project">
     githubUrl?: StringFilter<"Project"> | string
     backendGithubUrl?: StringNullableFilter<"Project"> | string | null
@@ -9374,6 +10506,7 @@ export namespace Prisma {
     architecture?: SortOrder
     challenges?: SortOrder
     lessonsLearned?: SortOrder
+    results?: SortOrderInput | SortOrder
     titleAr?: SortOrder
     taglineAr?: SortOrder
     overviewAr?: SortOrder
@@ -9383,6 +10516,7 @@ export namespace Prisma {
     architectureAr?: SortOrder
     challengesAr?: SortOrder
     lessonsLearnedAr?: SortOrder
+    resultsAr?: SortOrderInput | SortOrder
     techStack?: SortOrder
     githubUrl?: SortOrder
     backendGithubUrl?: SortOrderInput | SortOrder
@@ -9413,6 +10547,7 @@ export namespace Prisma {
     architecture?: StringFilter<"Project"> | string
     challenges?: StringFilter<"Project"> | string
     lessonsLearned?: StringFilter<"Project"> | string
+    results?: StringNullableFilter<"Project"> | string | null
     titleAr?: StringFilter<"Project"> | string
     taglineAr?: StringFilter<"Project"> | string
     overviewAr?: StringFilter<"Project"> | string
@@ -9422,6 +10557,7 @@ export namespace Prisma {
     architectureAr?: StringFilter<"Project"> | string
     challengesAr?: StringFilter<"Project"> | string
     lessonsLearnedAr?: StringFilter<"Project"> | string
+    resultsAr?: StringNullableFilter<"Project"> | string | null
     techStack?: JsonFilter<"Project">
     githubUrl?: StringFilter<"Project"> | string
     backendGithubUrl?: StringNullableFilter<"Project"> | string | null
@@ -9449,6 +10585,7 @@ export namespace Prisma {
     architecture?: SortOrder
     challenges?: SortOrder
     lessonsLearned?: SortOrder
+    results?: SortOrderInput | SortOrder
     titleAr?: SortOrder
     taglineAr?: SortOrder
     overviewAr?: SortOrder
@@ -9458,6 +10595,7 @@ export namespace Prisma {
     architectureAr?: SortOrder
     challengesAr?: SortOrder
     lessonsLearnedAr?: SortOrder
+    resultsAr?: SortOrderInput | SortOrder
     techStack?: SortOrder
     githubUrl?: SortOrder
     backendGithubUrl?: SortOrderInput | SortOrder
@@ -9493,6 +10631,7 @@ export namespace Prisma {
     architecture?: StringWithAggregatesFilter<"Project"> | string
     challenges?: StringWithAggregatesFilter<"Project"> | string
     lessonsLearned?: StringWithAggregatesFilter<"Project"> | string
+    results?: StringNullableWithAggregatesFilter<"Project"> | string | null
     titleAr?: StringWithAggregatesFilter<"Project"> | string
     taglineAr?: StringWithAggregatesFilter<"Project"> | string
     overviewAr?: StringWithAggregatesFilter<"Project"> | string
@@ -9502,6 +10641,7 @@ export namespace Prisma {
     architectureAr?: StringWithAggregatesFilter<"Project"> | string
     challengesAr?: StringWithAggregatesFilter<"Project"> | string
     lessonsLearnedAr?: StringWithAggregatesFilter<"Project"> | string
+    resultsAr?: StringNullableWithAggregatesFilter<"Project"> | string | null
     techStack?: JsonWithAggregatesFilter<"Project">
     githubUrl?: StringWithAggregatesFilter<"Project"> | string
     backendGithubUrl?: StringNullableWithAggregatesFilter<"Project"> | string | null
@@ -9784,6 +10924,53 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Testimonial"> | Date | string
   }
 
+  export type AvailabilityStatusWhereInput = {
+    AND?: AvailabilityStatusWhereInput | AvailabilityStatusWhereInput[]
+    OR?: AvailabilityStatusWhereInput[]
+    NOT?: AvailabilityStatusWhereInput | AvailabilityStatusWhereInput[]
+    id?: StringFilter<"AvailabilityStatus"> | string
+    status?: StringFilter<"AvailabilityStatus"> | string
+    availableFrom?: DateTimeNullableFilter<"AvailabilityStatus"> | Date | string | null
+    updatedAt?: DateTimeFilter<"AvailabilityStatus"> | Date | string
+  }
+
+  export type AvailabilityStatusOrderByWithRelationInput = {
+    id?: SortOrder
+    status?: SortOrder
+    availableFrom?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AvailabilityStatusWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AvailabilityStatusWhereInput | AvailabilityStatusWhereInput[]
+    OR?: AvailabilityStatusWhereInput[]
+    NOT?: AvailabilityStatusWhereInput | AvailabilityStatusWhereInput[]
+    status?: StringFilter<"AvailabilityStatus"> | string
+    availableFrom?: DateTimeNullableFilter<"AvailabilityStatus"> | Date | string | null
+    updatedAt?: DateTimeFilter<"AvailabilityStatus"> | Date | string
+  }, "id">
+
+  export type AvailabilityStatusOrderByWithAggregationInput = {
+    id?: SortOrder
+    status?: SortOrder
+    availableFrom?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
+    _count?: AvailabilityStatusCountOrderByAggregateInput
+    _max?: AvailabilityStatusMaxOrderByAggregateInput
+    _min?: AvailabilityStatusMinOrderByAggregateInput
+  }
+
+  export type AvailabilityStatusScalarWhereWithAggregatesInput = {
+    AND?: AvailabilityStatusScalarWhereWithAggregatesInput | AvailabilityStatusScalarWhereWithAggregatesInput[]
+    OR?: AvailabilityStatusScalarWhereWithAggregatesInput[]
+    NOT?: AvailabilityStatusScalarWhereWithAggregatesInput | AvailabilityStatusScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AvailabilityStatus"> | string
+    status?: StringWithAggregatesFilter<"AvailabilityStatus"> | string
+    availableFrom?: DateTimeNullableWithAggregatesFilter<"AvailabilityStatus"> | Date | string | null
+    updatedAt?: DateTimeWithAggregatesFilter<"AvailabilityStatus"> | Date | string
+  }
+
   export type AboutContentWhereInput = {
     AND?: AboutContentWhereInput | AboutContentWhereInput[]
     OR?: AboutContentWhereInput[]
@@ -9796,6 +10983,7 @@ export namespace Prisma {
     journey?: JsonFilter<"AboutContent">
     journeyAr?: JsonFilter<"AboutContent">
     resumeUrl?: StringNullableFilter<"AboutContent"> | string | null
+    calendlyUrl?: StringNullableFilter<"AboutContent"> | string | null
     updatedAt?: DateTimeFilter<"AboutContent"> | Date | string
   }
 
@@ -9808,6 +10996,7 @@ export namespace Prisma {
     journey?: SortOrder
     journeyAr?: SortOrder
     resumeUrl?: SortOrderInput | SortOrder
+    calendlyUrl?: SortOrderInput | SortOrder
     updatedAt?: SortOrder
   }
 
@@ -9823,6 +11012,7 @@ export namespace Prisma {
     journey?: JsonFilter<"AboutContent">
     journeyAr?: JsonFilter<"AboutContent">
     resumeUrl?: StringNullableFilter<"AboutContent"> | string | null
+    calendlyUrl?: StringNullableFilter<"AboutContent"> | string | null
     updatedAt?: DateTimeFilter<"AboutContent"> | Date | string
   }, "id">
 
@@ -9835,6 +11025,7 @@ export namespace Prisma {
     journey?: SortOrder
     journeyAr?: SortOrder
     resumeUrl?: SortOrderInput | SortOrder
+    calendlyUrl?: SortOrderInput | SortOrder
     updatedAt?: SortOrder
     _count?: AboutContentCountOrderByAggregateInput
     _max?: AboutContentMaxOrderByAggregateInput
@@ -9853,6 +11044,7 @@ export namespace Prisma {
     journey?: JsonWithAggregatesFilter<"AboutContent">
     journeyAr?: JsonWithAggregatesFilter<"AboutContent">
     resumeUrl?: StringNullableWithAggregatesFilter<"AboutContent"> | string | null
+    calendlyUrl?: StringNullableWithAggregatesFilter<"AboutContent"> | string | null
     updatedAt?: DateTimeWithAggregatesFilter<"AboutContent"> | Date | string
   }
 
@@ -9920,6 +11112,7 @@ export namespace Prisma {
     architecture: string
     challenges: string
     lessonsLearned: string
+    results?: string | null
     titleAr: string
     taglineAr: string
     overviewAr: string
@@ -9929,6 +11122,7 @@ export namespace Prisma {
     architectureAr: string
     challengesAr: string
     lessonsLearnedAr: string
+    resultsAr?: string | null
     techStack: JsonNullValueInput | InputJsonValue
     githubUrl: string
     backendGithubUrl?: string | null
@@ -9956,6 +11150,7 @@ export namespace Prisma {
     architecture: string
     challenges: string
     lessonsLearned: string
+    results?: string | null
     titleAr: string
     taglineAr: string
     overviewAr: string
@@ -9965,6 +11160,7 @@ export namespace Prisma {
     architectureAr: string
     challengesAr: string
     lessonsLearnedAr: string
+    resultsAr?: string | null
     techStack: JsonNullValueInput | InputJsonValue
     githubUrl: string
     backendGithubUrl?: string | null
@@ -9992,6 +11188,7 @@ export namespace Prisma {
     architecture?: StringFieldUpdateOperationsInput | string
     challenges?: StringFieldUpdateOperationsInput | string
     lessonsLearned?: StringFieldUpdateOperationsInput | string
+    results?: NullableStringFieldUpdateOperationsInput | string | null
     titleAr?: StringFieldUpdateOperationsInput | string
     taglineAr?: StringFieldUpdateOperationsInput | string
     overviewAr?: StringFieldUpdateOperationsInput | string
@@ -10001,6 +11198,7 @@ export namespace Prisma {
     architectureAr?: StringFieldUpdateOperationsInput | string
     challengesAr?: StringFieldUpdateOperationsInput | string
     lessonsLearnedAr?: StringFieldUpdateOperationsInput | string
+    resultsAr?: NullableStringFieldUpdateOperationsInput | string | null
     techStack?: JsonNullValueInput | InputJsonValue
     githubUrl?: StringFieldUpdateOperationsInput | string
     backendGithubUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10028,6 +11226,7 @@ export namespace Prisma {
     architecture?: StringFieldUpdateOperationsInput | string
     challenges?: StringFieldUpdateOperationsInput | string
     lessonsLearned?: StringFieldUpdateOperationsInput | string
+    results?: NullableStringFieldUpdateOperationsInput | string | null
     titleAr?: StringFieldUpdateOperationsInput | string
     taglineAr?: StringFieldUpdateOperationsInput | string
     overviewAr?: StringFieldUpdateOperationsInput | string
@@ -10037,6 +11236,7 @@ export namespace Prisma {
     architectureAr?: StringFieldUpdateOperationsInput | string
     challengesAr?: StringFieldUpdateOperationsInput | string
     lessonsLearnedAr?: StringFieldUpdateOperationsInput | string
+    resultsAr?: NullableStringFieldUpdateOperationsInput | string | null
     techStack?: JsonNullValueInput | InputJsonValue
     githubUrl?: StringFieldUpdateOperationsInput | string
     backendGithubUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10064,6 +11264,7 @@ export namespace Prisma {
     architecture: string
     challenges: string
     lessonsLearned: string
+    results?: string | null
     titleAr: string
     taglineAr: string
     overviewAr: string
@@ -10073,6 +11274,7 @@ export namespace Prisma {
     architectureAr: string
     challengesAr: string
     lessonsLearnedAr: string
+    resultsAr?: string | null
     techStack: JsonNullValueInput | InputJsonValue
     githubUrl: string
     backendGithubUrl?: string | null
@@ -10100,6 +11302,7 @@ export namespace Prisma {
     architecture?: StringFieldUpdateOperationsInput | string
     challenges?: StringFieldUpdateOperationsInput | string
     lessonsLearned?: StringFieldUpdateOperationsInput | string
+    results?: NullableStringFieldUpdateOperationsInput | string | null
     titleAr?: StringFieldUpdateOperationsInput | string
     taglineAr?: StringFieldUpdateOperationsInput | string
     overviewAr?: StringFieldUpdateOperationsInput | string
@@ -10109,6 +11312,7 @@ export namespace Prisma {
     architectureAr?: StringFieldUpdateOperationsInput | string
     challengesAr?: StringFieldUpdateOperationsInput | string
     lessonsLearnedAr?: StringFieldUpdateOperationsInput | string
+    resultsAr?: NullableStringFieldUpdateOperationsInput | string | null
     techStack?: JsonNullValueInput | InputJsonValue
     githubUrl?: StringFieldUpdateOperationsInput | string
     backendGithubUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10136,6 +11340,7 @@ export namespace Prisma {
     architecture?: StringFieldUpdateOperationsInput | string
     challenges?: StringFieldUpdateOperationsInput | string
     lessonsLearned?: StringFieldUpdateOperationsInput | string
+    results?: NullableStringFieldUpdateOperationsInput | string | null
     titleAr?: StringFieldUpdateOperationsInput | string
     taglineAr?: StringFieldUpdateOperationsInput | string
     overviewAr?: StringFieldUpdateOperationsInput | string
@@ -10145,6 +11350,7 @@ export namespace Prisma {
     architectureAr?: StringFieldUpdateOperationsInput | string
     challengesAr?: StringFieldUpdateOperationsInput | string
     lessonsLearnedAr?: StringFieldUpdateOperationsInput | string
+    resultsAr?: NullableStringFieldUpdateOperationsInput | string | null
     techStack?: JsonNullValueInput | InputJsonValue
     githubUrl?: StringFieldUpdateOperationsInput | string
     backendGithubUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10465,6 +11671,55 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type AvailabilityStatusCreateInput = {
+    id?: string
+    status?: string
+    availableFrom?: Date | string | null
+    updatedAt?: Date | string
+  }
+
+  export type AvailabilityStatusUncheckedCreateInput = {
+    id?: string
+    status?: string
+    availableFrom?: Date | string | null
+    updatedAt?: Date | string
+  }
+
+  export type AvailabilityStatusUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    availableFrom?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AvailabilityStatusUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    availableFrom?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AvailabilityStatusCreateManyInput = {
+    id?: string
+    status?: string
+    availableFrom?: Date | string | null
+    updatedAt?: Date | string
+  }
+
+  export type AvailabilityStatusUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    availableFrom?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AvailabilityStatusUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    availableFrom?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type AboutContentCreateInput = {
     id?: string
     intro: string
@@ -10474,6 +11729,7 @@ export namespace Prisma {
     journey: JsonNullValueInput | InputJsonValue
     journeyAr: JsonNullValueInput | InputJsonValue
     resumeUrl?: string | null
+    calendlyUrl?: string | null
     updatedAt?: Date | string
   }
 
@@ -10486,6 +11742,7 @@ export namespace Prisma {
     journey: JsonNullValueInput | InputJsonValue
     journeyAr: JsonNullValueInput | InputJsonValue
     resumeUrl?: string | null
+    calendlyUrl?: string | null
     updatedAt?: Date | string
   }
 
@@ -10498,6 +11755,7 @@ export namespace Prisma {
     journey?: JsonNullValueInput | InputJsonValue
     journeyAr?: JsonNullValueInput | InputJsonValue
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    calendlyUrl?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10510,6 +11768,7 @@ export namespace Prisma {
     journey?: JsonNullValueInput | InputJsonValue
     journeyAr?: JsonNullValueInput | InputJsonValue
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    calendlyUrl?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10522,6 +11781,7 @@ export namespace Prisma {
     journey: JsonNullValueInput | InputJsonValue
     journeyAr: JsonNullValueInput | InputJsonValue
     resumeUrl?: string | null
+    calendlyUrl?: string | null
     updatedAt?: Date | string
   }
 
@@ -10534,6 +11794,7 @@ export namespace Prisma {
     journey?: JsonNullValueInput | InputJsonValue
     journeyAr?: JsonNullValueInput | InputJsonValue
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    calendlyUrl?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10546,6 +11807,7 @@ export namespace Prisma {
     journey?: JsonNullValueInput | InputJsonValue
     journeyAr?: JsonNullValueInput | InputJsonValue
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    calendlyUrl?: NullableStringFieldUpdateOperationsInput | string | null
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10702,6 +11964,7 @@ export namespace Prisma {
     architecture?: SortOrder
     challenges?: SortOrder
     lessonsLearned?: SortOrder
+    results?: SortOrder
     titleAr?: SortOrder
     taglineAr?: SortOrder
     overviewAr?: SortOrder
@@ -10711,6 +11974,7 @@ export namespace Prisma {
     architectureAr?: SortOrder
     challengesAr?: SortOrder
     lessonsLearnedAr?: SortOrder
+    resultsAr?: SortOrder
     techStack?: SortOrder
     githubUrl?: SortOrder
     backendGithubUrl?: SortOrder
@@ -10741,6 +12005,7 @@ export namespace Prisma {
     architecture?: SortOrder
     challenges?: SortOrder
     lessonsLearned?: SortOrder
+    results?: SortOrder
     titleAr?: SortOrder
     taglineAr?: SortOrder
     overviewAr?: SortOrder
@@ -10749,6 +12014,7 @@ export namespace Prisma {
     architectureAr?: SortOrder
     challengesAr?: SortOrder
     lessonsLearnedAr?: SortOrder
+    resultsAr?: SortOrder
     githubUrl?: SortOrder
     backendGithubUrl?: SortOrder
     liveUrl?: SortOrder
@@ -10771,6 +12037,7 @@ export namespace Prisma {
     architecture?: SortOrder
     challenges?: SortOrder
     lessonsLearned?: SortOrder
+    results?: SortOrder
     titleAr?: SortOrder
     taglineAr?: SortOrder
     overviewAr?: SortOrder
@@ -10779,6 +12046,7 @@ export namespace Prisma {
     architectureAr?: SortOrder
     challengesAr?: SortOrder
     lessonsLearnedAr?: SortOrder
+    resultsAr?: SortOrder
     githubUrl?: SortOrder
     backendGithubUrl?: SortOrder
     liveUrl?: SortOrder
@@ -11026,6 +12294,27 @@ export namespace Prisma {
     order?: SortOrder
   }
 
+  export type AvailabilityStatusCountOrderByAggregateInput = {
+    id?: SortOrder
+    status?: SortOrder
+    availableFrom?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AvailabilityStatusMaxOrderByAggregateInput = {
+    id?: SortOrder
+    status?: SortOrder
+    availableFrom?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AvailabilityStatusMinOrderByAggregateInput = {
+    id?: SortOrder
+    status?: SortOrder
+    availableFrom?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type AboutContentCountOrderByAggregateInput = {
     id?: SortOrder
     intro?: SortOrder
@@ -11035,6 +12324,7 @@ export namespace Prisma {
     journey?: SortOrder
     journeyAr?: SortOrder
     resumeUrl?: SortOrder
+    calendlyUrl?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -11045,6 +12335,7 @@ export namespace Prisma {
     approach?: SortOrder
     approachAr?: SortOrder
     resumeUrl?: SortOrder
+    calendlyUrl?: SortOrder
     updatedAt?: SortOrder
   }
 
@@ -11055,6 +12346,7 @@ export namespace Prisma {
     approach?: SortOrder
     approachAr?: SortOrder
     resumeUrl?: SortOrder
+    calendlyUrl?: SortOrder
     updatedAt?: SortOrder
   }
 

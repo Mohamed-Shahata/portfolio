@@ -15,6 +15,7 @@ export default async function AdminAboutPage() {
     journey: (about?.journey as AboutContentInput["journey"]) ?? [],
     journeyAr: (about?.journeyAr as AboutContentInput["journeyAr"]) ?? [],
     resumeUrl: about?.resumeUrl ?? null,
+    calendlyUrl: about?.calendlyUrl ?? null,
   };
 
   return (

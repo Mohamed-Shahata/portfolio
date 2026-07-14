@@ -8,6 +8,7 @@ export interface ProjectLocalizedFields {
   architecture: string;
   challenges: string;
   lessonsLearned: string;
+  results?: string; // Real business impact/outcomes for flagship case studies
 }
 
 export interface ProjectMetric {

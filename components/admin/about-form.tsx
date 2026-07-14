@@ -202,6 +202,23 @@ export function AboutForm({ initial }: { initial: AboutContentInput }) {
         />
       </div>
 
+      <div className="border-t border-border pt-6">
+        <label className="text-xs font-medium text-muted-foreground">
+          Calendly booking link
+        </label>
+        <input
+          type="url"
+          placeholder="https://calendly.com/your-name/intro-call"
+          value={data.calendlyUrl ?? ""}
+          onChange={(e) => set("calendlyUrl", e.target.value || null)}
+          className="mt-1.5 h-10 w-full rounded-lg border border-border bg-background-elevated px-3 text-sm text-foreground outline-none transition-colors focus:border-accent"
+        />
+        <p className="mt-1.5 text-xs text-muted-foreground">
+          When set, a &ldquo;Book a Call&rdquo; button appears in the Contact
+          section and opens this as a Calendly popup.
+        </p>
+      </div>
+
       <div className="flex justify-end border-t border-border pt-6">
         <button
           type="submit"

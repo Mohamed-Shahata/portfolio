@@ -41,6 +41,7 @@ model Project {
   architecture   String  @db.Text
   challenges     String  @db.Text
   lessonsLearned String  @db.Text
+  results        String? @db.Text // Real business impact/outcomes (optional, filled per project)
 
   // Arabic fields
   titleAr          String
@@ -52,6 +53,7 @@ model Project {
   architectureAr   String @db.Text
   challengesAr     String @db.Text
   lessonsLearnedAr String @db.Text
+  resultsAr        String? @db.Text
 
   // Shared (locale-independent) fields
   techStack        Json // string[]
@@ -115,6 +117,14 @@ model Testimonial {
   updatedAt DateTime @updatedAt
 }
 
+/// Single-row table controlling the availability badge shown in the navbar.
+model AvailabilityStatus {
+  id            String    @id @default("singleton")
+  status        String    @default("available") // "available" | "busy" | "available_after"
+  availableFrom DateTime?
+  updatedAt     DateTime  @updatedAt
+}
+
 /// Single-row table holding the editable content of the /about page.
 model AboutContent {
   id         String @id @default("singleton")
@@ -125,5 +135,6 @@ model AboutContent {
   journey    Json // { title, description }[]
   journeyAr  Json // { title, description }[]
   resumeUrl  String?
+  calendlyUrl String?
   updatedAt  DateTime @updatedAt
 }
