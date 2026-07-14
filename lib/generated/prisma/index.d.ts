@@ -2619,7 +2619,6 @@ export namespace Prisma {
     architecture: string | null
     challenges: string | null
     lessonsLearned: string | null
-    results: string | null
     titleAr: string | null
     taglineAr: string | null
     overviewAr: string | null
@@ -2628,13 +2627,14 @@ export namespace Prisma {
     architectureAr: string | null
     challengesAr: string | null
     lessonsLearnedAr: string | null
-    resultsAr: string | null
     githubUrl: string | null
     backendGithubUrl: string | null
     liveUrl: string | null
-    videoUrl: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    videoUrl: string | null
+    results: string | null
+    resultsAr: string | null
   }
 
   export type ProjectMaxAggregateOutputType = {
@@ -2651,7 +2651,6 @@ export namespace Prisma {
     architecture: string | null
     challenges: string | null
     lessonsLearned: string | null
-    results: string | null
     titleAr: string | null
     taglineAr: string | null
     overviewAr: string | null
@@ -2660,13 +2659,14 @@ export namespace Prisma {
     architectureAr: string | null
     challengesAr: string | null
     lessonsLearnedAr: string | null
-    resultsAr: string | null
     githubUrl: string | null
     backendGithubUrl: string | null
     liveUrl: string | null
-    videoUrl: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    videoUrl: string | null
+    results: string | null
+    resultsAr: string | null
   }
 
   export type ProjectCountAggregateOutputType = {
@@ -2684,7 +2684,6 @@ export namespace Prisma {
     architecture: number
     challenges: number
     lessonsLearned: number
-    results: number
     titleAr: number
     taglineAr: number
     overviewAr: number
@@ -2694,7 +2693,6 @@ export namespace Prisma {
     architectureAr: number
     challengesAr: number
     lessonsLearnedAr: number
-    resultsAr: number
     techStack: number
     githubUrl: number
     backendGithubUrl: number
@@ -2702,9 +2700,11 @@ export namespace Prisma {
     relatedSlugs: number
     metrics: number
     images: number
-    videoUrl: number
     createdAt: number
     updatedAt: number
+    videoUrl: number
+    results: number
+    resultsAr: number
     _all: number
   }
 
@@ -2731,7 +2731,6 @@ export namespace Prisma {
     architecture?: true
     challenges?: true
     lessonsLearned?: true
-    results?: true
     titleAr?: true
     taglineAr?: true
     overviewAr?: true
@@ -2740,13 +2739,14 @@ export namespace Prisma {
     architectureAr?: true
     challengesAr?: true
     lessonsLearnedAr?: true
-    resultsAr?: true
     githubUrl?: true
     backendGithubUrl?: true
     liveUrl?: true
-    videoUrl?: true
     createdAt?: true
     updatedAt?: true
+    videoUrl?: true
+    results?: true
+    resultsAr?: true
   }
 
   export type ProjectMaxAggregateInputType = {
@@ -2763,7 +2763,6 @@ export namespace Prisma {
     architecture?: true
     challenges?: true
     lessonsLearned?: true
-    results?: true
     titleAr?: true
     taglineAr?: true
     overviewAr?: true
@@ -2772,13 +2771,14 @@ export namespace Prisma {
     architectureAr?: true
     challengesAr?: true
     lessonsLearnedAr?: true
-    resultsAr?: true
     githubUrl?: true
     backendGithubUrl?: true
     liveUrl?: true
-    videoUrl?: true
     createdAt?: true
     updatedAt?: true
+    videoUrl?: true
+    results?: true
+    resultsAr?: true
   }
 
   export type ProjectCountAggregateInputType = {
@@ -2796,7 +2796,6 @@ export namespace Prisma {
     architecture?: true
     challenges?: true
     lessonsLearned?: true
-    results?: true
     titleAr?: true
     taglineAr?: true
     overviewAr?: true
@@ -2806,7 +2805,6 @@ export namespace Prisma {
     architectureAr?: true
     challengesAr?: true
     lessonsLearnedAr?: true
-    resultsAr?: true
     techStack?: true
     githubUrl?: true
     backendGithubUrl?: true
@@ -2814,9 +2812,11 @@ export namespace Prisma {
     relatedSlugs?: true
     metrics?: true
     images?: true
-    videoUrl?: true
     createdAt?: true
     updatedAt?: true
+    videoUrl?: true
+    results?: true
+    resultsAr?: true
     _all?: true
   }
 
@@ -2921,7 +2921,6 @@ export namespace Prisma {
     architecture: string
     challenges: string
     lessonsLearned: string
-    results: string | null
     titleAr: string
     taglineAr: string
     overviewAr: string
@@ -2931,7 +2930,6 @@ export namespace Prisma {
     architectureAr: string
     challengesAr: string
     lessonsLearnedAr: string
-    resultsAr: string | null
     techStack: JsonValue
     githubUrl: string
     backendGithubUrl: string | null
@@ -2939,9 +2937,11 @@ export namespace Prisma {
     relatedSlugs: JsonValue
     metrics: JsonValue
     images: JsonValue
-    videoUrl: string | null
     createdAt: Date
     updatedAt: Date
+    videoUrl: string | null
+    results: string | null
+    resultsAr: string | null
     _count: ProjectCountAggregateOutputType | null
     _avg: ProjectAvgAggregateOutputType | null
     _sum: ProjectSumAggregateOutputType | null
@@ -2978,7 +2978,6 @@ export namespace Prisma {
     architecture?: boolean
     challenges?: boolean
     lessonsLearned?: boolean
-    results?: boolean
     titleAr?: boolean
     taglineAr?: boolean
     overviewAr?: boolean
@@ -2988,7 +2987,6 @@ export namespace Prisma {
     architectureAr?: boolean
     challengesAr?: boolean
     lessonsLearnedAr?: boolean
-    resultsAr?: boolean
     techStack?: boolean
     githubUrl?: boolean
     backendGithubUrl?: boolean
@@ -2996,9 +2994,11 @@ export namespace Prisma {
     relatedSlugs?: boolean
     metrics?: boolean
     images?: boolean
-    videoUrl?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    videoUrl?: boolean
+    results?: boolean
+    resultsAr?: boolean
   }, ExtArgs["result"]["project"]>
 
   export type ProjectSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3016,7 +3016,6 @@ export namespace Prisma {
     architecture?: boolean
     challenges?: boolean
     lessonsLearned?: boolean
-    results?: boolean
     titleAr?: boolean
     taglineAr?: boolean
     overviewAr?: boolean
@@ -3026,7 +3025,6 @@ export namespace Prisma {
     architectureAr?: boolean
     challengesAr?: boolean
     lessonsLearnedAr?: boolean
-    resultsAr?: boolean
     techStack?: boolean
     githubUrl?: boolean
     backendGithubUrl?: boolean
@@ -3034,9 +3032,11 @@ export namespace Prisma {
     relatedSlugs?: boolean
     metrics?: boolean
     images?: boolean
-    videoUrl?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    videoUrl?: boolean
+    results?: boolean
+    resultsAr?: boolean
   }, ExtArgs["result"]["project"]>
 
   export type ProjectSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3054,7 +3054,6 @@ export namespace Prisma {
     architecture?: boolean
     challenges?: boolean
     lessonsLearned?: boolean
-    results?: boolean
     titleAr?: boolean
     taglineAr?: boolean
     overviewAr?: boolean
@@ -3064,7 +3063,6 @@ export namespace Prisma {
     architectureAr?: boolean
     challengesAr?: boolean
     lessonsLearnedAr?: boolean
-    resultsAr?: boolean
     techStack?: boolean
     githubUrl?: boolean
     backendGithubUrl?: boolean
@@ -3072,9 +3070,11 @@ export namespace Prisma {
     relatedSlugs?: boolean
     metrics?: boolean
     images?: boolean
-    videoUrl?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    videoUrl?: boolean
+    results?: boolean
+    resultsAr?: boolean
   }, ExtArgs["result"]["project"]>
 
   export type ProjectSelectScalar = {
@@ -3092,7 +3092,6 @@ export namespace Prisma {
     architecture?: boolean
     challenges?: boolean
     lessonsLearned?: boolean
-    results?: boolean
     titleAr?: boolean
     taglineAr?: boolean
     overviewAr?: boolean
@@ -3102,7 +3101,6 @@ export namespace Prisma {
     architectureAr?: boolean
     challengesAr?: boolean
     lessonsLearnedAr?: boolean
-    resultsAr?: boolean
     techStack?: boolean
     githubUrl?: boolean
     backendGithubUrl?: boolean
@@ -3110,12 +3108,14 @@ export namespace Prisma {
     relatedSlugs?: boolean
     metrics?: boolean
     images?: boolean
-    videoUrl?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    videoUrl?: boolean
+    results?: boolean
+    resultsAr?: boolean
   }
 
-  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "order" | "type" | "published" | "title" | "tagline" | "overview" | "problem" | "solution" | "features" | "architecture" | "challenges" | "lessonsLearned" | "results" | "titleAr" | "taglineAr" | "overviewAr" | "problemAr" | "solutionAr" | "featuresAr" | "architectureAr" | "challengesAr" | "lessonsLearnedAr" | "resultsAr" | "techStack" | "githubUrl" | "backendGithubUrl" | "liveUrl" | "relatedSlugs" | "metrics" | "images" | "videoUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["project"]>
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "slug" | "order" | "type" | "published" | "title" | "tagline" | "overview" | "problem" | "solution" | "features" | "architecture" | "challenges" | "lessonsLearned" | "titleAr" | "taglineAr" | "overviewAr" | "problemAr" | "solutionAr" | "featuresAr" | "architectureAr" | "challengesAr" | "lessonsLearnedAr" | "techStack" | "githubUrl" | "backendGithubUrl" | "liveUrl" | "relatedSlugs" | "metrics" | "images" | "createdAt" | "updatedAt" | "videoUrl" | "results" | "resultsAr", ExtArgs["result"]["project"]>
 
   export type $ProjectPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Project"
@@ -3135,7 +3135,6 @@ export namespace Prisma {
       architecture: string
       challenges: string
       lessonsLearned: string
-      results: string | null
       titleAr: string
       taglineAr: string
       overviewAr: string
@@ -3145,7 +3144,6 @@ export namespace Prisma {
       architectureAr: string
       challengesAr: string
       lessonsLearnedAr: string
-      resultsAr: string | null
       techStack: Prisma.JsonValue
       githubUrl: string
       backendGithubUrl: string | null
@@ -3153,9 +3151,11 @@ export namespace Prisma {
       relatedSlugs: Prisma.JsonValue
       metrics: Prisma.JsonValue
       images: Prisma.JsonValue
-      videoUrl: string | null
       createdAt: Date
       updatedAt: Date
+      videoUrl: string | null
+      results: string | null
+      resultsAr: string | null
     }, ExtArgs["result"]["project"]>
     composites: {}
   }
@@ -3593,7 +3593,6 @@ export namespace Prisma {
     readonly architecture: FieldRef<"Project", 'String'>
     readonly challenges: FieldRef<"Project", 'String'>
     readonly lessonsLearned: FieldRef<"Project", 'String'>
-    readonly results: FieldRef<"Project", 'String'>
     readonly titleAr: FieldRef<"Project", 'String'>
     readonly taglineAr: FieldRef<"Project", 'String'>
     readonly overviewAr: FieldRef<"Project", 'String'>
@@ -3603,7 +3602,6 @@ export namespace Prisma {
     readonly architectureAr: FieldRef<"Project", 'String'>
     readonly challengesAr: FieldRef<"Project", 'String'>
     readonly lessonsLearnedAr: FieldRef<"Project", 'String'>
-    readonly resultsAr: FieldRef<"Project", 'String'>
     readonly techStack: FieldRef<"Project", 'Json'>
     readonly githubUrl: FieldRef<"Project", 'String'>
     readonly backendGithubUrl: FieldRef<"Project", 'String'>
@@ -3611,9 +3609,11 @@ export namespace Prisma {
     readonly relatedSlugs: FieldRef<"Project", 'Json'>
     readonly metrics: FieldRef<"Project", 'Json'>
     readonly images: FieldRef<"Project", 'Json'>
-    readonly videoUrl: FieldRef<"Project", 'String'>
     readonly createdAt: FieldRef<"Project", 'DateTime'>
     readonly updatedAt: FieldRef<"Project", 'DateTime'>
+    readonly videoUrl: FieldRef<"Project", 'String'>
+    readonly results: FieldRef<"Project", 'String'>
+    readonly resultsAr: FieldRef<"Project", 'String'>
   }
     
 
@@ -10156,9 +10156,9 @@ export namespace Prisma {
     introAr: string | null
     approach: string | null
     approachAr: string | null
+    updatedAt: Date | null
     resumeUrl: string | null
     calendlyUrl: string | null
-    updatedAt: Date | null
   }
 
   export type AboutContentMaxAggregateOutputType = {
@@ -10167,9 +10167,9 @@ export namespace Prisma {
     introAr: string | null
     approach: string | null
     approachAr: string | null
+    updatedAt: Date | null
     resumeUrl: string | null
     calendlyUrl: string | null
-    updatedAt: Date | null
   }
 
   export type AboutContentCountAggregateOutputType = {
@@ -10180,9 +10180,9 @@ export namespace Prisma {
     approachAr: number
     journey: number
     journeyAr: number
+    updatedAt: number
     resumeUrl: number
     calendlyUrl: number
-    updatedAt: number
     _all: number
   }
 
@@ -10193,9 +10193,9 @@ export namespace Prisma {
     introAr?: true
     approach?: true
     approachAr?: true
+    updatedAt?: true
     resumeUrl?: true
     calendlyUrl?: true
-    updatedAt?: true
   }
 
   export type AboutContentMaxAggregateInputType = {
@@ -10204,9 +10204,9 @@ export namespace Prisma {
     introAr?: true
     approach?: true
     approachAr?: true
+    updatedAt?: true
     resumeUrl?: true
     calendlyUrl?: true
-    updatedAt?: true
   }
 
   export type AboutContentCountAggregateInputType = {
@@ -10217,9 +10217,9 @@ export namespace Prisma {
     approachAr?: true
     journey?: true
     journeyAr?: true
+    updatedAt?: true
     resumeUrl?: true
     calendlyUrl?: true
-    updatedAt?: true
     _all?: true
   }
 
@@ -10303,9 +10303,9 @@ export namespace Prisma {
     approachAr: string
     journey: JsonValue
     journeyAr: JsonValue
+    updatedAt: Date
     resumeUrl: string | null
     calendlyUrl: string | null
-    updatedAt: Date
     _count: AboutContentCountAggregateOutputType | null
     _min: AboutContentMinAggregateOutputType | null
     _max: AboutContentMaxAggregateOutputType | null
@@ -10333,9 +10333,9 @@ export namespace Prisma {
     approachAr?: boolean
     journey?: boolean
     journeyAr?: boolean
+    updatedAt?: boolean
     resumeUrl?: boolean
     calendlyUrl?: boolean
-    updatedAt?: boolean
   }, ExtArgs["result"]["aboutContent"]>
 
   export type AboutContentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -10346,9 +10346,9 @@ export namespace Prisma {
     approachAr?: boolean
     journey?: boolean
     journeyAr?: boolean
+    updatedAt?: boolean
     resumeUrl?: boolean
     calendlyUrl?: boolean
-    updatedAt?: boolean
   }, ExtArgs["result"]["aboutContent"]>
 
   export type AboutContentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -10359,9 +10359,9 @@ export namespace Prisma {
     approachAr?: boolean
     journey?: boolean
     journeyAr?: boolean
+    updatedAt?: boolean
     resumeUrl?: boolean
     calendlyUrl?: boolean
-    updatedAt?: boolean
   }, ExtArgs["result"]["aboutContent"]>
 
   export type AboutContentSelectScalar = {
@@ -10372,12 +10372,12 @@ export namespace Prisma {
     approachAr?: boolean
     journey?: boolean
     journeyAr?: boolean
+    updatedAt?: boolean
     resumeUrl?: boolean
     calendlyUrl?: boolean
-    updatedAt?: boolean
   }
 
-  export type AboutContentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "intro" | "introAr" | "approach" | "approachAr" | "journey" | "journeyAr" | "resumeUrl" | "calendlyUrl" | "updatedAt", ExtArgs["result"]["aboutContent"]>
+  export type AboutContentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "intro" | "introAr" | "approach" | "approachAr" | "journey" | "journeyAr" | "updatedAt" | "resumeUrl" | "calendlyUrl", ExtArgs["result"]["aboutContent"]>
 
   export type $AboutContentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AboutContent"
@@ -10390,9 +10390,9 @@ export namespace Prisma {
       approachAr: string
       journey: Prisma.JsonValue
       journeyAr: Prisma.JsonValue
+      updatedAt: Date
       resumeUrl: string | null
       calendlyUrl: string | null
-      updatedAt: Date
     }, ExtArgs["result"]["aboutContent"]>
     composites: {}
   }
@@ -10823,9 +10823,9 @@ export namespace Prisma {
     readonly approachAr: FieldRef<"AboutContent", 'String'>
     readonly journey: FieldRef<"AboutContent", 'Json'>
     readonly journeyAr: FieldRef<"AboutContent", 'Json'>
+    readonly updatedAt: FieldRef<"AboutContent", 'DateTime'>
     readonly resumeUrl: FieldRef<"AboutContent", 'String'>
     readonly calendlyUrl: FieldRef<"AboutContent", 'String'>
-    readonly updatedAt: FieldRef<"AboutContent", 'DateTime'>
   }
     
 
@@ -11236,7 +11236,6 @@ export namespace Prisma {
     architecture: 'architecture',
     challenges: 'challenges',
     lessonsLearned: 'lessonsLearned',
-    results: 'results',
     titleAr: 'titleAr',
     taglineAr: 'taglineAr',
     overviewAr: 'overviewAr',
@@ -11246,7 +11245,6 @@ export namespace Prisma {
     architectureAr: 'architectureAr',
     challengesAr: 'challengesAr',
     lessonsLearnedAr: 'lessonsLearnedAr',
-    resultsAr: 'resultsAr',
     techStack: 'techStack',
     githubUrl: 'githubUrl',
     backendGithubUrl: 'backendGithubUrl',
@@ -11254,9 +11252,11 @@ export namespace Prisma {
     relatedSlugs: 'relatedSlugs',
     metrics: 'metrics',
     images: 'images',
-    videoUrl: 'videoUrl',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    videoUrl: 'videoUrl',
+    results: 'results',
+    resultsAr: 'resultsAr'
   };
 
   export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
@@ -11345,9 +11345,9 @@ export namespace Prisma {
     approachAr: 'approachAr',
     journey: 'journey',
     journeyAr: 'journeyAr',
+    updatedAt: 'updatedAt',
     resumeUrl: 'resumeUrl',
-    calendlyUrl: 'calendlyUrl',
-    updatedAt: 'updatedAt'
+    calendlyUrl: 'calendlyUrl'
   };
 
   export type AboutContentScalarFieldEnum = (typeof AboutContentScalarFieldEnum)[keyof typeof AboutContentScalarFieldEnum]
@@ -11543,7 +11543,6 @@ export namespace Prisma {
     architecture?: StringFilter<"Project"> | string
     challenges?: StringFilter<"Project"> | string
     lessonsLearned?: StringFilter<"Project"> | string
-    results?: StringNullableFilter<"Project"> | string | null
     titleAr?: StringFilter<"Project"> | string
     taglineAr?: StringFilter<"Project"> | string
     overviewAr?: StringFilter<"Project"> | string
@@ -11553,7 +11552,6 @@ export namespace Prisma {
     architectureAr?: StringFilter<"Project"> | string
     challengesAr?: StringFilter<"Project"> | string
     lessonsLearnedAr?: StringFilter<"Project"> | string
-    resultsAr?: StringNullableFilter<"Project"> | string | null
     techStack?: JsonFilter<"Project">
     githubUrl?: StringFilter<"Project"> | string
     backendGithubUrl?: StringNullableFilter<"Project"> | string | null
@@ -11561,9 +11559,11 @@ export namespace Prisma {
     relatedSlugs?: JsonFilter<"Project">
     metrics?: JsonFilter<"Project">
     images?: JsonFilter<"Project">
-    videoUrl?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
+    videoUrl?: StringNullableFilter<"Project"> | string | null
+    results?: StringNullableFilter<"Project"> | string | null
+    resultsAr?: StringNullableFilter<"Project"> | string | null
   }
 
   export type ProjectOrderByWithRelationInput = {
@@ -11581,7 +11581,6 @@ export namespace Prisma {
     architecture?: SortOrder
     challenges?: SortOrder
     lessonsLearned?: SortOrder
-    results?: SortOrderInput | SortOrder
     titleAr?: SortOrder
     taglineAr?: SortOrder
     overviewAr?: SortOrder
@@ -11591,7 +11590,6 @@ export namespace Prisma {
     architectureAr?: SortOrder
     challengesAr?: SortOrder
     lessonsLearnedAr?: SortOrder
-    resultsAr?: SortOrderInput | SortOrder
     techStack?: SortOrder
     githubUrl?: SortOrder
     backendGithubUrl?: SortOrderInput | SortOrder
@@ -11599,9 +11597,11 @@ export namespace Prisma {
     relatedSlugs?: SortOrder
     metrics?: SortOrder
     images?: SortOrder
-    videoUrl?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    videoUrl?: SortOrderInput | SortOrder
+    results?: SortOrderInput | SortOrder
+    resultsAr?: SortOrderInput | SortOrder
   }
 
   export type ProjectWhereUniqueInput = Prisma.AtLeast<{
@@ -11622,7 +11622,6 @@ export namespace Prisma {
     architecture?: StringFilter<"Project"> | string
     challenges?: StringFilter<"Project"> | string
     lessonsLearned?: StringFilter<"Project"> | string
-    results?: StringNullableFilter<"Project"> | string | null
     titleAr?: StringFilter<"Project"> | string
     taglineAr?: StringFilter<"Project"> | string
     overviewAr?: StringFilter<"Project"> | string
@@ -11632,7 +11631,6 @@ export namespace Prisma {
     architectureAr?: StringFilter<"Project"> | string
     challengesAr?: StringFilter<"Project"> | string
     lessonsLearnedAr?: StringFilter<"Project"> | string
-    resultsAr?: StringNullableFilter<"Project"> | string | null
     techStack?: JsonFilter<"Project">
     githubUrl?: StringFilter<"Project"> | string
     backendGithubUrl?: StringNullableFilter<"Project"> | string | null
@@ -11640,9 +11638,11 @@ export namespace Prisma {
     relatedSlugs?: JsonFilter<"Project">
     metrics?: JsonFilter<"Project">
     images?: JsonFilter<"Project">
-    videoUrl?: StringNullableFilter<"Project"> | string | null
     createdAt?: DateTimeFilter<"Project"> | Date | string
     updatedAt?: DateTimeFilter<"Project"> | Date | string
+    videoUrl?: StringNullableFilter<"Project"> | string | null
+    results?: StringNullableFilter<"Project"> | string | null
+    resultsAr?: StringNullableFilter<"Project"> | string | null
   }, "id" | "slug">
 
   export type ProjectOrderByWithAggregationInput = {
@@ -11660,7 +11660,6 @@ export namespace Prisma {
     architecture?: SortOrder
     challenges?: SortOrder
     lessonsLearned?: SortOrder
-    results?: SortOrderInput | SortOrder
     titleAr?: SortOrder
     taglineAr?: SortOrder
     overviewAr?: SortOrder
@@ -11670,7 +11669,6 @@ export namespace Prisma {
     architectureAr?: SortOrder
     challengesAr?: SortOrder
     lessonsLearnedAr?: SortOrder
-    resultsAr?: SortOrderInput | SortOrder
     techStack?: SortOrder
     githubUrl?: SortOrder
     backendGithubUrl?: SortOrderInput | SortOrder
@@ -11678,9 +11676,11 @@ export namespace Prisma {
     relatedSlugs?: SortOrder
     metrics?: SortOrder
     images?: SortOrder
-    videoUrl?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    videoUrl?: SortOrderInput | SortOrder
+    results?: SortOrderInput | SortOrder
+    resultsAr?: SortOrderInput | SortOrder
     _count?: ProjectCountOrderByAggregateInput
     _avg?: ProjectAvgOrderByAggregateInput
     _max?: ProjectMaxOrderByAggregateInput
@@ -11706,7 +11706,6 @@ export namespace Prisma {
     architecture?: StringWithAggregatesFilter<"Project"> | string
     challenges?: StringWithAggregatesFilter<"Project"> | string
     lessonsLearned?: StringWithAggregatesFilter<"Project"> | string
-    results?: StringNullableWithAggregatesFilter<"Project"> | string | null
     titleAr?: StringWithAggregatesFilter<"Project"> | string
     taglineAr?: StringWithAggregatesFilter<"Project"> | string
     overviewAr?: StringWithAggregatesFilter<"Project"> | string
@@ -11716,7 +11715,6 @@ export namespace Prisma {
     architectureAr?: StringWithAggregatesFilter<"Project"> | string
     challengesAr?: StringWithAggregatesFilter<"Project"> | string
     lessonsLearnedAr?: StringWithAggregatesFilter<"Project"> | string
-    resultsAr?: StringNullableWithAggregatesFilter<"Project"> | string | null
     techStack?: JsonWithAggregatesFilter<"Project">
     githubUrl?: StringWithAggregatesFilter<"Project"> | string
     backendGithubUrl?: StringNullableWithAggregatesFilter<"Project"> | string | null
@@ -11724,9 +11722,11 @@ export namespace Prisma {
     relatedSlugs?: JsonWithAggregatesFilter<"Project">
     metrics?: JsonWithAggregatesFilter<"Project">
     images?: JsonWithAggregatesFilter<"Project">
-    videoUrl?: StringNullableWithAggregatesFilter<"Project"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
+    videoUrl?: StringNullableWithAggregatesFilter<"Project"> | string | null
+    results?: StringNullableWithAggregatesFilter<"Project"> | string | null
+    resultsAr?: StringNullableWithAggregatesFilter<"Project"> | string | null
   }
 
   export type PageViewWhereInput = {
@@ -12099,9 +12099,9 @@ export namespace Prisma {
     approachAr?: StringFilter<"AboutContent"> | string
     journey?: JsonFilter<"AboutContent">
     journeyAr?: JsonFilter<"AboutContent">
+    updatedAt?: DateTimeFilter<"AboutContent"> | Date | string
     resumeUrl?: StringNullableFilter<"AboutContent"> | string | null
     calendlyUrl?: StringNullableFilter<"AboutContent"> | string | null
-    updatedAt?: DateTimeFilter<"AboutContent"> | Date | string
   }
 
   export type AboutContentOrderByWithRelationInput = {
@@ -12112,9 +12112,9 @@ export namespace Prisma {
     approachAr?: SortOrder
     journey?: SortOrder
     journeyAr?: SortOrder
+    updatedAt?: SortOrder
     resumeUrl?: SortOrderInput | SortOrder
     calendlyUrl?: SortOrderInput | SortOrder
-    updatedAt?: SortOrder
   }
 
   export type AboutContentWhereUniqueInput = Prisma.AtLeast<{
@@ -12128,9 +12128,9 @@ export namespace Prisma {
     approachAr?: StringFilter<"AboutContent"> | string
     journey?: JsonFilter<"AboutContent">
     journeyAr?: JsonFilter<"AboutContent">
+    updatedAt?: DateTimeFilter<"AboutContent"> | Date | string
     resumeUrl?: StringNullableFilter<"AboutContent"> | string | null
     calendlyUrl?: StringNullableFilter<"AboutContent"> | string | null
-    updatedAt?: DateTimeFilter<"AboutContent"> | Date | string
   }, "id">
 
   export type AboutContentOrderByWithAggregationInput = {
@@ -12141,9 +12141,9 @@ export namespace Prisma {
     approachAr?: SortOrder
     journey?: SortOrder
     journeyAr?: SortOrder
+    updatedAt?: SortOrder
     resumeUrl?: SortOrderInput | SortOrder
     calendlyUrl?: SortOrderInput | SortOrder
-    updatedAt?: SortOrder
     _count?: AboutContentCountOrderByAggregateInput
     _max?: AboutContentMaxOrderByAggregateInput
     _min?: AboutContentMinOrderByAggregateInput
@@ -12160,9 +12160,9 @@ export namespace Prisma {
     approachAr?: StringWithAggregatesFilter<"AboutContent"> | string
     journey?: JsonWithAggregatesFilter<"AboutContent">
     journeyAr?: JsonWithAggregatesFilter<"AboutContent">
+    updatedAt?: DateTimeWithAggregatesFilter<"AboutContent"> | Date | string
     resumeUrl?: StringNullableWithAggregatesFilter<"AboutContent"> | string | null
     calendlyUrl?: StringNullableWithAggregatesFilter<"AboutContent"> | string | null
-    updatedAt?: DateTimeWithAggregatesFilter<"AboutContent"> | Date | string
   }
 
   export type AdminUserCreateInput = {
@@ -12229,7 +12229,6 @@ export namespace Prisma {
     architecture: string
     challenges: string
     lessonsLearned: string
-    results?: string | null
     titleAr: string
     taglineAr: string
     overviewAr: string
@@ -12239,7 +12238,6 @@ export namespace Prisma {
     architectureAr: string
     challengesAr: string
     lessonsLearnedAr: string
-    resultsAr?: string | null
     techStack: JsonNullValueInput | InputJsonValue
     githubUrl: string
     backendGithubUrl?: string | null
@@ -12247,9 +12245,11 @@ export namespace Prisma {
     relatedSlugs: JsonNullValueInput | InputJsonValue
     metrics: JsonNullValueInput | InputJsonValue
     images: JsonNullValueInput | InputJsonValue
-    videoUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    videoUrl?: string | null
+    results?: string | null
+    resultsAr?: string | null
   }
 
   export type ProjectUncheckedCreateInput = {
@@ -12267,7 +12267,6 @@ export namespace Prisma {
     architecture: string
     challenges: string
     lessonsLearned: string
-    results?: string | null
     titleAr: string
     taglineAr: string
     overviewAr: string
@@ -12277,7 +12276,6 @@ export namespace Prisma {
     architectureAr: string
     challengesAr: string
     lessonsLearnedAr: string
-    resultsAr?: string | null
     techStack: JsonNullValueInput | InputJsonValue
     githubUrl: string
     backendGithubUrl?: string | null
@@ -12285,9 +12283,11 @@ export namespace Prisma {
     relatedSlugs: JsonNullValueInput | InputJsonValue
     metrics: JsonNullValueInput | InputJsonValue
     images: JsonNullValueInput | InputJsonValue
-    videoUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    videoUrl?: string | null
+    results?: string | null
+    resultsAr?: string | null
   }
 
   export type ProjectUpdateInput = {
@@ -12305,7 +12305,6 @@ export namespace Prisma {
     architecture?: StringFieldUpdateOperationsInput | string
     challenges?: StringFieldUpdateOperationsInput | string
     lessonsLearned?: StringFieldUpdateOperationsInput | string
-    results?: NullableStringFieldUpdateOperationsInput | string | null
     titleAr?: StringFieldUpdateOperationsInput | string
     taglineAr?: StringFieldUpdateOperationsInput | string
     overviewAr?: StringFieldUpdateOperationsInput | string
@@ -12315,7 +12314,6 @@ export namespace Prisma {
     architectureAr?: StringFieldUpdateOperationsInput | string
     challengesAr?: StringFieldUpdateOperationsInput | string
     lessonsLearnedAr?: StringFieldUpdateOperationsInput | string
-    resultsAr?: NullableStringFieldUpdateOperationsInput | string | null
     techStack?: JsonNullValueInput | InputJsonValue
     githubUrl?: StringFieldUpdateOperationsInput | string
     backendGithubUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12323,9 +12321,11 @@ export namespace Prisma {
     relatedSlugs?: JsonNullValueInput | InputJsonValue
     metrics?: JsonNullValueInput | InputJsonValue
     images?: JsonNullValueInput | InputJsonValue
-    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    results?: NullableStringFieldUpdateOperationsInput | string | null
+    resultsAr?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProjectUncheckedUpdateInput = {
@@ -12343,7 +12343,6 @@ export namespace Prisma {
     architecture?: StringFieldUpdateOperationsInput | string
     challenges?: StringFieldUpdateOperationsInput | string
     lessonsLearned?: StringFieldUpdateOperationsInput | string
-    results?: NullableStringFieldUpdateOperationsInput | string | null
     titleAr?: StringFieldUpdateOperationsInput | string
     taglineAr?: StringFieldUpdateOperationsInput | string
     overviewAr?: StringFieldUpdateOperationsInput | string
@@ -12353,7 +12352,6 @@ export namespace Prisma {
     architectureAr?: StringFieldUpdateOperationsInput | string
     challengesAr?: StringFieldUpdateOperationsInput | string
     lessonsLearnedAr?: StringFieldUpdateOperationsInput | string
-    resultsAr?: NullableStringFieldUpdateOperationsInput | string | null
     techStack?: JsonNullValueInput | InputJsonValue
     githubUrl?: StringFieldUpdateOperationsInput | string
     backendGithubUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12361,9 +12359,11 @@ export namespace Prisma {
     relatedSlugs?: JsonNullValueInput | InputJsonValue
     metrics?: JsonNullValueInput | InputJsonValue
     images?: JsonNullValueInput | InputJsonValue
-    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    results?: NullableStringFieldUpdateOperationsInput | string | null
+    resultsAr?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProjectCreateManyInput = {
@@ -12381,7 +12381,6 @@ export namespace Prisma {
     architecture: string
     challenges: string
     lessonsLearned: string
-    results?: string | null
     titleAr: string
     taglineAr: string
     overviewAr: string
@@ -12391,7 +12390,6 @@ export namespace Prisma {
     architectureAr: string
     challengesAr: string
     lessonsLearnedAr: string
-    resultsAr?: string | null
     techStack: JsonNullValueInput | InputJsonValue
     githubUrl: string
     backendGithubUrl?: string | null
@@ -12399,9 +12397,11 @@ export namespace Prisma {
     relatedSlugs: JsonNullValueInput | InputJsonValue
     metrics: JsonNullValueInput | InputJsonValue
     images: JsonNullValueInput | InputJsonValue
-    videoUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    videoUrl?: string | null
+    results?: string | null
+    resultsAr?: string | null
   }
 
   export type ProjectUpdateManyMutationInput = {
@@ -12419,7 +12419,6 @@ export namespace Prisma {
     architecture?: StringFieldUpdateOperationsInput | string
     challenges?: StringFieldUpdateOperationsInput | string
     lessonsLearned?: StringFieldUpdateOperationsInput | string
-    results?: NullableStringFieldUpdateOperationsInput | string | null
     titleAr?: StringFieldUpdateOperationsInput | string
     taglineAr?: StringFieldUpdateOperationsInput | string
     overviewAr?: StringFieldUpdateOperationsInput | string
@@ -12429,7 +12428,6 @@ export namespace Prisma {
     architectureAr?: StringFieldUpdateOperationsInput | string
     challengesAr?: StringFieldUpdateOperationsInput | string
     lessonsLearnedAr?: StringFieldUpdateOperationsInput | string
-    resultsAr?: NullableStringFieldUpdateOperationsInput | string | null
     techStack?: JsonNullValueInput | InputJsonValue
     githubUrl?: StringFieldUpdateOperationsInput | string
     backendGithubUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12437,9 +12435,11 @@ export namespace Prisma {
     relatedSlugs?: JsonNullValueInput | InputJsonValue
     metrics?: JsonNullValueInput | InputJsonValue
     images?: JsonNullValueInput | InputJsonValue
-    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    results?: NullableStringFieldUpdateOperationsInput | string | null
+    resultsAr?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProjectUncheckedUpdateManyInput = {
@@ -12457,7 +12457,6 @@ export namespace Prisma {
     architecture?: StringFieldUpdateOperationsInput | string
     challenges?: StringFieldUpdateOperationsInput | string
     lessonsLearned?: StringFieldUpdateOperationsInput | string
-    results?: NullableStringFieldUpdateOperationsInput | string | null
     titleAr?: StringFieldUpdateOperationsInput | string
     taglineAr?: StringFieldUpdateOperationsInput | string
     overviewAr?: StringFieldUpdateOperationsInput | string
@@ -12467,7 +12466,6 @@ export namespace Prisma {
     architectureAr?: StringFieldUpdateOperationsInput | string
     challengesAr?: StringFieldUpdateOperationsInput | string
     lessonsLearnedAr?: StringFieldUpdateOperationsInput | string
-    resultsAr?: NullableStringFieldUpdateOperationsInput | string | null
     techStack?: JsonNullValueInput | InputJsonValue
     githubUrl?: StringFieldUpdateOperationsInput | string
     backendGithubUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12475,9 +12473,11 @@ export namespace Prisma {
     relatedSlugs?: JsonNullValueInput | InputJsonValue
     metrics?: JsonNullValueInput | InputJsonValue
     images?: JsonNullValueInput | InputJsonValue
-    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    results?: NullableStringFieldUpdateOperationsInput | string | null
+    resultsAr?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PageViewCreateInput = {
@@ -12887,9 +12887,9 @@ export namespace Prisma {
     approachAr: string
     journey: JsonNullValueInput | InputJsonValue
     journeyAr: JsonNullValueInput | InputJsonValue
+    updatedAt?: Date | string
     resumeUrl?: string | null
     calendlyUrl?: string | null
-    updatedAt?: Date | string
   }
 
   export type AboutContentUncheckedCreateInput = {
@@ -12900,9 +12900,9 @@ export namespace Prisma {
     approachAr: string
     journey: JsonNullValueInput | InputJsonValue
     journeyAr: JsonNullValueInput | InputJsonValue
+    updatedAt?: Date | string
     resumeUrl?: string | null
     calendlyUrl?: string | null
-    updatedAt?: Date | string
   }
 
   export type AboutContentUpdateInput = {
@@ -12913,9 +12913,9 @@ export namespace Prisma {
     approachAr?: StringFieldUpdateOperationsInput | string
     journey?: JsonNullValueInput | InputJsonValue
     journeyAr?: JsonNullValueInput | InputJsonValue
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     calendlyUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AboutContentUncheckedUpdateInput = {
@@ -12926,9 +12926,9 @@ export namespace Prisma {
     approachAr?: StringFieldUpdateOperationsInput | string
     journey?: JsonNullValueInput | InputJsonValue
     journeyAr?: JsonNullValueInput | InputJsonValue
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     calendlyUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AboutContentCreateManyInput = {
@@ -12939,9 +12939,9 @@ export namespace Prisma {
     approachAr: string
     journey: JsonNullValueInput | InputJsonValue
     journeyAr: JsonNullValueInput | InputJsonValue
+    updatedAt?: Date | string
     resumeUrl?: string | null
     calendlyUrl?: string | null
-    updatedAt?: Date | string
   }
 
   export type AboutContentUpdateManyMutationInput = {
@@ -12952,9 +12952,9 @@ export namespace Prisma {
     approachAr?: StringFieldUpdateOperationsInput | string
     journey?: JsonNullValueInput | InputJsonValue
     journeyAr?: JsonNullValueInput | InputJsonValue
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     calendlyUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AboutContentUncheckedUpdateManyInput = {
@@ -12965,9 +12965,9 @@ export namespace Prisma {
     approachAr?: StringFieldUpdateOperationsInput | string
     journey?: JsonNullValueInput | InputJsonValue
     journeyAr?: JsonNullValueInput | InputJsonValue
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
     calendlyUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -13123,7 +13123,6 @@ export namespace Prisma {
     architecture?: SortOrder
     challenges?: SortOrder
     lessonsLearned?: SortOrder
-    results?: SortOrder
     titleAr?: SortOrder
     taglineAr?: SortOrder
     overviewAr?: SortOrder
@@ -13133,7 +13132,6 @@ export namespace Prisma {
     architectureAr?: SortOrder
     challengesAr?: SortOrder
     lessonsLearnedAr?: SortOrder
-    resultsAr?: SortOrder
     techStack?: SortOrder
     githubUrl?: SortOrder
     backendGithubUrl?: SortOrder
@@ -13141,9 +13139,11 @@ export namespace Prisma {
     relatedSlugs?: SortOrder
     metrics?: SortOrder
     images?: SortOrder
-    videoUrl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    videoUrl?: SortOrder
+    results?: SortOrder
+    resultsAr?: SortOrder
   }
 
   export type ProjectAvgOrderByAggregateInput = {
@@ -13164,7 +13164,6 @@ export namespace Prisma {
     architecture?: SortOrder
     challenges?: SortOrder
     lessonsLearned?: SortOrder
-    results?: SortOrder
     titleAr?: SortOrder
     taglineAr?: SortOrder
     overviewAr?: SortOrder
@@ -13173,13 +13172,14 @@ export namespace Prisma {
     architectureAr?: SortOrder
     challengesAr?: SortOrder
     lessonsLearnedAr?: SortOrder
-    resultsAr?: SortOrder
     githubUrl?: SortOrder
     backendGithubUrl?: SortOrder
     liveUrl?: SortOrder
-    videoUrl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    videoUrl?: SortOrder
+    results?: SortOrder
+    resultsAr?: SortOrder
   }
 
   export type ProjectMinOrderByAggregateInput = {
@@ -13196,7 +13196,6 @@ export namespace Prisma {
     architecture?: SortOrder
     challenges?: SortOrder
     lessonsLearned?: SortOrder
-    results?: SortOrder
     titleAr?: SortOrder
     taglineAr?: SortOrder
     overviewAr?: SortOrder
@@ -13205,13 +13204,14 @@ export namespace Prisma {
     architectureAr?: SortOrder
     challengesAr?: SortOrder
     lessonsLearnedAr?: SortOrder
-    resultsAr?: SortOrder
     githubUrl?: SortOrder
     backendGithubUrl?: SortOrder
     liveUrl?: SortOrder
-    videoUrl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    videoUrl?: SortOrder
+    results?: SortOrder
+    resultsAr?: SortOrder
   }
 
   export type ProjectSumOrderByAggregateInput = {
@@ -13500,9 +13500,9 @@ export namespace Prisma {
     approachAr?: SortOrder
     journey?: SortOrder
     journeyAr?: SortOrder
+    updatedAt?: SortOrder
     resumeUrl?: SortOrder
     calendlyUrl?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type AboutContentMaxOrderByAggregateInput = {
@@ -13511,9 +13511,9 @@ export namespace Prisma {
     introAr?: SortOrder
     approach?: SortOrder
     approachAr?: SortOrder
+    updatedAt?: SortOrder
     resumeUrl?: SortOrder
     calendlyUrl?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type AboutContentMinOrderByAggregateInput = {
@@ -13522,9 +13522,9 @@ export namespace Prisma {
     introAr?: SortOrder
     approach?: SortOrder
     approachAr?: SortOrder
+    updatedAt?: SortOrder
     resumeUrl?: SortOrder
     calendlyUrl?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {

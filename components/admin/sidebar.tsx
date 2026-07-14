@@ -13,6 +13,7 @@ import {
   BarChart3,
   Radio,
   Users,
+  CalendarCheck,
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -23,6 +24,7 @@ const NAV_ITEMS = [
   { href: "/admin/about", label: "About Page", icon: UserCircle },
   { href: "/admin/testimonials", label: "Testimonials", icon: Quote },
   { href: "/admin/availability", label: "Availability", icon: Radio },
+  { href: "/admin/bookings", label: "Bookings", icon: CalendarCheck },
   { href: "/admin/newsletter", label: "Newsletter", icon: Users },
   { href: "/admin/messages", label: "Messages", icon: Mail },
   { href: "/admin/analytics", label: "Analytics", icon: BarChart3 },
