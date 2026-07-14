@@ -14,7 +14,11 @@ interface BookingRow {
   createdAt: string;
 }
 
-export function BookingsTable({ initialBookings }: { initialBookings: BookingRow[] }) {
+export function BookingsTable({
+  initialBookings,
+}: {
+  initialBookings: BookingRow[];
+}) {
   const [bookings, setBookings] = useState(initialBookings);
   const [busyId, setBusyId] = useState<string | null>(null);
 
@@ -67,7 +71,10 @@ export function BookingsTable({ initialBookings }: { initialBookings: BookingRow
                 </div>
                 <p className="mt-1 text-sm text-muted">
                   {b.inviteeName} ·{" "}
-                  <a href={`mailto:${b.inviteeEmail}`} className="hover:text-accent">
+                  <a
+                    href={`mailto:${b.inviteeEmail}`}
+                    className="hover:text-accent"
+                  >
                     {b.inviteeEmail}
                   </a>
                 </p>

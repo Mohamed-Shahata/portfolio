@@ -2,7 +2,9 @@ import { prisma } from "@/lib/db";
 import { BookingsTable } from "@/components/admin/bookings-table";
 
 export default async function AdminBookingsPage() {
-  const bookings = await prisma.booking.findMany({ orderBy: { startTime: "desc" } });
+  const bookings = await prisma.booking.findMany({
+    orderBy: { startTime: "desc" },
+  });
   const activeCount = bookings.filter((b) => b.status === "active").length;
 
   return (

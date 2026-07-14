@@ -3,18 +3,21 @@ import crypto from "node:crypto";
 import { prisma } from "@/lib/db";
 
 // Calendly signs every webhook request with a shared secret set when the
-// webhook subscription is created. Verifying it stops randoms from posting
-// fake bookings into our DB.
-// Docs: https://developer.calendly.com/api-docs/webhook-signatures
-function verifySignature(rawBody: string, header: string | null, secret: string) {
+// webhook subscription is created.
+function verifySignature(
+  rawBody: string,
+  header: string | null,
+  secret: string,
+) {
   if (!header) return false;
 
-  // Header looks like: t=1700000000,v1=<hmac hex>
   const parts = Object.fromEntries(
     header.split(",").map((p) => p.split("=") as [string, string]),
   );
+
   const timestamp = parts.t;
   const signature = parts.v1;
+
   if (!timestamp || !signature) return false;
 
   const expected = crypto
@@ -31,39 +34,26 @@ export async function POST(request: Request) {
 
   if (secret) {
     const header = request.headers.get("calendly-webhook-signature");
+
     if (!verifySignature(rawBody, header, secret)) {
-      return NextResponse.json({ error: "invalid signature" }, { status: 401 });
+      return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
     }
   }
 
-  const payload = JSON.parse(rawBody) as {
-    event: string;
-    payload: {
-      uri: string;
-      name: string;
-      start_time: string;
-      end_time: string;
-      event_type?: { name?: string };
-      invitees_counter?: unknown;
-      email?: string; // present on invitee.* events
-    };
-  };
+  const body = JSON.parse(rawBody);
 
-  // invitee.created / invitee.canceled are the two events we subscribe to.
-  if (payload.event === "invitee.created") {
-    const p = payload.payload as unknown as {
-      event: { uri: string; name?: string; start_time: string; end_time: string };
-      name: string;
-      email: string;
-    };
+  if (body.event === "invitee.created") {
+    const p = body.payload;
 
     await prisma.booking.upsert({
-      where: { calendlyUri: p.event.uri },
+      where: {
+        calendlyEventUri: p.event.uri,
+      },
       create: {
-        calendlyUri: p.event.uri,
+        calendlyEventUri: p.event.uri,
         inviteeName: p.name,
         inviteeEmail: p.email,
-        eventName: p.event.name ?? "Call",
+        eventName: p.event.name ?? p.scheduled_event?.name ?? "Call",
         startTime: new Date(p.event.start_time),
         endTime: new Date(p.event.end_time),
         status: "active",
@@ -72,17 +62,20 @@ export async function POST(request: Request) {
         status: "active",
       },
     });
-  }
+  } else if (body.event === "invitee.canceled") {
+    const p = body.payload;
 
-  if (payload.event === "invitee.canceled") {
-    const p = payload.payload as unknown as { event: { uri: string } };
     await prisma.booking
       .update({
-        where: { calendlyUri: p.event.uri },
-        data: { status: "canceled" },
+        where: {
+          calendlyEventUri: p.event.uri,
+        },
+        data: {
+          status: "canceled",
+        },
       })
       .catch(() => {
-        // Booking may not exist yet if canceled before we ever recorded it — ignore.
+        // Ignore if the booking does not exist.
       });
   }
 

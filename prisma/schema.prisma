@@ -5,7 +5,6 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  
 }
 
 model AdminUser {
@@ -55,6 +54,18 @@ model Project {
   videoUrl         String?
   results          String?
   resultsAr        String?
+}
+
+model Booking {
+  id                String   @id @default(cuid())
+  inviteeName       String
+  inviteeEmail      String
+  eventName         String
+  startTime         DateTime
+  endTime           DateTime
+  status            String   @default("active")
+  calendlyEventUri  String?  @unique
+  createdAt         DateTime @default(now())
 }
 
 model PageView {
