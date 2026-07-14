@@ -61,10 +61,12 @@ model Booking {
   inviteeName       String
   inviteeEmail      String
   eventName         String
+  message           String?
   startTime         DateTime
   endTime           DateTime
   status            String   @default("active")
   calendlyEventUri  String?  @unique
+  seen              Boolean  @default(false)
   createdAt         DateTime @default(now())
 }
 
@@ -142,5 +144,4 @@ model AboutContent {
   journeyAr   Json
   updatedAt   DateTime @updatedAt
   resumeUrl   String?
-  calendlyUrl String?
 }

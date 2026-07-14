@@ -8,10 +8,12 @@ interface BookingRow {
   inviteeName: string;
   inviteeEmail: string;
   eventName: string;
+  message?: string | null;
   startTime: string;
   endTime: string;
   status: string;
   createdAt: string;
+  isNew?: boolean;
 }
 
 export function BookingsTable({
@@ -36,7 +38,7 @@ export function BookingsTable({
     return (
       <div className="mt-8 rounded-2xl border border-border bg-surface px-6 py-16 text-center text-sm text-muted">
         No bookings yet. They&apos;ll show up here automatically once someone
-        schedules a call through Calendly.
+        books a call through the site.
       </div>
     );
   }
@@ -68,6 +70,11 @@ export function BookingsTable({
                       Canceled
                     </span>
                   )}
+                  {b.isNew && !canceled && (
+                    <span className="rounded-full bg-accent px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-white">
+                      New
+                    </span>
+                  )}
                 </div>
                 <p className="mt-1 text-sm text-muted">
                   {b.inviteeName} ·{" "}
@@ -82,6 +89,9 @@ export function BookingsTable({
                   {new Date(b.startTime).toLocaleString()} —{" "}
                   {new Date(b.endTime).toLocaleTimeString()}
                 </p>
+                {b.message && (
+                  <p className="mt-2 text-sm text-muted">{b.message}</p>
+                )}
               </div>
               <div className="flex shrink-0 items-center gap-3">
                 <button

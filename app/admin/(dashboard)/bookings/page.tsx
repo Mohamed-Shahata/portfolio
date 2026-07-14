@@ -7,6 +7,13 @@ export default async function AdminBookingsPage() {
   });
   const activeCount = bookings.filter((b) => b.status === "active").length;
 
+  // Mark everything as seen now that the admin is viewing the list —
+  // clears the notification bell badge.
+  await prisma.booking.updateMany({
+    where: { seen: false },
+    data: { seen: true },
+  });
+
   return (
     <div>
       <h1 className="text-xl font-semibold text-foreground">Bookings</h1>
@@ -21,6 +28,7 @@ export default async function AdminBookingsPage() {
           startTime: b.startTime.toISOString(),
           endTime: b.endTime.toISOString(),
           createdAt: b.createdAt.toISOString(),
+          isNew: !b.seen,
         }))}
       />
     </div>

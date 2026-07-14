@@ -4091,10 +4091,12 @@ export namespace Prisma {
     inviteeName: string | null
     inviteeEmail: string | null
     eventName: string | null
+    message: string | null
     startTime: Date | null
     endTime: Date | null
     status: string | null
     calendlyEventUri: string | null
+    seen: boolean | null
     createdAt: Date | null
   }
 
@@ -4103,10 +4105,12 @@ export namespace Prisma {
     inviteeName: string | null
     inviteeEmail: string | null
     eventName: string | null
+    message: string | null
     startTime: Date | null
     endTime: Date | null
     status: string | null
     calendlyEventUri: string | null
+    seen: boolean | null
     createdAt: Date | null
   }
 
@@ -4115,10 +4119,12 @@ export namespace Prisma {
     inviteeName: number
     inviteeEmail: number
     eventName: number
+    message: number
     startTime: number
     endTime: number
     status: number
     calendlyEventUri: number
+    seen: number
     createdAt: number
     _all: number
   }
@@ -4129,10 +4135,12 @@ export namespace Prisma {
     inviteeName?: true
     inviteeEmail?: true
     eventName?: true
+    message?: true
     startTime?: true
     endTime?: true
     status?: true
     calendlyEventUri?: true
+    seen?: true
     createdAt?: true
   }
 
@@ -4141,10 +4149,12 @@ export namespace Prisma {
     inviteeName?: true
     inviteeEmail?: true
     eventName?: true
+    message?: true
     startTime?: true
     endTime?: true
     status?: true
     calendlyEventUri?: true
+    seen?: true
     createdAt?: true
   }
 
@@ -4153,10 +4163,12 @@ export namespace Prisma {
     inviteeName?: true
     inviteeEmail?: true
     eventName?: true
+    message?: true
     startTime?: true
     endTime?: true
     status?: true
     calendlyEventUri?: true
+    seen?: true
     createdAt?: true
     _all?: true
   }
@@ -4238,10 +4250,12 @@ export namespace Prisma {
     inviteeName: string
     inviteeEmail: string
     eventName: string
+    message: string | null
     startTime: Date
     endTime: Date
     status: string
     calendlyEventUri: string | null
+    seen: boolean
     createdAt: Date
     _count: BookingCountAggregateOutputType | null
     _min: BookingMinAggregateOutputType | null
@@ -4267,10 +4281,12 @@ export namespace Prisma {
     inviteeName?: boolean
     inviteeEmail?: boolean
     eventName?: boolean
+    message?: boolean
     startTime?: boolean
     endTime?: boolean
     status?: boolean
     calendlyEventUri?: boolean
+    seen?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["booking"]>
 
@@ -4279,10 +4295,12 @@ export namespace Prisma {
     inviteeName?: boolean
     inviteeEmail?: boolean
     eventName?: boolean
+    message?: boolean
     startTime?: boolean
     endTime?: boolean
     status?: boolean
     calendlyEventUri?: boolean
+    seen?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["booking"]>
 
@@ -4291,10 +4309,12 @@ export namespace Prisma {
     inviteeName?: boolean
     inviteeEmail?: boolean
     eventName?: boolean
+    message?: boolean
     startTime?: boolean
     endTime?: boolean
     status?: boolean
     calendlyEventUri?: boolean
+    seen?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["booking"]>
 
@@ -4303,14 +4323,16 @@ export namespace Prisma {
     inviteeName?: boolean
     inviteeEmail?: boolean
     eventName?: boolean
+    message?: boolean
     startTime?: boolean
     endTime?: boolean
     status?: boolean
     calendlyEventUri?: boolean
+    seen?: boolean
     createdAt?: boolean
   }
 
-  export type BookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "inviteeName" | "inviteeEmail" | "eventName" | "startTime" | "endTime" | "status" | "calendlyEventUri" | "createdAt", ExtArgs["result"]["booking"]>
+  export type BookingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "inviteeName" | "inviteeEmail" | "eventName" | "message" | "startTime" | "endTime" | "status" | "calendlyEventUri" | "seen" | "createdAt", ExtArgs["result"]["booking"]>
 
   export type $BookingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Booking"
@@ -4320,10 +4342,12 @@ export namespace Prisma {
       inviteeName: string
       inviteeEmail: string
       eventName: string
+      message: string | null
       startTime: Date
       endTime: Date
       status: string
       calendlyEventUri: string | null
+      seen: boolean
       createdAt: Date
     }, ExtArgs["result"]["booking"]>
     composites: {}
@@ -4752,10 +4776,12 @@ export namespace Prisma {
     readonly inviteeName: FieldRef<"Booking", 'String'>
     readonly inviteeEmail: FieldRef<"Booking", 'String'>
     readonly eventName: FieldRef<"Booking", 'String'>
+    readonly message: FieldRef<"Booking", 'String'>
     readonly startTime: FieldRef<"Booking", 'DateTime'>
     readonly endTime: FieldRef<"Booking", 'DateTime'>
     readonly status: FieldRef<"Booking", 'String'>
     readonly calendlyEventUri: FieldRef<"Booking", 'String'>
+    readonly seen: FieldRef<"Booking", 'Boolean'>
     readonly createdAt: FieldRef<"Booking", 'DateTime'>
   }
     
@@ -11301,7 +11327,6 @@ export namespace Prisma {
     approachAr: string | null
     updatedAt: Date | null
     resumeUrl: string | null
-    calendlyUrl: string | null
   }
 
   export type AboutContentMaxAggregateOutputType = {
@@ -11312,7 +11337,6 @@ export namespace Prisma {
     approachAr: string | null
     updatedAt: Date | null
     resumeUrl: string | null
-    calendlyUrl: string | null
   }
 
   export type AboutContentCountAggregateOutputType = {
@@ -11325,7 +11349,6 @@ export namespace Prisma {
     journeyAr: number
     updatedAt: number
     resumeUrl: number
-    calendlyUrl: number
     _all: number
   }
 
@@ -11338,7 +11361,6 @@ export namespace Prisma {
     approachAr?: true
     updatedAt?: true
     resumeUrl?: true
-    calendlyUrl?: true
   }
 
   export type AboutContentMaxAggregateInputType = {
@@ -11349,7 +11371,6 @@ export namespace Prisma {
     approachAr?: true
     updatedAt?: true
     resumeUrl?: true
-    calendlyUrl?: true
   }
 
   export type AboutContentCountAggregateInputType = {
@@ -11362,7 +11383,6 @@ export namespace Prisma {
     journeyAr?: true
     updatedAt?: true
     resumeUrl?: true
-    calendlyUrl?: true
     _all?: true
   }
 
@@ -11448,7 +11468,6 @@ export namespace Prisma {
     journeyAr: JsonValue
     updatedAt: Date
     resumeUrl: string | null
-    calendlyUrl: string | null
     _count: AboutContentCountAggregateOutputType | null
     _min: AboutContentMinAggregateOutputType | null
     _max: AboutContentMaxAggregateOutputType | null
@@ -11478,7 +11497,6 @@ export namespace Prisma {
     journeyAr?: boolean
     updatedAt?: boolean
     resumeUrl?: boolean
-    calendlyUrl?: boolean
   }, ExtArgs["result"]["aboutContent"]>
 
   export type AboutContentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -11491,7 +11509,6 @@ export namespace Prisma {
     journeyAr?: boolean
     updatedAt?: boolean
     resumeUrl?: boolean
-    calendlyUrl?: boolean
   }, ExtArgs["result"]["aboutContent"]>
 
   export type AboutContentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -11504,7 +11521,6 @@ export namespace Prisma {
     journeyAr?: boolean
     updatedAt?: boolean
     resumeUrl?: boolean
-    calendlyUrl?: boolean
   }, ExtArgs["result"]["aboutContent"]>
 
   export type AboutContentSelectScalar = {
@@ -11517,10 +11533,9 @@ export namespace Prisma {
     journeyAr?: boolean
     updatedAt?: boolean
     resumeUrl?: boolean
-    calendlyUrl?: boolean
   }
 
-  export type AboutContentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "intro" | "introAr" | "approach" | "approachAr" | "journey" | "journeyAr" | "updatedAt" | "resumeUrl" | "calendlyUrl", ExtArgs["result"]["aboutContent"]>
+  export type AboutContentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "intro" | "introAr" | "approach" | "approachAr" | "journey" | "journeyAr" | "updatedAt" | "resumeUrl", ExtArgs["result"]["aboutContent"]>
 
   export type $AboutContentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AboutContent"
@@ -11535,7 +11550,6 @@ export namespace Prisma {
       journeyAr: Prisma.JsonValue
       updatedAt: Date
       resumeUrl: string | null
-      calendlyUrl: string | null
     }, ExtArgs["result"]["aboutContent"]>
     composites: {}
   }
@@ -11968,7 +11982,6 @@ export namespace Prisma {
     readonly journeyAr: FieldRef<"AboutContent", 'Json'>
     readonly updatedAt: FieldRef<"AboutContent", 'DateTime'>
     readonly resumeUrl: FieldRef<"AboutContent", 'String'>
-    readonly calendlyUrl: FieldRef<"AboutContent", 'String'>
   }
     
 
@@ -12410,10 +12423,12 @@ export namespace Prisma {
     inviteeName: 'inviteeName',
     inviteeEmail: 'inviteeEmail',
     eventName: 'eventName',
+    message: 'message',
     startTime: 'startTime',
     endTime: 'endTime',
     status: 'status',
     calendlyEventUri: 'calendlyEventUri',
+    seen: 'seen',
     createdAt: 'createdAt'
   };
 
@@ -12504,8 +12519,7 @@ export namespace Prisma {
     journey: 'journey',
     journeyAr: 'journeyAr',
     updatedAt: 'updatedAt',
-    resumeUrl: 'resumeUrl',
-    calendlyUrl: 'calendlyUrl'
+    resumeUrl: 'resumeUrl'
   };
 
   export type AboutContentScalarFieldEnum = (typeof AboutContentScalarFieldEnum)[keyof typeof AboutContentScalarFieldEnum]
@@ -12895,10 +12909,12 @@ export namespace Prisma {
     inviteeName?: StringFilter<"Booking"> | string
     inviteeEmail?: StringFilter<"Booking"> | string
     eventName?: StringFilter<"Booking"> | string
+    message?: StringNullableFilter<"Booking"> | string | null
     startTime?: DateTimeFilter<"Booking"> | Date | string
     endTime?: DateTimeFilter<"Booking"> | Date | string
     status?: StringFilter<"Booking"> | string
     calendlyEventUri?: StringNullableFilter<"Booking"> | string | null
+    seen?: BoolFilter<"Booking"> | boolean
     createdAt?: DateTimeFilter<"Booking"> | Date | string
   }
 
@@ -12907,10 +12923,12 @@ export namespace Prisma {
     inviteeName?: SortOrder
     inviteeEmail?: SortOrder
     eventName?: SortOrder
+    message?: SortOrderInput | SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
     status?: SortOrder
     calendlyEventUri?: SortOrderInput | SortOrder
+    seen?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -12923,9 +12941,11 @@ export namespace Prisma {
     inviteeName?: StringFilter<"Booking"> | string
     inviteeEmail?: StringFilter<"Booking"> | string
     eventName?: StringFilter<"Booking"> | string
+    message?: StringNullableFilter<"Booking"> | string | null
     startTime?: DateTimeFilter<"Booking"> | Date | string
     endTime?: DateTimeFilter<"Booking"> | Date | string
     status?: StringFilter<"Booking"> | string
+    seen?: BoolFilter<"Booking"> | boolean
     createdAt?: DateTimeFilter<"Booking"> | Date | string
   }, "id" | "calendlyEventUri">
 
@@ -12934,10 +12954,12 @@ export namespace Prisma {
     inviteeName?: SortOrder
     inviteeEmail?: SortOrder
     eventName?: SortOrder
+    message?: SortOrderInput | SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
     status?: SortOrder
     calendlyEventUri?: SortOrderInput | SortOrder
+    seen?: SortOrder
     createdAt?: SortOrder
     _count?: BookingCountOrderByAggregateInput
     _max?: BookingMaxOrderByAggregateInput
@@ -12952,10 +12974,12 @@ export namespace Prisma {
     inviteeName?: StringWithAggregatesFilter<"Booking"> | string
     inviteeEmail?: StringWithAggregatesFilter<"Booking"> | string
     eventName?: StringWithAggregatesFilter<"Booking"> | string
+    message?: StringNullableWithAggregatesFilter<"Booking"> | string | null
     startTime?: DateTimeWithAggregatesFilter<"Booking"> | Date | string
     endTime?: DateTimeWithAggregatesFilter<"Booking"> | Date | string
     status?: StringWithAggregatesFilter<"Booking"> | string
     calendlyEventUri?: StringNullableWithAggregatesFilter<"Booking"> | string | null
+    seen?: BoolWithAggregatesFilter<"Booking"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Booking"> | Date | string
   }
 
@@ -13331,7 +13355,6 @@ export namespace Prisma {
     journeyAr?: JsonFilter<"AboutContent">
     updatedAt?: DateTimeFilter<"AboutContent"> | Date | string
     resumeUrl?: StringNullableFilter<"AboutContent"> | string | null
-    calendlyUrl?: StringNullableFilter<"AboutContent"> | string | null
   }
 
   export type AboutContentOrderByWithRelationInput = {
@@ -13344,7 +13367,6 @@ export namespace Prisma {
     journeyAr?: SortOrder
     updatedAt?: SortOrder
     resumeUrl?: SortOrderInput | SortOrder
-    calendlyUrl?: SortOrderInput | SortOrder
   }
 
   export type AboutContentWhereUniqueInput = Prisma.AtLeast<{
@@ -13360,7 +13382,6 @@ export namespace Prisma {
     journeyAr?: JsonFilter<"AboutContent">
     updatedAt?: DateTimeFilter<"AboutContent"> | Date | string
     resumeUrl?: StringNullableFilter<"AboutContent"> | string | null
-    calendlyUrl?: StringNullableFilter<"AboutContent"> | string | null
   }, "id">
 
   export type AboutContentOrderByWithAggregationInput = {
@@ -13373,7 +13394,6 @@ export namespace Prisma {
     journeyAr?: SortOrder
     updatedAt?: SortOrder
     resumeUrl?: SortOrderInput | SortOrder
-    calendlyUrl?: SortOrderInput | SortOrder
     _count?: AboutContentCountOrderByAggregateInput
     _max?: AboutContentMaxOrderByAggregateInput
     _min?: AboutContentMinOrderByAggregateInput
@@ -13392,7 +13412,6 @@ export namespace Prisma {
     journeyAr?: JsonWithAggregatesFilter<"AboutContent">
     updatedAt?: DateTimeWithAggregatesFilter<"AboutContent"> | Date | string
     resumeUrl?: StringNullableWithAggregatesFilter<"AboutContent"> | string | null
-    calendlyUrl?: StringNullableWithAggregatesFilter<"AboutContent"> | string | null
   }
 
   export type AdminUserCreateInput = {
@@ -13715,10 +13734,12 @@ export namespace Prisma {
     inviteeName: string
     inviteeEmail: string
     eventName: string
+    message?: string | null
     startTime: Date | string
     endTime: Date | string
     status?: string
     calendlyEventUri?: string | null
+    seen?: boolean
     createdAt?: Date | string
   }
 
@@ -13727,10 +13748,12 @@ export namespace Prisma {
     inviteeName: string
     inviteeEmail: string
     eventName: string
+    message?: string | null
     startTime: Date | string
     endTime: Date | string
     status?: string
     calendlyEventUri?: string | null
+    seen?: boolean
     createdAt?: Date | string
   }
 
@@ -13739,10 +13762,12 @@ export namespace Prisma {
     inviteeName?: StringFieldUpdateOperationsInput | string
     inviteeEmail?: StringFieldUpdateOperationsInput | string
     eventName?: StringFieldUpdateOperationsInput | string
+    message?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: StringFieldUpdateOperationsInput | string
     calendlyEventUri?: NullableStringFieldUpdateOperationsInput | string | null
+    seen?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -13751,10 +13776,12 @@ export namespace Prisma {
     inviteeName?: StringFieldUpdateOperationsInput | string
     inviteeEmail?: StringFieldUpdateOperationsInput | string
     eventName?: StringFieldUpdateOperationsInput | string
+    message?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: StringFieldUpdateOperationsInput | string
     calendlyEventUri?: NullableStringFieldUpdateOperationsInput | string | null
+    seen?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -13763,10 +13790,12 @@ export namespace Prisma {
     inviteeName: string
     inviteeEmail: string
     eventName: string
+    message?: string | null
     startTime: Date | string
     endTime: Date | string
     status?: string
     calendlyEventUri?: string | null
+    seen?: boolean
     createdAt?: Date | string
   }
 
@@ -13775,10 +13804,12 @@ export namespace Prisma {
     inviteeName?: StringFieldUpdateOperationsInput | string
     inviteeEmail?: StringFieldUpdateOperationsInput | string
     eventName?: StringFieldUpdateOperationsInput | string
+    message?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: StringFieldUpdateOperationsInput | string
     calendlyEventUri?: NullableStringFieldUpdateOperationsInput | string | null
+    seen?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -13787,10 +13818,12 @@ export namespace Prisma {
     inviteeName?: StringFieldUpdateOperationsInput | string
     inviteeEmail?: StringFieldUpdateOperationsInput | string
     eventName?: StringFieldUpdateOperationsInput | string
+    message?: NullableStringFieldUpdateOperationsInput | string | null
     startTime?: DateTimeFieldUpdateOperationsInput | Date | string
     endTime?: DateTimeFieldUpdateOperationsInput | Date | string
     status?: StringFieldUpdateOperationsInput | string
     calendlyEventUri?: NullableStringFieldUpdateOperationsInput | string | null
+    seen?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -14203,7 +14236,6 @@ export namespace Prisma {
     journeyAr: JsonNullValueInput | InputJsonValue
     updatedAt?: Date | string
     resumeUrl?: string | null
-    calendlyUrl?: string | null
   }
 
   export type AboutContentUncheckedCreateInput = {
@@ -14216,7 +14248,6 @@ export namespace Prisma {
     journeyAr: JsonNullValueInput | InputJsonValue
     updatedAt?: Date | string
     resumeUrl?: string | null
-    calendlyUrl?: string | null
   }
 
   export type AboutContentUpdateInput = {
@@ -14229,7 +14260,6 @@ export namespace Prisma {
     journeyAr?: JsonNullValueInput | InputJsonValue
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    calendlyUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AboutContentUncheckedUpdateInput = {
@@ -14242,7 +14272,6 @@ export namespace Prisma {
     journeyAr?: JsonNullValueInput | InputJsonValue
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    calendlyUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AboutContentCreateManyInput = {
@@ -14255,7 +14284,6 @@ export namespace Prisma {
     journeyAr: JsonNullValueInput | InputJsonValue
     updatedAt?: Date | string
     resumeUrl?: string | null
-    calendlyUrl?: string | null
   }
 
   export type AboutContentUpdateManyMutationInput = {
@@ -14268,7 +14296,6 @@ export namespace Prisma {
     journeyAr?: JsonNullValueInput | InputJsonValue
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    calendlyUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AboutContentUncheckedUpdateManyInput = {
@@ -14281,7 +14308,6 @@ export namespace Prisma {
     journeyAr?: JsonNullValueInput | InputJsonValue
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     resumeUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    calendlyUrl?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -14605,10 +14631,12 @@ export namespace Prisma {
     inviteeName?: SortOrder
     inviteeEmail?: SortOrder
     eventName?: SortOrder
+    message?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
     status?: SortOrder
     calendlyEventUri?: SortOrder
+    seen?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -14617,10 +14645,12 @@ export namespace Prisma {
     inviteeName?: SortOrder
     inviteeEmail?: SortOrder
     eventName?: SortOrder
+    message?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
     status?: SortOrder
     calendlyEventUri?: SortOrder
+    seen?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -14629,10 +14659,12 @@ export namespace Prisma {
     inviteeName?: SortOrder
     inviteeEmail?: SortOrder
     eventName?: SortOrder
+    message?: SortOrder
     startTime?: SortOrder
     endTime?: SortOrder
     status?: SortOrder
     calendlyEventUri?: SortOrder
+    seen?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -14852,7 +14884,6 @@ export namespace Prisma {
     journeyAr?: SortOrder
     updatedAt?: SortOrder
     resumeUrl?: SortOrder
-    calendlyUrl?: SortOrder
   }
 
   export type AboutContentMaxOrderByAggregateInput = {
@@ -14863,7 +14894,6 @@ export namespace Prisma {
     approachAr?: SortOrder
     updatedAt?: SortOrder
     resumeUrl?: SortOrder
-    calendlyUrl?: SortOrder
   }
 
   export type AboutContentMinOrderByAggregateInput = {
@@ -14874,7 +14904,6 @@ export namespace Prisma {
     approachAr?: SortOrder
     updatedAt?: SortOrder
     resumeUrl?: SortOrder
-    calendlyUrl?: SortOrder
   }
 
   export type StringFieldUpdateOperationsInput = {
