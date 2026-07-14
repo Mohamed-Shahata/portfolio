@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -17,6 +18,7 @@ import {
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ConfirmModal } from "@/components/admin/confirm-modal";
 
 const NAV_ITEMS = [
   { href: "/admin/projects", label: "Projects", icon: LayoutGrid },
@@ -41,8 +43,10 @@ export function AdminSidebar({
 }) {
   const pathname = usePathname();
   const router = useRouter();
+  const [confirmOpen, setConfirmOpen] = useState(false);
 
   const handleLogout = async () => {
+    setConfirmOpen(false);
     await fetch("/api/admin/auth/logout", { method: "POST" });
     router.push("/admin/login");
     router.refresh();
@@ -119,7 +123,7 @@ export function AdminSidebar({
               {email}
             </span>
             <button
-              onClick={handleLogout}
+              onClick={() => setConfirmOpen(true)}
               aria-label="Log out"
               className="text-muted transition-colors hover:text-destructive"
             >
@@ -128,6 +132,16 @@ export function AdminSidebar({
           </div>
         </div>
       </aside>
+
+      <ConfirmModal
+        open={confirmOpen}
+        title="Log out?"
+        description="You'll need to sign in again to access the admin dashboard."
+        confirmLabel="Log out"
+        cancelLabel="Cancel"
+        onConfirm={handleLogout}
+        onCancel={() => setConfirmOpen(false)}
+      />
     </>
   );
 }

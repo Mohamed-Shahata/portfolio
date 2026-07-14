@@ -77,12 +77,7 @@ export const PROJECTS: Project[] = [
         labelAr: "لغة (عربي/إنجليزي RTL)",
       },
     ],
-    images: [
-      "/erp/erp-01-dashboard.png",
-      "/erp/erp-02.png",
-      "/erp/erp-03.png",
-      "/erp/erp-04.png",
-    ],
+    images: [],
     ar: {
       title: "ERP لايت",
       tagline:
@@ -431,12 +426,7 @@ export const PROJECTS: Project[] = [
         labelAr: "لغة (عربي/إنجليزي RTL)",
       },
     ],
-    images: [
-      "/clinic/clinic-01-dashboard.png",
-      "/clinic/clinic-02.png",
-      "/clinic/clinic-03.png",
-      "/clinic/clinic-04.png",
-    ],
+    images: [],
     ar: {
       title: "نظام إدارة العيادات",
       tagline:

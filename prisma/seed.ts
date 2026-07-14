@@ -13,6 +13,42 @@ import bcrypt from "bcryptjs";
 import { PROJECTS } from "../lib/projects-data";
 import { BLOG_POSTS } from "../lib/blog-data";
 
+// Sample content used only for local testing — lets you exercise the blog,
+// testimonials, and newsletter pages end-to-end without writing real posts
+// or waiting for real signups/reviews.
+const TEST_BLOG_POSTS = [
+  {
+    slug: "why-i-chose-nestjs-for-erp-lite",
+    title: "Why I Chose NestJS for ERP-Lite",
+    titleAr: "ليه اخترت NestJS لمشروع ERP-Lite",
+    excerpt:
+      "A look at the architectural decisions behind building a modular, testable backend for a multi-tenant ERP system.",
+    excerptAr:
+      "نظرة على القرارات المعمارية اللي بنيت عليها باكند معياري وقابل للاختبار لنظام ERP متعدد المستأجرين.",
+    content:
+      "# Why NestJS\n\nWhen starting ERP-Lite, I needed a backend framework that enforced structure at scale — modules, dependency injection, and a clear separation between controllers, services, and data access. NestJS's decorator-based architecture and first-class TypeScript support made that possible from day one.\n\n## Key wins\n\n- Guards and interceptors for RBAC and audit logging\n- Native support for DTOs and validation pipes\n- Easy integration with Prisma for type-safe queries\n\nThis is placeholder test content for local QA of the blog rendering pipeline.",
+    contentAr:
+      "# ليه NestJS\n\nلما بدأت ERP-Lite، كنت محتاج فريموورك باكند يفرض بنية واضحة على مستوى كبير — modules وdependency injection وفصل واضح بين الـ controllers والـ services وطبقة الداتا. معمارية NestJS المبنية على decorators ودعمها الكامل لـ TypeScript خلت ده ممكن من أول يوم.\n\n## أهم المميزات\n\n- Guards وinterceptors لـ RBAC وaudit logging\n- دعم أصلي لـ DTOs وvalidation pipes\n- تكامل سهل مع Prisma لاستعلامات آمنة النوع\n\nده محتوى تجريبي لاختبار عرض المدونة محليًا.",
+    readingTime: "4 min read",
+    date: "2026-06-20",
+  },
+  {
+    slug: "bilingual-ui-lessons-from-clinic-cms",
+    title: "Bilingual UI Lessons from Building a Clinic CMS",
+    titleAr: "دروس في واجهات ثنائية اللغة من بناء نظام إدارة عيادات",
+    excerpt:
+      "RTL layouts, locale-aware routing, and the small details that make an Arabic/English product feel native in both directions.",
+    excerptAr:
+      "تخطيطات RTL، توجيه واعٍ للغة، والتفاصيل الصغيرة اللي بتخلي منتج عربي/إنجليزي يحس طبيعي في الاتجاهين.",
+    content:
+      "# Bilingual by default\n\nBuilding the clinic management system taught me that RTL support isn't just flipping `direction: rtl` — it's rethinking spacing, icon mirroring, and date formatting per locale.\n\nThis is placeholder test content for local QA of the blog rendering pipeline.",
+    contentAr:
+      "# ثنائي اللغة بشكل أساسي\n\nبناء نظام إدارة العيادات علمني إن دعم RTL مش مجرد `direction: rtl` — ده إعادة تفكير في المسافات، وعكس الأيقونات، وتنسيق التواريخ حسب اللغة.\n\nده محتوى تجريبي لاختبار عرض المدونة محليًا.",
+    readingTime: "3 min read",
+    date: "2026-07-01",
+  },
+];
+
 const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
 
@@ -76,8 +112,9 @@ async function main() {
   }
   console.log(`✅ Seeded ${PROJECTS.length} projects`);
 
-  // ── Blog posts (none published yet, but structure is ready) ────
-  for (const post of BLOG_POSTS) {
+  // ── Blog posts (real ones from lib/blog-data + test posts for local QA) ─
+  const allBlogPosts = [...BLOG_POSTS, ...TEST_BLOG_POSTS];
+  for (const post of allBlogPosts) {
     await prisma.blogPost.upsert({
       where: { slug: post.slug },
       update: {},
@@ -95,7 +132,59 @@ async function main() {
       },
     });
   }
-  console.log(`✅ Seeded ${BLOG_POSTS.length} blog posts`);
+  console.log(`✅ Seeded ${allBlogPosts.length} blog posts`);
+
+  // ── Testimonials (test data for local QA) ───────────────────────
+  const TEST_TESTIMONIALS = [
+    {
+      name: "Ahmed Nabil",
+      role: "Founder, Nabil Trading Co.",
+      quote:
+        "Mohamed delivered our ERP system ahead of schedule and handled every edge case we threw at him. Communication was clear throughout.",
+      rating: 5,
+      order: 0,
+    },
+    {
+      name: "Sara El-Sayed",
+      role: "Clinic Operations Manager",
+      quote:
+        "The clinic management platform transformed how our front desk works. Bilingual support and the prescription printing feature were exactly what we needed.",
+      rating: 5,
+      order: 1,
+    },
+    {
+      name: "Youssef Adel",
+      role: "CTO, RetailStack",
+      quote:
+        "Solid backend architecture and clean code. Mohamed clearly thinks about maintainability, not just getting features shipped.",
+      rating: 4,
+      order: 2,
+    },
+  ];
+  for (const t of TEST_TESTIMONIALS) {
+    const existing = await prisma.testimonial.findFirst({
+      where: { name: t.name },
+    });
+    if (!existing) {
+      await prisma.testimonial.create({ data: t });
+    }
+  }
+  console.log(`✅ Seeded ${TEST_TESTIMONIALS.length} testimonials`);
+
+  // ── Newsletter subscribers (test data for local QA) ─────────────
+  const TEST_SUBSCRIBERS = [
+    "test.subscriber1@example.com",
+    "test.subscriber2@example.com",
+    "test.subscriber3@example.com",
+  ];
+  for (const email of TEST_SUBSCRIBERS) {
+    await prisma.newsletterSubscriber.upsert({
+      where: { email },
+      update: {},
+      create: { email },
+    });
+  }
+  console.log(`✅ Seeded ${TEST_SUBSCRIBERS.length} newsletter subscribers`);
 
   // ── About content ────────────────────────────────────────────
   await prisma.aboutContent.upsert({
