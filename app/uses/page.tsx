@@ -26,13 +26,33 @@ export default function UsesPage() {
           </Link>
 
           <div className="mt-6">
-            <SectionTitle eyebrow={u.eyebrow} title={u.title} description={u.description} />
+            <SectionTitle
+              eyebrow={u.eyebrow}
+              title={u.title}
+              description={u.description}
+            />
+          </div>
+
+          <div className="mt-10 rounded-2xl border border-border bg-surface p-6">
+            <h2 className="text-sm font-semibold text-foreground">
+              {u.currentlyTitle}
+            </h2>
+            <ul className="mt-3 flex flex-col gap-2">
+              {u.currentlyItems.map((item) => (
+                <li key={item} className="flex gap-2 text-sm text-muted">
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-accent" />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="mt-12 flex flex-col gap-8">
             {u.groups.map((group) => (
               <div key={group.title}>
-                <h2 className="text-sm font-semibold text-foreground">{group.title}</h2>
+                <h2 className="text-sm font-semibold text-foreground">
+                  {group.title}
+                </h2>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {group.items.map((item) => (
                     <TechBadge key={item} label={item} />

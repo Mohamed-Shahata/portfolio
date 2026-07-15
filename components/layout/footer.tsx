@@ -2,7 +2,14 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { ArrowUp, Code2, Briefcase, Mail } from "lucide-react";
+import {
+  ArrowUp,
+  Code2,
+  Briefcase,
+  Mail,
+  PlaySquare,
+  Music2,
+} from "lucide-react";
 import { useLocale } from "@/lib/i18n/locale-context";
 
 const SOCIALS = [
@@ -13,6 +20,16 @@ const SOCIALS = [
     icon: Briefcase,
   },
   { key: "Email", href: "mailto:mohamedmrslan@gmail.com", icon: Mail },
+  {
+    key: "YouTube",
+    href: "https://www.youtube.com/channel/UCUoQyWlxfL2y_8A_LQIH8tw",
+    icon: PlaySquare,
+  },
+  {
+    key: "TikTok",
+    href: "https://www.tiktok.com/@devcore1?_t=ZS-8wOd7y5mkmW&_r=1",
+    icon: Music2,
+  },
 ];
 
 export function Footer() {

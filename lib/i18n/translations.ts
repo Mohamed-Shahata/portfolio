@@ -260,6 +260,12 @@ export const translations = {
       description:
         "The editor, tools, and workflow behind every project on this site.",
       backToHome: "Back to Home",
+      currentlyTitle: "Right now",
+      currentlyItems: [
+        "Building an AI-powered security audit SaaS (NestJS + Next.js + a standalone scanner service)",
+        "Leveling up in NestJS architecture and system design",
+        "Studying Red Team / offensive security fundamentals",
+      ],
       groups: [
         {
           title: "Editor & Terminal",
@@ -771,6 +777,12 @@ export const translations = {
       description:
         "المحرر والأدوات وطريقة الشغل اللي وراء كل مشروع في الموقع ده.",
       backToHome: "العودة للرئيسية",
+      currentlyTitle: "دلوقتي بشتغل على",
+      currentlyItems: [
+        "بناء أداة SaaS لفحص الأمان بالذكاء الاصطناعي (NestJS + Next.js + خدمة scanner منفصلة)",
+        "تطوير مهاراتي في NestJS architecture وsystem design",
+        "دراسة أساسيات الـ Red Team والـ offensive security",
+      ],
       groups: [
         {
           title: "المحرر والترمينال",
