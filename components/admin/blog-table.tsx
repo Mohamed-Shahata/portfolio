@@ -24,7 +24,9 @@ export function BlogTable({ initialPosts }: { initialPosts: BlogRow[] }) {
       body: JSON.stringify({ published: !published }),
     });
     if (res.ok) {
-      setPosts((prev) => prev.map((p) => (p.id === id ? { ...p, published: !published } : p)));
+      setPosts((prev) =>
+        prev.map((p) => (p.id === id ? { ...p, published: !published } : p)),
+      );
     }
     setBusyId(null);
   };
@@ -49,63 +51,77 @@ export function BlogTable({ initialPosts }: { initialPosts: BlogRow[] }) {
 
   return (
     <div className="mt-6 overflow-hidden rounded-2xl border border-border">
-      <table className="w-full text-sm">
-        <thead className="bg-surface text-left text-xs uppercase tracking-wider text-muted-foreground">
-          <tr>
-            <th className="px-4 py-3 font-medium">Title</th>
-            <th className="px-4 py-3 font-medium">Reading time</th>
-            <th className="px-4 py-3 font-medium">Status</th>
-            <th className="px-4 py-3 font-medium text-right">Actions</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-border bg-background-elevated">
-          {posts.map((p) => (
-            <tr key={p.id}>
-              <td className="px-4 py-3">
-                <p className="font-medium text-foreground">{p.title}</p>
-                <p className="text-xs text-muted-foreground">/{p.slug}</p>
-              </td>
-              <td className="px-4 py-3 text-muted">{p.readingTime}</td>
-              <td className="px-4 py-3">
-                <button
-                  onClick={() => togglePublished(p.id, p.published)}
-                  disabled={busyId === p.id}
-                  className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                    p.published
-                      ? "bg-success/10 text-success"
-                      : "bg-muted/10 text-muted-foreground"
-                  }`}
-                >
-                  {p.published ? "Published" : "Draft"}
-                </button>
-              </td>
-              <td className="px-4 py-3">
-                <div className="flex items-center justify-end gap-3">
-                  <Link
-                    href={`/admin/blog/${p.id}`}
-                    className="text-muted-foreground transition-colors hover:text-foreground"
-                    aria-label="Edit"
-                  >
-                    <Pencil className="size-4" />
-                  </Link>
-                  <button
-                    onClick={() => handleDelete(p.id, p.title)}
-                    disabled={busyId === p.id}
-                    className="text-muted-foreground transition-colors hover:text-destructive"
-                    aria-label="Delete"
-                  >
-                    {busyId === p.id ? (
-                      <Loader2 className="size-4 animate-spin" />
-                    ) : (
-                      <Trash2 className="size-4" />
-                    )}
-                  </button>
-                </div>
-              </td>
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[640px] text-sm">
+          <thead className="bg-surface text-left text-xs uppercase tracking-wider text-muted-foreground">
+            <tr>
+              <th className="whitespace-nowrap px-4 py-3 font-medium">Title</th>
+              <th className="whitespace-nowrap px-4 py-3 font-medium">
+                Reading time
+              </th>
+              <th className="whitespace-nowrap px-4 py-3 font-medium">
+                Status
+              </th>
+              <th className="whitespace-nowrap px-4 py-3 font-medium text-right">
+                Actions
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="divide-y divide-border bg-background-elevated">
+            {posts.map((p) => (
+              <tr key={p.id}>
+                <td className="px-4 py-3">
+                  <p className="max-w-[260px] truncate font-medium text-foreground">
+                    {p.title}
+                  </p>
+                  <p className="max-w-[260px] truncate text-xs text-muted-foreground">
+                    /{p.slug}
+                  </p>
+                </td>
+                <td className="whitespace-nowrap px-4 py-3 text-muted">
+                  {p.readingTime}
+                </td>
+                <td className="whitespace-nowrap px-4 py-3">
+                  <button
+                    onClick={() => togglePublished(p.id, p.published)}
+                    disabled={busyId === p.id}
+                    className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                      p.published
+                        ? "bg-success/10 text-success"
+                        : "bg-muted/10 text-muted-foreground"
+                    }`}
+                  >
+                    {p.published ? "Published" : "Draft"}
+                  </button>
+                </td>
+                <td className="whitespace-nowrap px-4 py-3">
+                  <div className="flex items-center justify-end gap-3">
+                    <Link
+                      href={`/admin/blog/${p.id}`}
+                      className="text-muted-foreground transition-colors hover:text-foreground"
+                      aria-label="Edit"
+                    >
+                      <Pencil className="size-4" />
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(p.id, p.title)}
+                      disabled={busyId === p.id}
+                      className="text-muted-foreground transition-colors hover:text-destructive"
+                      aria-label="Delete"
+                    >
+                      {busyId === p.id ? (
+                        <Loader2 className="size-4 animate-spin" />
+                      ) : (
+                        <Trash2 className="size-4" />
+                      )}
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

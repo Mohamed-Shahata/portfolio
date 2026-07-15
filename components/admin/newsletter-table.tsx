@@ -16,7 +16,9 @@ export function NewsletterTable({ initial }: { initial: SubscriberRow[] }) {
   const handleDelete = async (id: string, email: string) => {
     if (!confirm(`Remove ${email}? This can't be undone.`)) return;
     setBusyId(id);
-    const res = await fetch(`/api/admin/newsletter/${id}`, { method: "DELETE" });
+    const res = await fetch(`/api/admin/newsletter/${id}`, {
+      method: "DELETE",
+    });
     if (res.ok) setSubs((prev) => prev.filter((s) => s.id !== id));
     setBusyId(null);
   };
@@ -31,41 +33,49 @@ export function NewsletterTable({ initial }: { initial: SubscriberRow[] }) {
 
   return (
     <div className="mt-6 overflow-hidden rounded-2xl border border-border">
-      <table className="w-full text-sm">
-        <thead className="bg-surface text-left text-xs uppercase tracking-wider text-muted-foreground">
-          <tr>
-            <th className="px-4 py-3 font-medium">Email</th>
-            <th className="px-4 py-3 font-medium">Subscribed</th>
-            <th className="px-4 py-3 font-medium text-right">Actions</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-border bg-background-elevated">
-          {subs.map((s) => (
-            <tr key={s.id}>
-              <td className="px-4 py-3 font-medium text-foreground">{s.email}</td>
-              <td className="px-4 py-3 text-muted">
-                {new Date(s.createdAt).toLocaleDateString()}
-              </td>
-              <td className="px-4 py-3">
-                <div className="flex justify-end">
-                  <button
-                    onClick={() => handleDelete(s.id, s.email)}
-                    disabled={busyId === s.id}
-                    className="text-muted-foreground transition-colors hover:text-destructive"
-                    aria-label="Remove"
-                  >
-                    {busyId === s.id ? (
-                      <Loader2 className="size-4 animate-spin" />
-                    ) : (
-                      <Trash2 className="size-4" />
-                    )}
-                  </button>
-                </div>
-              </td>
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[480px] text-sm">
+          <thead className="bg-surface text-left text-xs uppercase tracking-wider text-muted-foreground">
+            <tr>
+              <th className="whitespace-nowrap px-4 py-3 font-medium">Email</th>
+              <th className="whitespace-nowrap px-4 py-3 font-medium">
+                Subscribed
+              </th>
+              <th className="whitespace-nowrap px-4 py-3 font-medium text-right">
+                Actions
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="divide-y divide-border bg-background-elevated">
+            {subs.map((s) => (
+              <tr key={s.id}>
+                <td className="whitespace-nowrap px-4 py-3 font-medium text-foreground">
+                  {s.email}
+                </td>
+                <td className="whitespace-nowrap px-4 py-3 text-muted">
+                  {new Date(s.createdAt).toLocaleDateString()}
+                </td>
+                <td className="whitespace-nowrap px-4 py-3">
+                  <div className="flex justify-end">
+                    <button
+                      onClick={() => handleDelete(s.id, s.email)}
+                      disabled={busyId === s.id}
+                      className="text-muted-foreground transition-colors hover:text-destructive"
+                      aria-label="Remove"
+                    >
+                      {busyId === s.id ? (
+                        <Loader2 className="size-4 animate-spin" />
+                      ) : (
+                        <Trash2 className="size-4" />
+                      )}
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
