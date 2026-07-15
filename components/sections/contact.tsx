@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, useEffect, type FormEvent } from "react";
 import {
   Mail,
   Code2,
@@ -27,6 +27,14 @@ export function Contact() {
     "idle" | "sending" | "success" | "error"
   >("idle");
   const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [resumeUrl, setResumeUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch("/api/about")
+      .then((res) => res.json())
+      .then((data) => setResumeUrl(data?.resumeUrl ?? null))
+      .catch(() => setResumeUrl(null));
+  }, []);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -115,8 +123,10 @@ export function Contact() {
             {t.contact.emailMe}
           </a>
           <a
-            href="/Mohamed-Shehata-CV.pdf"
+            href={resumeUrl || "/Mohamed-Shehata-CV.pdf"}
             download
+            target="_blank"
+            rel="noopener noreferrer"
             className={buttonVariants({ variant: "outline", size: "lg" })}
           >
             <Download className="size-4" />
