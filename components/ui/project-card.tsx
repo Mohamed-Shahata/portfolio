@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { AnimatedCard } from "@/components/ui/animated-card";
 import { TechBadge } from "@/components/ui/tech-badge";
-import { getLocalizedProject, type Project } from "@/lib/projects-data";
+import { getLocalizedProject, getProjectCoverImage, type Project } from "@/lib/projects-data";
 import { useLocale } from "@/lib/i18n/locale-context";
 
 interface ProjectCardProps {
@@ -14,6 +14,8 @@ interface ProjectCardProps {
 export function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
   const { locale } = useLocale();
   const p = getLocalizedProject(project, locale);
+  const coverImage = getProjectCoverImage(project);
+
   return (
     <Link href={`/projects/${project.slug}`} className="block">
       <AnimatedCard
@@ -21,19 +23,13 @@ export function ProjectCard({ project, delay = 0 }: ProjectCardProps) {
         className="p-0 overflow-hidden h-full flex flex-col"
       >
         <div className="relative flex aspect-video items-center justify-center overflow-hidden bg-background-elevated">
-          {project.images[0] ? (
-            <Image
-              src={project.images[0]}
-              alt={p.title}
-              fill
-              sizes="(max-width: 640px) 100vw, 50vw"
-              className="object-cover object-top"
-            />
-          ) : (
-            <span className="text-xs text-muted-foreground">
-              Project Preview
-            </span>
-          )}
+          <Image
+            src={coverImage}
+            alt={p.title}
+            fill
+            sizes="(max-width: 640px) 100vw, 50vw"
+            className="object-cover object-top"
+          />
         </div>
         <div className="flex flex-1 flex-col p-6">
           <div className="flex items-center justify-between">

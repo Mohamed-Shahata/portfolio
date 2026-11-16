@@ -130,8 +130,7 @@ export function ImageUploader({ label, images, onChange }: ImageUploaderProps) {
       </div>
       {error && <p className="mt-2 text-xs text-destructive">{error}</p>}
       <p className="mt-1.5 text-xs text-muted-foreground">
-        First image is used as the card preview and hero image. Drag to reorder
-        isn&apos;t supported yet — remove and re-upload in the order you want.
+        First image is used as the card preview and hero image. If no images are uploaded, the project&apos;s generated default cover image will be displayed automatically.
       </p>
     </div>
   );

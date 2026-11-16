@@ -10,6 +10,7 @@ import {
   Loader2,
   GripVertical,
 } from "lucide-react";
+import { getProjectCoverImage } from "@/lib/projects-data";
 
 interface ProjectRow {
   id: string;
@@ -120,15 +121,13 @@ export function ProjectsTable({
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-3">
                     <div className="relative size-10 shrink-0 overflow-hidden rounded-lg border border-border bg-surface">
-                      {p.images[0] && (
-                        <Image
-                          src={p.images[0]}
-                          alt={p.title}
-                          fill
-                          sizes="40px"
-                          className="object-cover"
-                        />
-                      )}
+                      <Image
+                        src={getProjectCoverImage(p)}
+                        alt={p.title}
+                        fill
+                        sizes="40px"
+                        className="object-cover"
+                      />
                     </div>
                     <div className="min-w-0">
                       <p className="max-w-[200px] truncate font-medium text-foreground">

@@ -15,7 +15,7 @@ import { ProjectCard } from "@/components/ui/project-card";
 import { StatsCounter } from "@/components/ui/stats-counter";
 import { Lightbox } from "@/components/ui/lightbox";
 import { buttonVariants } from "@/components/ui/button";
-import { getLocalizedProject, type Project } from "@/lib/projects-data";
+import { getLocalizedProject, getProjectCoverImage, type Project } from "@/lib/projects-data";
 import { useLocale } from "@/lib/i18n/locale-context";
 import { useState } from "react";
 
@@ -88,21 +88,17 @@ export function ProjectDetail({
       </div>
 
       <div
-        className={`relative mt-10 flex aspect-video items-center justify-center overflow-hidden rounded-2xl border border-border bg-surface ${project.images[0] ? "cursor-zoom-in" : ""}`}
-        onClick={() => project.images[0] && setLightboxSrc(project.images[0])}
+        className="relative mt-10 flex aspect-video cursor-zoom-in items-center justify-center overflow-hidden rounded-2xl border border-border bg-surface"
+        onClick={() => setLightboxSrc(getProjectCoverImage(project))}
       >
-        {project.images[0] ? (
-          <Image
-            src={project.images[0]}
-            alt={p.title}
-            fill
-            sizes="(max-width: 768px) 100vw, 800px"
-            className="object-cover object-top"
-            priority
-          />
-        ) : (
-          <span className="text-sm text-muted-foreground">{tp.heroImage}</span>
-        )}
+        <Image
+          src={getProjectCoverImage(project)}
+          alt={p.title}
+          fill
+          sizes="(max-width: 768px) 100vw, 800px"
+          className="object-cover object-top"
+          priority
+        />
       </div>
 
       {project.metrics.length > 0 && (

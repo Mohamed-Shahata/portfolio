@@ -466,3 +466,26 @@ export function getLocalizedProject(project: Project, locale: "en" | "ar") {
   const { ar, ...rest } = project;
   return { ...rest, ...ar, ar };
 }
+
+const KNOWN_PROJECT_SLUGS = new Set([
+  "erp-lite",
+  "clinic-cms",
+  "premium-ecommerce-store",
+  "courses-platform",
+  "booking-platform",
+  "aqdam",
+  "bitx-marathon",
+]);
+
+/** Returns the project's hero/cover image: uploaded first image if present,
+ * or the project's high-res default cover, or the generic fallback default. */
+export function getProjectCoverImage(project: { slug: string; images?: string[] }): string {
+  if (project.images && project.images.length > 0 && project.images[0]) {
+    return project.images[0];
+  }
+  if (KNOWN_PROJECT_SLUGS.has(project.slug)) {
+    return `/images/projects/${project.slug}.png`;
+  }
+  return `/images/projects/default.png`;
+}
+
