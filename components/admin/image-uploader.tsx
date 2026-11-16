@@ -10,7 +10,7 @@ interface ImageUploaderProps {
   onChange: (images: string[]) => void;
 }
 
-/** Uploads to Cloudinary via /api/admin/upload; first image is used as
+/** Uploads to server via /api/admin/upload; first image is used as
  * the card/hero image, the rest populate the project gallery. */
 export function ImageUploader({ label, images, onChange }: ImageUploaderProps) {
   const [uploading, setUploading] = useState(false);
@@ -29,10 +29,10 @@ export function ImageUploader({ label, images, onChange }: ImageUploaderProps) {
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        setError(data.error ?? "Failed to delete from Cloudinary");
+        setError(data.error ?? "Failed to delete image");
       }
     } catch {
-      setError("Failed to delete from Cloudinary");
+      setError("Failed to delete image");
     }
     setDeleting(null);
   };

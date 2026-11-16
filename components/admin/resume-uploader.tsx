@@ -9,7 +9,7 @@ interface ResumeUploaderProps {
   onChange: (url: string | null) => void;
 }
 
-/** Uploads a single PDF resume to Cloudinary via /api/admin/upload. */
+/** Uploads a single PDF resume to the server via /api/admin/upload. */
 export function ResumeUploader({ label, fileUrl, onChange }: ResumeUploaderProps) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);

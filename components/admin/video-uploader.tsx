@@ -9,7 +9,7 @@ interface VideoUploaderProps {
   onChange: (video: string | null) => void;
 }
 
-/** Uploads a single walkthrough video to Cloudinary via /api/admin/upload. */
+/** Uploads a single walkthrough video to the server via /api/admin/upload. */
 export function VideoUploader({ label, video, onChange }: VideoUploaderProps) {
   const [uploading, setUploading] = useState(false);
   const [deleting, setDeleting] = useState(false);
@@ -29,10 +29,10 @@ export function VideoUploader({ label, video, onChange }: VideoUploaderProps) {
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        setError(data.error ?? "Failed to delete from Cloudinary");
+        setError(data.error ?? "Failed to delete video");
       }
     } catch {
-      setError("Failed to delete from Cloudinary");
+      setError("Failed to delete video");
     }
     setDeleting(false);
   };
