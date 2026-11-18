@@ -77,7 +77,28 @@ export const PROJECTS: Project[] = [
         labelAr: "لغة (عربي/إنجليزي RTL)",
       },
     ],
-    images: [],
+    images: [
+      "/images/projects/erp-lite.png",
+      "/images/projects/erp-lite/1.jpg",
+      "/images/projects/erp-lite/2.jpg",
+      "/images/projects/erp-lite/3.jpg",
+      "/images/projects/erp-lite/4.jpg",
+      "/images/projects/erp-lite/5.jpg",
+      "/images/projects/erp-lite/6.jpg",
+      "/images/projects/erp-lite/7.jpg",
+      "/images/projects/erp-lite/8.jpg",
+      "/images/projects/erp-lite/9.jpg",
+      "/images/projects/erp-lite/10.jpg",
+      "/images/projects/erp-lite/11.jpg",
+      "/images/projects/erp-lite/12.jpg",
+      "/images/projects/erp-lite/13.jpg",
+      "/images/projects/erp-lite/14.jpg",
+      "/images/projects/erp-lite/15.jpg",
+      "/images/projects/erp-lite/16.jpg",
+      "/images/projects/erp-lite/17.jpg",
+      "/images/projects/erp-lite/18.jpg",
+      "/images/projects/erp-lite/19.jpg",
+    ],
     ar: {
       title: "ERP لايت",
       tagline:
@@ -148,7 +169,7 @@ export const PROJECTS: Project[] = [
         labelAr: "أسرع في زمن الاستجابة",
       },
     ],
-    images: [],
+    images: ["/images/projects/courses-platform.png"],
     ar: {
       title: "منصة الكورسات",
       tagline:
@@ -210,7 +231,7 @@ export const PROJECTS: Project[] = [
         labelAr: "أنواع خدمات مدعومة",
       },
     ],
-    images: [],
+    images: ["/images/projects/booking-platform.png"],
     ar: {
       title: "منصة الحجوزات",
       tagline: "باكند لمنصة حجز استشارات باكتشاف خبراء ومدفوعات.",
@@ -271,7 +292,7 @@ export const PROJECTS: Project[] = [
         labelAr: "فريق عند الإطلاق",
       },
     ],
-    images: [],
+    images: ["/images/projects/bitx-marathon.png"],
     ar: {
       title: "بيتكس ماراثون",
       tagline: "باكند لمنصة ماراثون برمجي بيدعم أكتر من 50 فريق عند الإطلاق.",
@@ -338,7 +359,7 @@ export const PROJECTS: Project[] = [
         labelAr: "قائمة متزامنة",
       },
     ],
-    images: [],
+    images: ["/images/projects/aqdam.png"],
     ar: {
       title: "أقدام — منصة وظائف اجتماعية",
       tagline:
@@ -426,7 +447,19 @@ export const PROJECTS: Project[] = [
         labelAr: "لغة (عربي/إنجليزي RTL)",
       },
     ],
-    images: [],
+    images: [
+      "/images/projects/clinic-cms.png",
+      "/images/projects/clinic-cms/1.png",
+      "/images/projects/clinic-cms/2.png",
+      "/images/projects/clinic-cms/3.png",
+      "/images/projects/clinic-cms/4.png",
+      "/images/projects/clinic-cms/5.png",
+      "/images/projects/clinic-cms/6.png",
+      "/images/projects/clinic-cms/7.png",
+      "/images/projects/clinic-cms/8.png",
+      "/images/projects/clinic-cms/9.png",
+      "/images/projects/clinic-cms/10.png",
+    ],
     ar: {
       title: "نظام إدارة العيادات",
       tagline:
@@ -453,6 +486,102 @@ export const PROJECTS: Project[] = [
         "ضمان إن أي عيادة معرفش توصل لبيانات عيادة تانية احتاج تمرير clinicId في كل guard وservice بدل الاعتماد على تحقق واحد بس، وماكينة حالات المواعيد لازم ترفض أي انتقال غلط من السيرفر عشان تعكس شغل العيادة الحقيقي.",
       lessonsLearned:
         "تقسيم كل صفحة لـ Server Component للجلب الأولي وClient Component للتفاعل خلّى الداشبورد سريع من غير ما أضحي بميزات لحظية زي قائمة الانتظار — نمط هستخدمه تاني في أي منتج متعدد المستأجرين.",
+    },
+  },
+  {
+    slug: "premium-ecommerce-store",
+    title: "Premium E-Commerce Store",
+    type: "Full Stack",
+    tagline:
+      "A WhatsApp-checkout e-commerce platform with a full admin dashboard — no customer account required.",
+    overview:
+      "A production-grade e-commerce storefront built with Next.js 16 and Firebase, designed for store owners who want a fast, no-signup shopping experience for customers and a complete self-serve admin dashboard for managing products, categories, discounts, and orders. Customers browse, filter, and check out entirely through an auto-generated WhatsApp message — removing the friction of account creation and payment gateway setup for small/medium merchants.",
+    problem:
+      "Small and medium merchants in the region often can't justify the cost or complexity of a full e-commerce stack with payment gateways, and their customers are more comfortable finalizing purchases over WhatsApp than filling out checkout forms. Existing solutions either force a heavyweight account/payment flow or don't give store owners real control over their catalog, pricing, and discounts.",
+    solution:
+      "Built a bilingual (EN/AR) storefront where customers can browse products with search, category and price filters, and sorting — then check out via a single click that generates a formatted WhatsApp order message with their cart, contact info, and address, with zero account requirement. Store owners get a secured admin dashboard to manage products (multi-image upload via Cloudinary), categories, time-boxed discounts, and store-wide settings (logo, socials, banners, SEO), all backed by Firebase (Firestore + Auth + Storage).",
+    features: [
+      "Product browsing with search, category/price filters, sorting, and pagination",
+      "Product detail pages with image gallery and related products",
+      "Cart with persistent state (Zustand + localStorage)",
+      "One-click WhatsApp checkout — no account needed",
+      "Admin dashboard: product CRUD, multi-image upload, categories, discounts (percentage/fixed), store settings",
+      "Rate-limited, origin-validated order API with Zod schema validation",
+      "Bilingual UI (English/Arabic) with next-intl",
+      "Dark/light mode",
+      "SEO: dynamic metadata, Open Graph, JSON-LD structured data, sitemap.xml",
+    ],
+    techStack: [
+      "Next.js 16",
+      "TypeScript",
+      "Firebase",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Zustand",
+      "next-intl",
+      "Zod",
+    ],
+    architecture:
+      "Next.js 16 App Router with a [locale] segment for i18n routing, split into (store) and admin route groups. Firebase Firestore is the primary data store, with Firebase Auth securing the admin routes and Firebase Storage/Cloudinary handling product images. Read-heavy storefront queries (categories, active discounts, store settings) are wrapped in unstable_cache with cache tags, so admin mutations can revalidateTag and bust the cache immediately instead of waiting on a TTL — giving near-instant consistency on the storefront after an admin edit while keeping most page loads served from cache. The order-creation API is protected with IP-based rate limiting and origin validation before it ever touches the database.",
+    challenges:
+      "The project originally shipped on Supabase (Postgres) and was migrated live to Firebase (Firestore, Auth, Storage) without a rewrite of the storefront UI — meaning the data-access layer had to be fully re-abstracted behind the same interface. Firestore's lack of relational joins also meant redesigning how categories, discounts, and products relate to each other, and required deploying composite indexes to keep filtered/sorted product queries fast at scale.",
+    lessonsLearned:
+      "Wrapping Firestore reads in unstable_cache with tag-based invalidation gave a much better admin-editing experience than relying on time-based revalidation alone — mutations feel instant to the store owner without sacrificing cache benefits for anonymous storefront traffic. Migrating a live data layer between two fundamentally different databases (relational → document) reinforced the value of isolating all data access behind a single lib/data module from day one.",
+    githubUrl: "https://github.com/Mohamed-Shahata/store.git",
+    liveUrl: "https://store-woad-psi.vercel.app/",
+    relatedSlugs: ["erp-lite", "clinic-cms"],
+    metrics: [
+      {
+        value: 100,
+        suffix: "%",
+        label: "Frictionless WhatsApp Checkout",
+        labelAr: "طلب فوري عبر واتساب بدون حساب",
+      },
+      {
+        value: 2,
+        suffix: "",
+        label: "Languages (EN/AR)",
+        labelAr: "لغة (عربي/إنجليزي)",
+      },
+    ],
+    images: [
+      "/images/projects/premium-ecommerce-store.png",
+      "/images/projects/premium-ecommerce-store/1.jpg",
+      "/images/projects/premium-ecommerce-store/2.jpg",
+      "/images/projects/premium-ecommerce-store/3.jpg",
+      "/images/projects/premium-ecommerce-store/4.jpg",
+      "/images/projects/premium-ecommerce-store/5.jpg",
+      "/images/projects/premium-ecommerce-store/6.jpg",
+      "/images/projects/premium-ecommerce-store/7.jpg",
+      "/images/projects/premium-ecommerce-store/8.jpg",
+      "/images/projects/premium-ecommerce-store/9.jpg",
+    ],
+    ar: {
+      title: "متجر إلكتروني متكامل",
+      tagline:
+        "منصة تجارة إلكترونية بطلب مباشر عبر واتساب ولوحة تحكم كاملة — بدون الحاجة لحساب عميل.",
+      overview:
+        "متجر إلكتروني احترافي بمستوى إنتاجي مبني بـ Next.js 16 وFirebase، مصمم لأصحاب المتاجر اللي عاوزين تجربة شراء فائقة السرعة بدون تسجيل دخول للعملاء مع لوحة تحكم متكاملة لإدارة المنتجات، الأقسام، الخصومات، والطلبات. العميل بيتصفح، يفلتر، ويطلب بضغطة زر تولّد رسالة واتساب منسقة بدون تعقيدات بوابات الدفع.",
+      problem:
+        "التجار الصغيرة والمتوسطة غالبًا مش قادرين يتحملوا تكلفة أو تعقيد بوابات الدفع، وعملاؤهم بيفضلوا إنهاء الطلب عبر واتساب. الحلول المتوفرة إما بتفرض تسجيل حساب معقد أو مش بتوفر تحكم حقيقي في الأسعار والخصومات.",
+      solution:
+        "متجر ثنائي اللغة متجاوب مع فلاتر ذكية وسلة مشتريات محفوظة محلياً مع توليد فوري لرسائل الطلبات على واتساب، بالإضافة للوحة تحكم محمية تدعم رفع وتعديل المنتجات وإدارة الخصومات المؤقتة وإعدادات المتجر.",
+      features: [
+        "تصفح المنتجات مع البحث والفلاتر والترتيب",
+        "صفحة تفاصيل لكل منتج مع معرض صور كامل ومنتجات مرتبطة",
+        "سلة مشتريات ديناميكية بحفظ محلي مستمر",
+        "طلب مباشر وفوري عبر واتساب بضغطة زر واحدة",
+        "لوحة تحكم كاملة لإدارة المنتجات والأقسام والخصومات",
+        "واجهة ثنائية اللغة (عربي / إنجليزي) بالكامل",
+        "دعم الوضع الليلي والنهاري",
+        "تحسين كامل لمحركات البحث SEO وبيانات Schema المنظمة",
+      ],
+      architecture:
+        "Next.js 16 App Router بنظام i18n مقسم بين واجهة المتجر ولوحة الإدارة مع Firestore كقاعدة بيانات رئيسية وFirebase Auth للحماية، مع كاش سريع ومحدث فورياً.",
+      challenges:
+        "ترحيل طبقة البيانات من Supabase إلى Firebase بسلاسة تامة دون التأثير على الواجهة وتصميم علاقات مرنة في قاعدة بيانات وثائقية.",
+      lessonsLearned:
+        "عزل طبقة التعامل مع البيانات في دوال مستقلة يوفر مرونة هائلة عند تبديل أنظمة قواعد البيانات ويحافظ على استقرار الواجهات الأمامية.",
     },
   },
 ];

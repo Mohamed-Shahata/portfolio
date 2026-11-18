@@ -20,13 +20,26 @@ export async function POST(request: Request) {
     );
   }
 
-  const admin = await prisma.adminUser.findUnique({ where: { email } });
+  const cleanEmail = email.trim().toLowerCase();
+  const admin = await prisma.adminUser.findFirst({
+    where: {
+      email: {
+        equals: cleanEmail,
+        mode: "insensitive",
+      },
+    },
+  });
+
   if (!admin) {
     // Same error as a wrong password — don't reveal whether the email exists.
     return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
   }
 
-  const valid = await verifyPassword(password, admin.passwordHash);
+  let valid = await verifyPassword(password, admin.passwordHash);
+  if (!valid && password.trim() !== password) {
+    valid = await verifyPassword(password.trim(), admin.passwordHash);
+  }
+
   if (!valid) {
     return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
   }

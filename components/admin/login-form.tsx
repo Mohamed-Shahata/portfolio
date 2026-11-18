@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Lock, Loader2, AlertCircle } from "lucide-react";
+import { Lock, Loader2, AlertCircle, Eye, EyeOff } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 
 export function AdminLoginForm() {
@@ -10,6 +10,7 @@ export function AdminLoginForm() {
   const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -21,7 +22,7 @@ export function AdminLoginForm() {
       const res = await fetch("/api/admin/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email: email.trim(), password }),
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
@@ -60,14 +61,24 @@ export function AdminLoginForm() {
             onChange={(e) => setEmail(e.target.value)}
             className="h-11 rounded-xl border border-border bg-surface px-4 text-sm text-foreground outline-none transition-colors focus:border-accent"
           />
-          <input
-            type="password"
-            required
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="h-11 rounded-xl border border-border bg-surface px-4 text-sm text-foreground outline-none transition-colors focus:border-accent"
-          />
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              required
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="h-11 w-full rounded-xl border border-border bg-surface px-4 pr-11 text-sm text-foreground outline-none transition-colors focus:border-accent"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted hover:text-foreground transition-colors p-1"
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+            </button>
+          </div>
           {error && (
             <p className="flex items-center gap-2 text-sm text-destructive">
               <AlertCircle className="size-4" />
