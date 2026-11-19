@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { del } from "@vercel/blob";
 
 export async function POST(request: Request) {
   try {
@@ -9,13 +10,22 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "No url provided" }, { status: 400 });
     }
 
-    // If it's a legacy external/Cloudinary URL, we do not call Cloudinary;
-    // return ok so the dashboard can safely detach it without error.
+    // 1. Handle Vercel Blob URLs
+    if (url.includes("blob.vercel-storage.com")) {
+      try {
+        await del(url);
+      } catch (err) {
+        console.warn("Vercel Blob delete failed:", err);
+      }
+      return NextResponse.json({ result: "ok" });
+    }
+
+    // 2. If it's a legacy external/Cloudinary URL, return ok without error
     if (!url.startsWith("/uploads/") && !url.includes("/uploads/")) {
       return NextResponse.json({ result: "ok" });
     }
 
-    // Extract pathname portion if full URL was provided
+    // 3. Handle local filesystem uploads
     let pathname = url;
     try {
       if (url.startsWith("http://") || url.startsWith("https://")) {
@@ -25,7 +35,6 @@ export async function POST(request: Request) {
       // Keep original url string
     }
 
-    // Strip leading /uploads/ or uploads/
     const relativePart = pathname.replace(/^\/?uploads\/?/, "");
     const uploadsRoot = path.resolve(/*turbopackIgnore: true*/ process.cwd(), "public", "uploads");
     const targetPath = path.resolve(/*turbopackIgnore: true*/ uploadsRoot, relativePart);
@@ -41,9 +50,7 @@ export async function POST(request: Request) {
       const nodeErr = err as NodeJS.ErrnoException;
       if (nodeErr.code !== "ENOENT") {
         console.error("Local file delete failed:", err);
-        return NextResponse.json({ error: "Delete failed" }, { status: 500 });
       }
-      // "not found" is fine — the file is already gone
     }
 
     return NextResponse.json({ result: "ok" });

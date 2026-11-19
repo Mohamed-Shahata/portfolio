@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { put } from "@vercel/blob";
 
 const MAX_IMAGE_SIZE = 8 * 1024 * 1024; // 8MB
 const MAX_VIDEO_SIZE = 100 * 1024 * 1024; // 100MB
@@ -78,21 +79,45 @@ export async function POST(request: Request) {
     }
 
     const subfolder = kind === "document" ? "documents" : kind === "video" ? "videos" : "images";
-    const uploadDir = path.resolve(/* turbopackIgnore: true */ process.cwd(), "public", "uploads", subfolder);
-
-    await fs.mkdir(uploadDir, { recursive: true });
-
     const randomSuffix = crypto.randomBytes(8).toString("hex");
     const filename = `${Date.now()}-${randomSuffix}${ext}`;
-    const filePath = path.join(uploadDir, filename);
 
-    const arrayBuffer = await file.arrayBuffer();
-    await fs.writeFile(filePath, Buffer.from(arrayBuffer));
+    // 1. If Vercel Blob token is available, upload directly to Vercel Blob
+    if (process.env.BLOB_READ_WRITE_TOKEN) {
+      const blob = await put(`${subfolder}/${filename}`, file, {
+        access: "public",
+        contentType: file.type || undefined,
+      });
+      return NextResponse.json({ url: blob.url });
+    }
 
-    const publicUrl = `/uploads/${subfolder}/${filename}`;
-    return NextResponse.json({ url: publicUrl });
+    // 2. Fallback for local development or custom server storage
+    try {
+      const uploadDir = path.resolve(/* turbopackIgnore: true */ process.cwd(), "public", "uploads", subfolder);
+      await fs.mkdir(uploadDir, { recursive: true });
+
+      const filePath = path.join(uploadDir, filename);
+      const arrayBuffer = await file.arrayBuffer();
+      await fs.writeFile(filePath, Buffer.from(arrayBuffer));
+
+      const publicUrl = `/uploads/${subfolder}/${filename}`;
+      return NextResponse.json({ url: publicUrl });
+    } catch (fsErr: unknown) {
+      const isReadOnly = (fsErr as { code?: string })?.code === "EROFS";
+      if (isReadOnly || process.env.VERCEL) {
+        return NextResponse.json(
+          {
+            error:
+              "Vercel Blob token not found. Please connect a Blob store to your project in Vercel Dashboard.",
+          },
+          { status: 500 },
+        );
+      }
+      throw fsErr;
+    }
   } catch (error) {
-    console.error("Local file upload failed:", error);
-    return NextResponse.json({ error: "Upload failed" }, { status: 500 });
+    console.error("File upload failed:", error);
+    const msg = error instanceof Error ? error.message : "Upload failed";
+    return NextResponse.json({ error: msg }, { status: 500 });
   }
 }
