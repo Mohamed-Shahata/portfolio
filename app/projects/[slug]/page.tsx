@@ -5,6 +5,9 @@ import { Footer } from "@/components/layout/footer";
 import { ProjectDetail } from "@/components/sections/project-detail";
 import { getPublishedProjects, getProjectBySlugDb } from "@/lib/data";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function generateStaticParams() {
   const projects = await getPublishedProjects();
   return projects.map((p) => ({ slug: p.slug }));

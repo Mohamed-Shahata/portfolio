@@ -8,6 +8,8 @@ import { WhyWorkWithMe } from "@/components/sections/why-work-with-me";
 import { getPublishedProjects, getPublishedTestimonials } from "@/lib/data";
 import { Testimonials } from "@/components/sections/testimonials";
 
+export const revalidate = 0;
+
 // Below-the-fold sections are code-split via next/dynamic to keep the
 // initial JS bundle small and speed up first load.
 const Process = dynamic(() =>
